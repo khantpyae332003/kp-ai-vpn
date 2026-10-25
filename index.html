@@ -71,83 +71,27 @@
 
   <!-- ========================================== -->
   <!-- 1. INTRO / SPLASH SCREEN (IMAGE 1 DESIGN)  -->
-  <!-- ========================================== -->
-  <div id="auth-screen" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-cover bg-center transition-all duration-700" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(2, 6, 23, 0.95)), url('8616.png');">
-    
-    <!-- Top Right Language Switcher -->
-    <div class="absolute top-4 right-4 z-10">
-      <button class="bg-slate-900/80 border border-slate-700/80 text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 text-slate-300 hover:border-indigo-400">
-        <i data-lucide="globe" class="w-3.5 h-3.5"></i>
-        <span>EN</span>
-        <i data-lucide="chevron-down" class="w-3 h-3"></i>
-      </button>
-    </div>
-
-    <!-- Login Glass Card Overlay -->
-    <div class="w-full max-w-md bg-slate-950/70 border border-cyan-500/30 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 shadow-[0_0_60px_rgba(79,70,229,0.3)] space-y-5 relative">
-      
-      <!-- Crown Branding Logo Header -->
-      <div class="text-center space-y-1">
-        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-400 flex flex-col items-center justify-center shadow-lg shadow-indigo-500/40 border border-cyan-300/40">
-          <i data-lucide="crown" class="w-6 h-6 text-cyan-200"></i>
-          <span class="text-lg font-black italic text-white leading-none">KP</span>
-        </div>
-        <h2 class="text-2xl font-black italic tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-200 to-purple-300 pt-1">
-          KP AI
-        </h2>
-        <h3 id="auth-title" class="text-lg font-bold text-slate-100 pt-1">Welcome Back</h3>
+  <div id="auth-screen" class="fixed inset-0 z-40 flex items-center justify-center p-4 overflow-y-auto bg-slate-950" style="background-image: radial-gradient(circle at 20% 20%, rgba(99,102,241,0.25), transparent 45%), radial-gradient(circle at 80% 80%, rgba(34,211,238,0.18), transparent 45%);">
+    <div class="w-full max-w-sm bg-slate-900/80 border border-slate-700/70 backdrop-blur-xl rounded-3xl p-7 shadow-2xl space-y-5">
+      <div class="text-center space-y-2">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30"><span class="text-2xl font-black text-white italic">KP</span></div>
+        <h3 id="auth-title" class="text-xl font-bold text-slate-100">Welcome Back</h3>
         <p id="auth-subtitle" class="text-xs text-slate-400">Sign in to continue your free internet journey</p>
       </div>
-
-      <!-- Auth Form Inputs -->
-      <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-3.5">
-        
-        <div id="field-email" class="relative">
-          <i data-lucide="user" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-          <input type="text" id="auth-username" required placeholder="Email or Username" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 transition">
-        </div>
-
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-3">
+        <input type="text" id="auth-username" required autocomplete="username" placeholder="Email or Username" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-400">
         <div class="relative">
-          <i data-lucide="lock" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-          <input type="password" id="auth-password" required placeholder="Password" class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-10 pr-10 py-3 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 transition">
-          <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200">
-            <i data-lucide="eye" id="pass-eye-icon" class="w-4 h-4"></i>
-          </button>
+          <input type="password" id="auth-password" required autocomplete="current-password" placeholder="Password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 pr-11 py-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-400">
+          <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"><i id="pass-eye-icon" data-lucide="eye" class="w-4 h-4"></i></button>
         </div>
-
-        <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold text-xs transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 active:scale-95">
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          <span id="btn-text">Login</span>
-        </button>
+        <div class="flex items-center justify-between text-xs">
+          <label class="flex items-center gap-2 text-slate-300 cursor-pointer"><input type="checkbox" id="auth-remember" checked class="rounded border-slate-700 bg-slate-900"> Remember me</label>
+          <a href="#" onclick="forgotPassword(); return false;" class="text-cyan-400 hover:underline">Forgot Password?</a>
+        </div>
+        <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-bold text-sm active:scale-95 transition"><span id="btn-text">Login</span></button>
       </form>
-
-      <!-- OR Separator -->
-      <div class="flex items-center my-2">
-        <div class="flex-1 border-t border-slate-800"></div>
-        <span class="px-3 text-[10px] text-slate-500 font-mono">OR</span>
-        <div class="flex-1 border-t border-slate-800"></div>
-      </div>
-
-      <!-- Toggle Sign Up / Login Button -->
-      <button type="button" onclick="toggleAuthMode()" id="auth-toggle-btn" class="w-full py-2.5 rounded-xl border border-slate-700/80 hover:border-indigo-500 bg-slate-900/50 hover:bg-slate-900 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition">
-        <i data-lucide="user-plus" class="w-4 h-4 text-cyan-400"></i>
-        <span id="toggle-btn-text">Create New Account</span>
-      </button>
-
-      <!-- Remember Me & Forgot Password -->
-      <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" id="auth-remember" checked class="rounded border-slate-800 bg-slate-900 text-indigo-600 focus:ring-0">
-          <span>Remember me</span>
-        </label>
-        <a href="#" onclick="forgotPassword(); return false;" class="text-purple-400 hover:underline">Forgot Password?</a>
-      </div>
-
-      <!-- Footer Slogan inside Card -->
-      <div class="text-center pt-2">
-        <p class="text-[11px] font-bold italic tracking-wide text-cyan-300/80">Stay Connected, Stay Free</p>
-      </div>
-
+      <button type="button" onclick="toggleAuthMode()" id="auth-toggle-btn" class="w-full py-2.5 rounded-xl border border-slate-700 hover:border-indigo-500 text-slate-200 text-xs font-semibold transition"><span id="toggle-btn-text">Create New Account</span></button>
+      <p class="text-center text-[11px] text-slate-500">Stay Connected, Stay Free</p>
     </div>
   </div>
 
