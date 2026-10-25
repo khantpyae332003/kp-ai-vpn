@@ -906,3 +906,38 @@
 
     function copyAiOutput() {
       const text = document.getElementById('ai-output-text').inner
+<style>
+#kp-contact-btn{position:fixed;right:16px;bottom:16px;z-index:9998;background:#6c5ce7;color:#fff;border:0;border-radius:28px;padding:12px 18px;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+#kp-contact-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.65);align-items:center;justify-content:center;padding:16px}
+#kp-contact-modal.open{display:flex}
+#kp-contact-card{background:#1e1e2f;color:#fff;border-radius:14px;padding:20px;width:100%;max-width:380px;font-family:sans-serif}
+#kp-contact-card h3{margin:0 0 12px}
+#kp-contact-card input,#kp-contact-card select,#kp-contact-card textarea{width:100%;box-sizing:border-box;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #444;background:#2a2a40;color:#fff;font-size:14px}
+#kp-contact-card button{padding:10px 14px;border-radius:8px;border:0;cursor:pointer;font-size:14px}
+#kp-contact-status{font-size:13px;margin-top:8px;min-height:18px}
+</style>
+<button id="kp-contact-btn" type="button" onclick="kpContactOpen()">Contact / Order</button>
+<div id="kp-contact-modal"><div id="kp-contact-card">
+<h3>Contact / Order</h3>
+<form id="kp-contact-form" onsubmit="return kpContactSend(event)">
+<input id="kpc-name" placeholder="Name" required maxlength="80">
+<input id="kpc-email" type="email" placeholder="Email" required maxlength="120">
+<select id="kpc-plan"><option>General question</option><option>Basic</option><option>Premium</option></select>
+<textarea id="kpc-message" rows="4" placeholder="Message" required maxlength="1000"></textarea>
+<button type="submit" id="kpc-send" style="background:#6c5ce7;color:#fff">Send</button> 
+<button type="button" onclick="kpContactClose()" style="background:#444;color:#fff">Close</button>
+<div id="kp-contact-status"></div>
+</form></div></div>
+<script>
+function kpContactOpen(){document.getElementById("kp-contact-modal").classList.add("open");}
+function kpContactClose(){document.getElementById("kp-contact-modal").classList.remove("open");}
+async function kpContactSend(e){e.preventDefault();
+var s=document.getElementById("kp-contact-status"),b=document.getElementById("kpc-send");
+b.disabled=true;s.textContent="Sending...";
+try{var r=await fetch("https://khant332003.app.n8n.cloud/webhook/kp-vpn-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+name:document.getElementById("kpc-name").value,email:document.getElementById("kpc-email").value,
+plan:document.getElementById("kpc-plan").value,message:document.getElementById("kpc-message").value})});
+if(!r.ok)throw new Error("fail");s.textContent="Sent. Thank you!";document.getElementById("kp-contact-form").reset();
+}catch(err){s.textContent="Could not send. Please try again later.";}
+b.disabled=false;return false;}
+</script>
