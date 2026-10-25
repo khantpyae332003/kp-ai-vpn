@@ -377,47 +377,10 @@
   </main>
 
   <!-- Notification Toast Container -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+  <div class="fixed bottom-0 left-0 right-0 z-30 bg-amber-950/95 border-t border-amber-700/50 text-amber-200 text-[11px] text-center px-3 py-1.5">သတိပေးချက်: ဒီ Website က Config များသည် နမူနာ Template သာဖြစ်ပြီး တကယ့် server မဟုတ်ပါ။</div><div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
 
   <!-- MODALS -->
-  <div id="kp-vpn-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="glass-card border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative">
-      <button onclick="closeKpVpnModal()" class="absolute top-4 right-4 p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="flex items-center gap-3">
-        <div class="p-3.5 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-lg shadow-emerald-500/20">
-          <i data-lucide="shield-check" class="w-7 h-7"></i>
-        </div>
-        <div>
-          <h3 class="font-bold text-lg text-slate-100">KP VPN Pro Max Official App</h3>
-          <p class="text-xs text-emerald-400 font-medium">All-in-One Native NoPro Engine v7.2 (Android)</p>
-        </div>
-      </div>
-
-      <div class="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 space-y-3 text-xs text-slate-300">
-        <div class="font-semibold text-indigo-300 flex items-center gap-1.5">
-          <i data-lucide="smartphone" class="w-4 h-4 text-emerald-400"></i>
-          Android ဖုန်းများအတွက် သီးသန့် ပြုလုပ်ထားသော စနစ်များ:
-        </div>
-        <ul class="space-y-2 text-slate-400 list-disc list-inside">
-          <li><strong>All Native Extensions (.nm, .ehi, .hc, .npv):</strong> KP AI မှ ထုတ်ပေးသမျှ ဖိုင်အမျိုးအစား အားလုံးကို တိုက်ရိုက် Import ပြုလုပ်နိုင်ခြင်း။</li>
-          <li><strong>Direct Android APK Installer:</strong> Android OS အတွက် သီးသန့် သဟဇာတဖြစ်အောင် ထုတ်လုပ်ပေးထားသော Package ဖြစ်ခြင်း။</li>
-          <li><strong>Auto Switch Failover:</strong> ချိတ်ဆက်ထားသော လိုင်း ပြတ်တောက်သွားပါက backup လိုင်းသို့ 0.4 စက္ကန့်အတွင်း အလိုအလျောက် switch လုပ်ပေးခြင်း။</li>
-        </ul>
-      </div>
-
-      <div class="flex items-center gap-3 pt-1">
-        <button onclick="downloadKpVpnAppApk()" class="flex-1 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 hover:from-emerald-500 hover:to-indigo-500 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 active:scale-95">
-          <i data-lucide="download" class="w-4 h-4"></i>
-          <span>KP VPN App (.apk) တိုက်ရိုက်ဒေါင်းမည်</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="hidden-gems-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+  <div id="kp-vpn-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4"> <div class="glass-card border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative"> <button onclick="closeKpVpnModal()" class="absolute top-4 right-4 p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button> <div><h3 class="font-bold text-lg text-slate-100">VPN App များ (တရားဝင် Download)</h3> <p class="text-xs text-slate-400 mt-1">လောလောဆယ် KP VPN ကိုယ်ပိုင် App မရှိသေးပါ။ အောက်က တရားဝင် App များကို Store/GitHub မှသာ ဒေါင်းလုဒ်လုပ်ပါ။</p></div> <div class="space-y-2 text-xs"> <a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-slate-200"><strong>v2rayNG</strong> - GitHub (official releases)</a> <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-slate-200"><strong>Hiddify</strong> - GitHub (official releases)</a> <a href="https://play.google.com/store/apps/details?id=com.netmod.syna" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-slate-200"><strong>NetMod</strong> - Google Play</a> <a href="https://play.google.com/store/apps/details?id=xyz.easypro.httpcustom" target="_blank" rel="noopener noreferrer" class="block p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 text-slate-200"><strong>HTTP Custom</strong> - Google Play</a> </div> <p class="text-[11px] text-amber-300">သတိပေးချက်: အမည်မသိ Website များမှ APK ကို မဒေါင်းပါနဲ့။</p> </div></div> <div id="hidden-gems-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="glass-card border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
       <button onclick="closeHiddenGemsModal()" class="absolute top-4 right-4 p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -1003,22 +966,7 @@
       document.getElementById('view-modal').classList.add('hidden');
     }
 
-    function testSpeedSimulated() {
-      const res = document.getElementById('speed-test-result');
-      const pingVal = document.getElementById('ping-val');
-      const speedVal = document.getElementById('speed-val');
-      
-      res.classList.remove('hidden');
-      pingVal.innerText = 'စစ်ဆေးနေသည်...';
-      speedVal.innerText = 'စစ်ဆေးနေသည်...';
-
-      setTimeout(() => {
-        const ms = Math.floor(Math.random() * 18) + 16;
-        const mbps = (Math.random() * 40 + 30).toFixed(1);
-        pingVal.innerText = `${ms} ms`;
-        speedVal.innerText = `${mbps} Mbps`;
-      }, 600);
-    }
+    function testSpeedSimulated() { showToast('Speed test မလုပ်ရသေးပါ၊ App ထဲမှာ ကိုယ်တိုင်စစ်ပါ', 'info'); }
 
     function copyModalConfig() {
       copyToClipboard(activeModalConfig.content);
@@ -1035,27 +983,6 @@
     }
     function closeKpVpnModal() {
       document.getElementById('kp-vpn-modal').classList.add('hidden');
-    }
-
-    function downloadKpVpnAppApk() {
-      // Android APK Package Header Header Template Binary Data Simulation
-      const apkHeader = "PK\x03\x04\x14\x00\x08\x00\x08\x00";
-      const apkMetadata = "\n# KP VPN Pro Max v7.2 Native Android Package (.apk)\n# Package Name: com.kpai.vpn.promax\n# Target SDK: Android 14 (API 34)\n# Features: All-in-One Config Import (.nm, .ehi, .hc, .npv, .ovpn, .json)\n";
-      const dummyBinaryContent = new Array(1024).join("KPAI_VPN_ENGINE_NATIVE_ANDROID_DATA_STREAM_");
-
-      const apkContent = apkHeader + apkMetadata + dummyBinaryContent;
-
-      const element = document.createElement('a');
-      const blob = new Blob([apkContent], { type: 'application/vnd.android.package-archive' });
-      element.href = URL.createObjectURL(blob);
-      element.setAttribute('download', 'KP_VPN_Pro_Max_v7.2.apk');
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-      
-      setTimeout(() => URL.revokeObjectURL(element.href), 1000);
-      showToast('Android အတွက် KP VPN App (.apk) ဖိုင်ကို စတင်ဒေါင်းလုဒ်ဆွဲနေပါပြီ!', 'success');
     }
 
     function openHiddenGemsModal() {
