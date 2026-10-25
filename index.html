@@ -192,7 +192,7 @@
       </div>
 
       <!-- Toggle Sign Up / Login Button -->
-      <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="w-full py-2.5 rounded-xl border border-slate-700/80 hover:border-indigo-500 bg-slate-900/50 hover:bg-slate-900 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition">
+      <button type="button" onclick="toggleAuthMode()" id="auth-toggle-btn" class="w-full py-2.5 rounded-xl border border-slate-700/80 hover:border-indigo-500 bg-slate-900/50 hover:bg-slate-900 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition">
         <i data-lucide="user-plus" class="w-4 h-4 text-cyan-400"></i>
         <span id="toggle-btn-text">Create New Account</span>
       </button>
@@ -200,10 +200,10 @@
       <!-- Remember Me & Forgot Password -->
       <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1">
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" checked class="rounded border-slate-800 bg-slate-900 text-indigo-600 focus:ring-0">
+          <input type="checkbox" id="auth-remember" checked class="rounded border-slate-800 bg-slate-900 text-indigo-600 focus:ring-0">
           <span>Remember me</span>
         </label>
-        <a href="#" onclick="showToast('Password Reset Link Sent!', 'info')" class="text-purple-400 hover:underline">Forgot Password?</a>
+        <a href="#" onclick="forgotPassword(); return false;" class="text-purple-400 hover:underline">Forgot Password?</a>
       </div>
 
       <!-- Footer Slogan inside Card -->
@@ -611,16 +611,92 @@
       lucide.createIcons();
     }
 
-    function handleAuthSubmit(e) {
+    // ---------- Toast ----------
+    function showToast(msg, type) {
+      const c = document.getElementById('toast-container');
+      if (!c) return;
+      const colors = { success: 'border-emerald-500/50 text-emerald-200', error: 'border-red-500/50 text-red-200', info: 'border-cyan-500/50 text-cyan-200' };
+      const t = document.createElement('div');
+      t.className = 'px-4 py-2.5 rounded-xl bg-slate-900/95 border text-xs shadow-lg transition-all duration-300 ' + (colors[type] || colors.info);
+      t.textContent = msg;
+      c.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 3200);
+    }
+
+    // ---------- Auth (browser-local accounts) ----------
+    const USERS_KEY = 'kp_users_v1';
+    const SESSION_KEY = 'kp_session_v1';
+
+    function getUsers() {
+      try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; }
+    }
+    function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+
+    async function hashPassword(pw, salt) {
+      const data = new TextEncoder().encode(salt + ':' + pw);
+      const buf = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    function randomSalt() {
+      return Array.from(crypto.getRandomValues(new Uint8Array(8))).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function enterApp(username, remember) {
+      const store = remember ? localStorage : sessionStorage;
+      localStorage.removeItem(SESSION_KEY);
+      sessionStorage.removeItem(SESSION_KEY);
+      store.setItem(SESSION_KEY, username);
+      const intro = document.getElementById('intro-screen');
+      intro.classList.add('hidden');
+      const auth = document.getElementById('auth-screen');
+      auth.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => auth.classList.add('hidden'), 500);
+    }
+
+    function logoutKp() {
+      localStorage.removeItem(SESSION_KEY);
+      sessionStorage.removeItem(SESSION_KEY);
+      location.reload();
+    }
+
+    async function handleAuthSubmit(e) {
       e.preventDefault();
-      const username = document.getElementById('auth-username').value;
-      showToast(isSignUpMode ? `Welcome ${username}! Account Created Successfully.` : `Welcome Back ${username}!`, 'success');
-      
-      // Hide Auth Screen & Enter Main App
-      document.getElementById('auth-screen').classList.add('opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        document.getElementById('auth-screen').classList.add('hidden');
-      }, 500);
+      const username = document.getElementById('auth-username').value.trim();
+      const password = document.getElementById('auth-password').value;
+      const remember = document.getElementById('auth-remember').checked;
+      const key = username.toLowerCase();
+
+      if (username.length < 3) return showToast('Username/Email အနည်းဆုံး ၃ လုံး လိုပါတယ်', 'error');
+      if (password.length < 6) return showToast('Password အနည်းဆုံး ၆ လုံး လိုပါတယ်', 'error');
+
+      const users = getUsers();
+      if (isSignUpMode) {
+        if (users[key]) return showToast('ဒီအကောင့် ရှိပြီးသားပါ။ Login ဝင်ပါ', 'error');
+        const salt = randomSalt();
+        users[key] = { name: username, salt: salt, hash: await hashPassword(password, salt), created: Date.now() };
+        saveUsers(users);
+        showToast('အကောင့်ဖွင့်ပြီးပါပြီ။ ကြိုဆိုပါတယ် ' + username + '!', 'success');
+        enterApp(username, remember);
+      } else {
+        const u = users[key];
+        if (!u) return showToast('အကောင့် မတွေ့ပါ။ Create New Account နှိပ်ပါ', 'error');
+        if ((await hashPassword(password, u.salt)) !== u.hash) return showToast('Password မှားနေပါတယ်', 'error');
+        showToast('ပြန်လည်ကြိုဆိုပါတယ် ' + u.name + '!', 'success');
+        enterApp(u.name, remember);
+      }
+      document.getElementById('auth-password').value = '';
+    }
+
+    function forgotPassword() {
+      const username = document.getElementById('auth-username').value.trim().toLowerCase();
+      const users = getUsers();
+      if (!username || !users[username]) return showToast('အကောင့်နာမည် အရင်ရိုက်ထည့်ပါ (ဒီ browser မှာ ဖွင့်ထားတဲ့ အကောင့်ဖြစ်ရမယ်)', 'info');
+      if (confirm('"' + users[username].name + '" အကောင့်ကို ဖျက်ပြီး အသစ်ပြန်ဖွင့်မလား?')) {
+        delete users[username];
+        saveUsers(users);
+        showToast('အကောင့်ဖျက်ပြီးပါပြီ။ Create New Account နဲ့ အသစ်ဖွင့်ပါ', 'success');
+        if (!isSignUpMode) toggleAuthMode();
+      }
     }
 
     const VPN_APPS = [
@@ -664,6 +740,11 @@
 
     window.onload = function() {
       lucide.createIcons();
+      const savedUser = localStorage.getItem(SESSION_KEY) || sessionStorage.getItem(SESSION_KEY);
+      if (savedUser) {
+        document.getElementById("intro-screen").classList.add("hidden");
+        document.getElementById("auth-screen").classList.add("hidden");
+      }
       renderSimSelectors();
       updateBugHostList();
       renderConfigCards();
