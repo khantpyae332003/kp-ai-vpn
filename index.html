@@ -3,78 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KP VPN Safety Hub</title>
+<title>KP VPN Hub – Internet Safety Tips</title>
+<meta name="description" content="VPN and internet safety tips in Burmese and English, updated daily by AI.">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#0b1220;color:#e2e8f0;line-height:1.6}
-a{color:#22d3ee}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Myanmar",sans-serif;background:#f8fafc;color:#0f172a;line-height:1.7}
+a{color:#4f46e5}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid #1e293b;position:sticky;top:0;background:rgba(11,18,32,.92);backdrop-filter:blur(8px);z-index:10}
+header{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:10}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:800;font-size:18px;letter-spacing:.5px}
-.logo span{color:#22d3ee}
-.btn{display:inline-block;border:0;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;background:linear-gradient(135deg,#06b6d4,#6366f1);color:#fff;text-decoration:none}
-.hero{padding:64px 0 40px;text-align:center}
-.hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 12px;line-height:1.2}
-.hero p{max-width:620px;margin:0 auto 24px;color:#94a3b8}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;padding-bottom:40px}
-.card{background:#111a2e;border:1px solid #1e293b;border-radius:16px;padding:20px}
-.card h3{margin:0 0 8px;font-size:16px;color:#f1f5f9}
-.card p{margin:0;color:#94a3b8;font-size:14px}
-h2{font-size:22px;margin:8px 0 16px}
-.note{background:#1e1b0e;border:1px solid #854d0e;color:#fde68a;border-radius:12px;padding:14px 16px;font-size:14px;margin-bottom:40px}
-footer{border-top:1px solid #1e293b;padding:20px 0;text-align:center;font-size:12px;color:#64748b}
-#kp-contact-modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);align-items:center;justify-content:center;padding:16px}
-#kp-contact-modal.open{display:flex}
-#kp-contact-card{background:#111a2e;border:1px solid #1e293b;border-radius:16px;padding:22px;width:100%;max-width:400px}
-#kp-contact-card h3{margin:0 0 14px}
-#kp-contact-card input,#kp-contact-card select,#kp-contact-card textarea{width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #334155;background:#0b1220;color:#fff;font-size:14px;font-family:inherit}
-#kp-contact-status{font-size:13px;margin-top:8px;min-height:18px}
+.logo{font-weight:800;font-size:18px}
+.logo span{color:#4f46e5}
+.right{display:flex;gap:8px;align-items:center}
+.btn{display:inline-block;border:0;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;background:#4f46e5;color:#fff;font-family:inherit}
+.btn.alt{background:#e2e8f0;color:#0f172a}
+.btn.small{padding:6px 12px;font-size:13px}
+.hero{padding:56px 0 32px;text-align:center}
+.hero h1{font-size:clamp(26px,5vw,42px);margin:0 0 12px;line-height:1.3}
+.hero p{max-width:600px;margin:0 auto 22px;color:#475569}
+h2{font-size:22px;margin:32px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0;color:#475569;font-size:14px}
+.note{background:#fffbeb;border:1px solid #fcd34d;color:#78350f;border-radius:12px;padding:14px 16px;font-size:14px;margin-top:32px}
+details{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:#475569;font-size:14px}
+footer{border-top:1px solid #e2e8f0;margin-top:40px;padding:20px 0;text-align:center;font-size:12px;color:#64748b}
+.overlay{display:none;position:fixed;inset:0;z-index:50;background:rgba(15,23,42,.55);align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:22px;width:100%;max-width:400px}
+.modal h3{margin:0 0 14px}
+.modal input,.modal select,.modal textarea{width:100%;margin-bottom:10px;padding:10px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;font-size:14px;font-family:inherit}
 .row{display:flex;gap:8px}
-.btn.alt{background:#334155}
+#kpc-status{font-size:13px;margin-top:8px;min-height:18px}
+#chat-btn{position:fixed;right:16px;bottom:16px;z-index:40;border-radius:28px;padding:12px 20px;box-shadow:0 6px 18px rgba(79,70,229,.35)}
+#chat-box{display:none;position:fixed;right:16px;bottom:72px;z-index:40;width:min(340px,calc(100vw - 32px));height:420px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 12px 32px rgba(15,23,42,.18);flex-direction:column;overflow:hidden}
+#chat-box.open{display:flex}
+#chat-head{background:#4f46e5;color:#fff;padding:12px 14px;font-weight:700;font-size:14px}
+#chat-log{flex:1;overflow-y:auto;padding:12px;font-size:14px}
+.msg{margin-bottom:8px;padding:8px 12px;border-radius:12px;max-width:85%;white-space:pre-wrap}
+.msg.bot{background:#eef2ff}
+.msg.me{background:#4f46e5;color:#fff;margin-left:auto}
+#chat-form{display:flex;gap:6px;padding:10px;border-top:1px solid #e2e8f0}
+#chat-input{flex:1;padding:9px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;font-family:inherit}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="logo">KP <span>VPN</span> Hub</div><button class="btn" type="button" onclick="kpContactOpen()">Contact / Order</button></div></header>
+<header><div class="wrap">
+<div class="logo">KP <span>VPN</span> Hub</div>
+<div class="right">
+<button class="btn alt small" type="button" id="lang-btn" onclick="kpToggleLang()">English</button>
+<button class="btn small" type="button" onclick="kpOpen('kp-contact-modal')" data-t="contact">ဆက်သွယ်ရန်</button>
+</div>
+</div></header>
 <main class="wrap">
 <section class="hero">
-<h1>အင်တာနက် လုံခြုံရေး<br>အကြံပြုချက်များ</h1>
-<p>VPN နဲ့ အွန်လိုင်း privacy အကြောင်း လုံခြုံပြီး လက်တွေ့သုံးလို့ရတဲ့ အကြံပြုချက်တွေကို နေ့စဉ် AI က update လုပ်ပေးပါတယ်။</p>
-<button class="btn" type="button" onclick="kpContactOpen()">မေးမြန်းရန် / မှာယူရန်</button>
+<h1 data-t="h1">အင်တာနက် လုံခြုံရေး<br>အကြံပြုချက်များ</h1>
+<p data-t="sub">VPN နဲ့ အွန်လိုင်း privacy အကြောင်း လက်တွေ့သုံးလို့ရတဲ့ အကြံပြုချက်တွေကို AI က နေ့စဉ် update လုပ်ပေးပါတယ်။</p>
+<button class="btn" type="button" onclick="kpToggleChat()" data-t="ask">AI ကို မေးကြည့်ပါ</button>
 </section>
-<h2>သိထားသင့်တာတွေ</h2>
+<h2 data-t="h2a">သိထားသင့်တာတွေ</h2>
 <div class="grid">
-<div class="card"><h3>Public Wi‑Fi</h3><p>မသိတဲ့ Wi‑Fi မှာ banking၊ email လို အရေးကြီးတာတွေ မဖွင့်ပါနဲ့။ HTTPS ပါတဲ့ site ပဲ သုံးပါ။</p></div>
-<div class="card"><h3>2FA ဖွင့်ပါ</h3><p>Password တစ်ခုတည်းမကပါဘဲ 2-step verification ဖွင့်ထားရင် account ပိုလုံခြုံပါတယ်။</p></div>
-<div class="card"><h3>အခမဲ့ config ကို သတိထားပါ</h3><p>ပိုင်ရှင်မသိတဲ့ အခမဲ့ VPN config တွေက သင့် traffic ကို ကြားဖြတ်ကြည့်နိုင်ပါတယ်။ ယုံကြည်ရတဲ့ provider ကိုပဲ သုံးပါ။</p></div>
+<div class="card"><h3 data-t="c1t">Public Wi‑Fi</h3><p data-t="c1p">မသိတဲ့ Wi‑Fi မှာ banking၊ email လို အရေးကြီးတာတွေ မဖွင့်ပါနဲ့။ HTTPS ပါတဲ့ site ပဲ သုံးပါ။</p></div>
+<div class="card"><h3 data-t="c2t">2FA ဖွင့်ပါ</h3><p data-t="c2p">Password တစ်ခုတည်းမကပါဘဲ 2-step verification ဖွင့်ထားရင် account ပိုလုံခြုံပါတယ်။</p></div>
+<div class="card"><h3 data-t="c3t">အခမဲ့ config ကို သတိထားပါ</h3><p data-t="c3p">ပိုင်ရှင်မသိတဲ့ အခမဲ့ VPN config တွေက သင့် traffic ကို ကြားဖြတ်ကြည့်နိုင်ပါတယ်။ ယုံကြည်ရတဲ့ provider ကိုပဲ သုံးပါ။</p></div>
 </div>
-<div class="note">ဒီဆိုက်မှာ VPN server၊ config file၊ app download မရှိပါ။ Server အစစ် မရှိသေးလို့ အတုတွေကို ဖယ်ထားပါတယ်။</div>
+<h2 data-t="h2b">မေးလေ့ရှိတဲ့ မေးခွန်း</h2>
+<details><summary data-t="q1">VPN ဆိုတာ ဘာလဲ</summary><p data-t="a1">VPN က သင့်အင်တာနက် ချိတ်ဆက်မှုကို encrypt လုပ်ပြီး server တစ်ခုကတဆင့် လွှင့်ပေးတဲ့ tool ပါ။ Public Wi‑Fi မှာ အသုံးဝင်ပါတယ်။ ဒါပေမယ့် 100% anonymous မဟုတ်ပါဘူး။</p></details>
+<details><summary data-t="q2">အခမဲ့ VPN ဘာကြောင့် အန္တရာယ်ရှိနိုင်သလဲ</summary><p data-t="a2">ပိုင်ရှင်ကို မသိရင် traffic ကို ကြည့်နိုင်၊ ဒေတာ ရောင်းနိုင်ပါတယ်။ Open source ဖြစ်ပြီး privacy policy ရှင်းတဲ့ provider ကို ရွေးပါ။</p></details>
+<details><summary data-t="q3">ဒီဆိုက်မှာ config ဖိုင် ဘာကြောင့် မရှိသလဲ</summary><p data-t="a3">Server အစစ် မရှိသေးလို့ အတုတွေ မထည့်ပါဘူး။ Server အစစ် ရတဲ့အခါ ဒီနေရာမှာ ထည့်သွားပါမယ်။</p></details>
+<div class="note" data-t="note">ဒီဆိုက်မှာ VPN server၊ config file၊ app download မရှိသေးပါ။ Server အစစ် ရတဲ့အခါ နေ့စဉ် update လုပ်မယ့် အပိုင်းကို ထည့်သွားပါမယ်။</div>
 </main>
-<!-- KP-DAILY-TIP-START --><div style="max-width:720px;margin:16px auto;padding:12px 16px;border:1px solid #334155;border-radius:12px;color:#cbd5e1;font-size:13px;text-align:center"><b>Daily Tip (2026-10-25)</b><br>VPN သုံးရင်လည်း password တစ်ခုတည်းမထားဘဲ 2FA ဖွင့်ပါ၊ အထူးသဖြင့် email နဲ့ banking account တွေမှာ ပိုလုံခြုံပါတယ်။ Public Wi‑Fi မှာတော့ မသိတဲ့ link တွေကိုမဖွင့်ဘဲ HTTPS ပါတဲ့ site တွေကိုပဲ သုံးပါ။</div><!-- KP-DAILY-TIP-END -->
+<!-- KP-DAILY-TIP-START --><div style="max-width:720px;margin:16px auto;padding:12px 16px;border:1px solid #cbd5e1;border-radius:12px;color:#334155;font-size:13px;text-align:center"><b>Daily Tip (2026-10-25)</b><br>VPN သုံးရင်လည်း password တစ်ခုတည်းမထားဘဲ 2FA ဖွင့်ပါ၊ အထူးသဖြင့် email နဲ့ banking account တွေမှာ ပိုလုံခြုံပါတယ်။ Public Wi‑Fi မှာတော့ မသိတဲ့ link တွေကိုမဖွင့်ဘဲ HTTPS ပါတဲ့ site တွေကိုပဲ သုံးပါ။</div><!-- KP-DAILY-TIP-END -->
 <footer>© KP VPN Hub</footer>
-<div id="kp-contact-modal"><div id="kp-contact-card">
-<h3>Contact / Order</h3>
+
+<button class="btn" id="chat-btn" type="button" onclick="kpToggleChat()">AI Chat</button>
+<div id="chat-box">
+<div id="chat-head">KP VPN Assistant</div>
+<div id="chat-log"><div class="msg bot" id="chat-hello">မင်္ဂလာပါ။ VPN နဲ့ အွန်လိုင်း လုံခြုံရေးအကြောင်း မေးနိုင်ပါတယ်။</div></div>
+<form id="chat-form" onsubmit="return kpChatSend(event)">
+<input id="chat-input" placeholder="မေးခွန်းရိုက်ပါ..." autocomplete="off" required>
+<button class="btn small" type="submit">ပို့</button>
+</form>
+</div>
+
+<div class="overlay" id="kp-contact-modal"><div class="modal">
+<h3 data-t="contact">ဆက်သွယ်ရန်</h3>
 <form id="kp-contact-form" onsubmit="return kpContactSend(event)">
-<input id="kpc-name" placeholder="အမည်" required>
+<input id="kpc-name" data-p="pname" placeholder="အမည်" required>
 <input id="kpc-email" type="email" placeholder="Email" required>
 <select id="kpc-plan"><option>General question</option><option>Order</option></select>
-<textarea id="kpc-message" rows="4" placeholder="စာသား" required></textarea>
-<div class="row"><button class="btn" id="kpc-send" type="submit">ပို့မယ်</button><button class="btn alt" type="button" onclick="kpContactClose()">ပိတ်မယ်</button></div>
+<textarea id="kpc-message" rows="4" data-p="pmsg" placeholder="စာသား" required></textarea>
+<div class="row"><button class="btn" id="kpc-send" type="submit" data-t="send">ပို့မယ်</button><button class="btn alt" type="button" onclick="kpClose('kp-contact-modal')" data-t="close">ပိတ်မယ်</button></div>
 </form>
-<div id="kp-contact-status"></div>
+<div id="kpc-status"></div>
 </div></div>
+
 <script>
-function kpContactOpen(){document.getElementById("kp-contact-modal").classList.add("open");}
-function kpContactClose(){document.getElementById("kp-contact-modal").classList.remove("open");}
+var KP_LANG="my";
+var KP_T={
+my:{contact:"ဆက်သွယ်ရန်",h1:"အင်တာနက် လုံခြုံရေး<br>အကြံပြုချက်များ",sub:"VPN နဲ့ အွန်လိုင်း privacy အကြောင်း လက်တွေ့သုံးလို့ရတဲ့ အကြံပြုချက်တွေကို AI က နေ့စဉ် update လုပ်ပေးပါတယ်။",ask:"AI ကို မေးကြည့်ပါ",h2a:"သိထားသင့်တာတွေ",c1t:"Public Wi‑Fi",c1p:"မသိတဲ့ Wi‑Fi မှာ banking၊ email လို အရေးကြီးတာတွေ မဖွင့်ပါနဲ့။ HTTPS ပါတဲ့ site ပဲ သုံးပါ။",c2t:"2FA ဖွင့်ပါ",c2p:"Password တစ်ခုတည်းမကပါဘဲ 2-step verification ဖွင့်ထားရင် account ပိုလုံခြုံပါတယ်။",c3t:"အခမဲ့ config ကို သတိထားပါ",c3p:"ပိုင်ရှင်မသိတဲ့ အခမဲ့ VPN config တွေက သင့် traffic ကို ကြားဖြတ်ကြည့်နိုင်ပါတယ်။ ယုံကြည်ရတဲ့ provider ကိုပဲ သုံးပါ။",h2b:"မေးလေ့ရှိတဲ့ မေးခွန်း",q1:"VPN ဆိုတာ ဘာလဲ",a1:"VPN က သင့်အင်တာနက် ချိတ်ဆက်မှုကို encrypt လုပ်ပြီး server တစ်ခုကတဆင့် လွှင့်ပေးတဲ့ tool ပါ။ Public Wi‑Fi မှာ အသုံးဝင်ပါတယ်။ ဒါပေမယ့် 100% anonymous မဟုတ်ပါဘူး။",q2:"အခမဲ့ VPN ဘာကြောင့် အန္တရာယ်ရှိနိုင်သလဲ",a2:"ပိုင်ရှင်ကို မသိရင် traffic ကို ကြည့်နိုင်၊ ဒေတာ ရောင်းနိုင်ပါတယ်။ Open source ဖြစ်ပြီး privacy policy ရှင်းတဲ့ provider ကို ရွေးပါ။",q3:"ဒီဆိုက်မှာ config ဖိုင် ဘာကြောင့် မရှိသလဲ",a3:"Server အစစ် မရှိသေးလို့ အတုတွေ မထည့်ပါဘူး။ Server အစစ် ရတဲ့အခါ ဒီနေရာမှာ ထည့်သွားပါမယ်။",note:"ဒီဆိုက်မှာ VPN server၊ config file၊ app download မရှိသေးပါ။ Server အစစ် ရတဲ့အခါ နေ့စဉ် update လုပ်မယ့် အပိုင်းကို ထည့်သွားပါမယ်။",send:"ပို့မယ်",close:"ပိတ်မယ်",pname:"အမည်",pmsg:"စာသား",hello:"မင်္ဂလာပါ။ VPN နဲ့ အွန်လိုင်း လုံခြုံရေးအကြောင်း မေးနိုင်ပါတယ်။",chatph:"မေးခွန်းရိုက်ပါ...",sent:"ပို့ပြီးပါပြီ။ ကျေးဇူးတင်ပါတယ်။",fail:"မအောင်မြင်ပါ။ ပြန်စမ်းပါ။",sending:"ပို့နေပါတယ်...",err:"ဖြေလို့မရပါ။ ခဏနေပြန်စမ်းပါ။",btn:"English"},
+en:{contact:"Contact",h1:"Internet safety<br>tips",sub:"Practical VPN and online privacy tips, updated daily by AI.",ask:"Ask the AI",h2a:"Good to know",c1t:"Public Wi‑Fi",c1p:"Avoid banking or email on unknown Wi‑Fi. Stick to HTTPS sites.",c2t:"Turn on 2FA",c2p:"A password alone is not enough. 2-step verification makes your account safer.",c3t:"Beware of free configs",c3p:"Free VPN configs from unknown owners can intercept your traffic. Use trusted providers only.",h2b:"FAQ",q1:"What is a VPN?",a1:"A VPN encrypts your connection and routes it through a server. It helps on public Wi‑Fi, but it is not 100% anonymous.",q2:"Why can free VPNs be risky?",a2:"If you do not know the owner, they may see or sell your traffic. Choose open source providers with a clear privacy policy.",q3:"Why are there no config files here?",a3:"There is no real server yet, so no fake files are shown. They will be added here when a real server exists.",note:"This site has no VPN servers, config files or app downloads yet. A daily-updated section will be added once a real server exists.",send:"Send",close:"Close",pname:"Name",pmsg:"Message",hello:"Hello! Ask me about VPNs and online safety.",chatph:"Type a question...",sent:"Sent. Thank you!",fail:"Failed. Please try again.",sending:"Sending...",err:"Cannot answer now. Try again later.",btn:"မြန်မာ"}
+};
+function kpApply(){
+var T=KP_T[KP_LANG];
+document.documentElement.lang=KP_LANG==="my"?"my":"en";
+document.querySelectorAll("[data-t]").forEach(function(el){var k=el.getAttribute("data-t");if(T[k]!==undefined)el.innerHTML=T[k];});
+document.getElementById("kpc-name").placeholder=T.pname;
+document.getElementById("kpc-message").placeholder=T.pmsg;
+document.getElementById("chat-input").placeholder=T.chatph;
+document.getElementById("chat-hello").textContent=T.hello;
+document.getElementById("lang-btn").textContent=T.btn;
+}
+function kpToggleLang(){KP_LANG=KP_LANG==="my"?"en":"my";try{localStorage.setItem("kp_lang",KP_LANG);}catch(e){}kpApply();}
+function kpOpen(id){document.getElementById(id).classList.add("open");}
+function kpClose(id){document.getElementById(id).classList.remove("open");}
+function kpToggleChat(){document.getElementById("chat-box").classList.toggle("open");}
 function kpContactSend(e){
 e.preventDefault();
-var s=document.getElementById("kp-contact-status"),b=document.getElementById("kpc-send");
-b.disabled=true;s.textContent="Sending...";
+var T=KP_T[KP_LANG],s=document.getElementById("kpc-status"),b=document.getElementById("kpc-send");
+b.disabled=true;s.textContent=T.sending;
 fetch("https://khant332003.app.n8n.cloud/webhook/kp-vpn-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:document.getElementById("kpc-name").value,email:document.getElementById("kpc-email").value,plan:document.getElementById("kpc-plan").value,message:document.getElementById("kpc-message").value})})
-.then(function(r){if(!r.ok)throw new Error("fail");s.textContent="Sent. Thank you!";document.getElementById("kp-contact-form").reset();})
-.catch(function(){s.textContent="Failed. Please try again.";})
+.then(function(r){if(!r.ok)throw new Error("fail");s.textContent=T.sent;document.getElementById("kp-contact-form").reset();})
+.catch(function(){s.textContent=T.fail;})
 .then(function(){b.disabled=false;});
 return false;}
+function kpAdd(cls,text){var log=document.getElementById("chat-log");var d=document.createElement("div");d.className="msg "+cls;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+function kpChatSend(e){
+e.preventDefault();
+var inp=document.getElementById("chat-input"),text=inp.value.trim();
+if(!text)return false;
+var T=KP_T[KP_LANG];
+kpAdd("me",text);inp.value="";
+var wait=kpAdd("bot","...");
+fetch("https://khant332003.app.n8n.cloud/webhook/kp-vpn-chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:text,lang:KP_LANG})})
+.then(function(r){if(!r.ok)throw new Error("fail");return r.json();})
+.then(function(j){wait.textContent=j.reply||T.err;})
+.catch(function(){wait.textContent=T.err;});
+return false;}
+try{var sv=localStorage.getItem("kp_lang");if(sv==="en"||sv==="my")KP_LANG=sv;}catch(e){}
+kpApply();
 </script>
 </body>
 </html>
