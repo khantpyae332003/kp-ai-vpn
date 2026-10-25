@@ -905,7 +905,36 @@
     }
 
     function copyAiOutput() {
-      const text = document.getElementById('ai-output-text').inner
+      const text = document.getElementById('ai-output-text').innerText;
+      copyToClipboard(text);
+      showToast('AI ရလဒ်များ Copy ယူပြီးပါပြီ!', 'success');
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+    }
+
+    function downloadNativeFile(filename, content) {
+      const element = document.createElement('a');
+      const blob = new Blob([content], { type: 'application/octet-stream' });
+      element.href = URL.createObjectURL(blob);
+      element.setAttribute('download', filename);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+      setTimeout(() => URL.revokeObjectURL(element.href), 1000);
+    }
+  </script>
 <style>
 #kp-contact-btn{position:fixed;right:16px;bottom:16px;z-index:9998;background:#6c5ce7;color:#fff;border:0;border-radius:28px;padding:12px 18px;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 #kp-contact-modal{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.65);align-items:center;justify-content:center;padding:16px}
@@ -941,3 +970,5 @@ if(!r.ok)throw new Error("fail");s.textContent="Sent. Thank you!";document.getEl
 }catch(err){s.textContent="Could not send. Please try again later.";}
 b.disabled=false;return false;}
 </script>
+</body>
+</html>
