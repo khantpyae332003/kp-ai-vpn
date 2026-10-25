@@ -263,6 +263,27 @@
     </div>
   </header>
 
+  <!-- New Update Notice -->
+  <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 pt-4">
+    <div class="glass-card rounded-2xl p-4 border border-cyan-500/20 shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div class="flex items-start gap-3">
+        <div class="p-2.5 rounded-2xl bg-cyan-500/15 border border-cyan-400/20 text-cyan-300">
+          <i data-lucide="badge-info" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h2 class="text-sm font-bold text-slate-100">Today’s VPN Tip / Update</h2>
+            <span class="px-2 py-0.5 text-[10px] rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">2026-10-25</span>
+          </div>
+          <p class="text-xs text-slate-300 mt-1">နောက်ဆုံး update မှာ SNI host ကိုရွေးပြီးနောက် custom server IP ကိုလည်း တစ်ခါတည်း refresh လုပ်ပါ။ ပိုတည်ငြိမ်တဲ့ connection အတွက် default bug host မဟုတ်ဘဲ backup host ကိုလည်း စမ်းသုံးရန် အကြံပြုပါသည်။</p>
+        </div>
+      </div>
+      <button onclick="showToast('Tip saved: refresh SNI + custom server for better stability.', 'success')" class="px-4 py-2 rounded-xl bg-cyan-600/20 hover:bg-cyan-600 text-cyan-200 hover:text-white border border-cyan-500/30 text-xs font-semibold transition active:scale-95">
+        Save Tip
+      </button>
+    </div>
+  </div>
+
   <!-- Container -->
   <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
 
@@ -728,7 +749,7 @@
         case 'ssc':
           return `ss://YWVzLTI1Ni1nY206S1BBSTI0N0ZSRUU=@${customIp}:443?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bhost%3D${sni}#KP_AI_${sim.name}`;
         case 'v2box':
-          return `vmess://eyJ2IjoiMiIsImBzIjoiS1BfQUlfQlJJREdFXF8${btoa(sim.name)}IiwiYWRkciI6IiR7Y3VzdG9tSXB9IiwicG9ydCI6IjQ0MyIsImlkIjoiZmZmZmZmZmYtZmZmZi1mZmZmLWZmZmYtZmZmZmZmZmZmZmZmIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwiaG9zdCI6IiR7c25pfSIsInBhdGgiOiIvIiwidGxzIjoidGxzIiwic25pIjoiJHtzbml9In0=`;
+          return `vmess://eyJ2IjoiMiIsImJzIjoiS1BfQUlfQlJJREdFXF8${btoa(sim.name)}IiwiYWRkciI6IiR7Y3VzdG9tSXB9IiwicG9ydCI6IjQ0MyIsImlkIjoiZmZmZmZmZmYtZmZmZi1mZmZmLWZmZmYtZmZmZmZmZmZmZmZmIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwiaG9zdCI6IiR7c25pfSIsInBhdGgiOiIvIiwidGxzIjoidGxzIiwic25pIjoiJHtzbml9In0=`;
         case 'hatunnel':
           return `HA_TUNNEL_PLUS\nRealm=${sni}\nCustom Payload=HEAD http://${sni}/ HTTP/1.1[crlf]Host: ${sni}[crlf][crlf]`;
         case 'itunnel':
@@ -995,64 +1016,4 @@
     }
 
     function copyAiOutput() {
-      const text = document.getElementById('ai-output-text').innerText;
-      copyToClipboard(text);
-      showToast('AI ရလဒ်များ Copy ယူပြီးပါပြီ!', 'success');
-    }
-
-    function copyToClipboard(text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text);
-      } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-      }
-    }
-
-    function downloadNativeFile(filename, content) {
-      const element = document.createElement('a');
-      const blob = new Blob([content], { type: 'application/octet-stream' });
-      element.href = URL.createObjectURL(blob);
-      element.setAttribute('download', filename);
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-      setTimeout(() => URL.revokeObjectURL(element.href), 1000);
-    }
-
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      
-      const bgColor = type === 'success' 
-        ? 'bg-emerald-600 border-emerald-500' 
-        : type === 'error' 
-          ? 'bg-red-600 border-red-500' 
-          : 'bg-indigo-600 border-indigo-500';
-
-      toast.className = `pointer-events-auto px-4 py-2.5 rounded-xl border text-white text-xs font-semibold shadow-2xl flex items-center gap-2 transform transition-all duration-300 translate-y-4 opacity-0 ${bgColor}`;
-      toast.innerHTML = `
-        <i data-lucide="${type === 'success' ? 'check-circle-2' : 'info'}" class="w-4 h-4"></i>
-        <span>${message}</span>
-      `;
-
-      container.appendChild(toast);
-      lucide.createIcons();
-
-      setTimeout(() => {
-        toast.classList.remove('translate-y-4', 'opacity-0');
-      }, 10);
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-4');
-        setTimeout(() => toast.remove(), 300);
-      }, 3000);
-    }
-  </script>
-</body>
-</html>
+      const text = document.getElementById
