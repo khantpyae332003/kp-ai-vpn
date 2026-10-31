@@ -47,7 +47,7 @@ public final class MainActivity extends Activity {
  void render(){if(loaded&&!isFinishing())web.evaluateJavascript("window.receive("+app.snapshot()+")",null);}
  void message(String text){Toast.makeText(this,text,Toast.LENGTH_LONG).show();if(loaded)web.evaluateJavascript("window.showMessage("+JSONObject.quote(text)+")",null);}
  private void importItems(List<ProfileImporter.Input> items,String c,String o){
-  try{if(app.store==null)throw new IOException();int[] n=app.store.add(items,c,o);app.message("ထည့်ပြီး "+n[0]+" · ထပ်နေ "+n[1]+" · မထည့်နိုင် "+n[2]);app.emit();}
+  try{if(app.store==null)throw new IOException();int[] n=app.store.add(items,c,o);app.refreshProfiles();app.message("ထည့်ပြီး "+n[0]+" · ထပ်နေ "+n[1]+" · မထည့်နိုင် "+n[2]);app.emit();}
   catch(Exception e){app.fail("Config သိမ်းမရပါ။ ဖိုင်အရွယ်အစားနှင့် ဖုန်းနေရာလွတ်ကို စစ်ပါ။");}
  }
  private void connect(String id){
@@ -73,10 +73,10 @@ public final class MainActivity extends Activity {
       case "refresh":render();break;
       case "connect":if(id.matches("[a-f0-9]{64}"))connect(id);break;
       case "disconnect":if(!app.state.equals("DOWN"))startService(new Intent(MainActivity.this,TunnelService.class).setAction(TunnelService.DISCONNECT));break;
-      case "favorite":app.work.execute(()->{try{app.store.favorite(id);app.emit();}catch(Exception e){app.message("သိမ်းမရပါ။");}});break;
+      case "favorite":app.work.execute(()->{try{app.store.favorite(id);app.refreshProfiles();app.emit();}catch(Exception e){app.message("သိမ်းမရပါ။");}});break;
       case "delete":
        if(!app.state.equals("DOWN")){message("ဖျက်ရန် VPN ကို အရင်ဖြုတ်ပါ။");break;}
-       new AlertDialog.Builder(MainActivity.this).setMessage("ဒီ config ကို ဖျက်မလား။").setNegativeButton("မဖျက်ပါ",null).setPositiveButton("ဖျက်မယ်",(d,w)->app.work.execute(()->{try{if(!app.state.equals("DOWN")){app.message("VPN ကို အရင်ဖြုတ်ပါ။");return;}app.store.remove(id);app.emit();}catch(Exception e){app.message("ဖျက်မရပါ။");}})).show();break;
+       new AlertDialog.Builder(MainActivity.this).setMessage("ဒီ config ကို ဖျက်မလား။").setNegativeButton("မဖျက်ပါ",null).setPositiveButton("ဖျက်မယ်",(d,w)->app.work.execute(()->{try{if(!app.state.equals("DOWN")){app.message("VPN ကို အရင်ဖြုတ်ပါ။");return;}app.store.remove(id);app.refreshProfiles();app.emit();}catch(Exception e){app.message("ဖျက်မရပါ။");}})).show();break;
       case "importText":{
        String c=p.optString("carrier","OTHER"),o=p.optString("operator",""),title=p.optString("name","WireGuard"),text=p.optString("text");
        app.work.execute(()->{List<ProfileImporter.Input> items=new ArrayList<>();int n=0;for(String part:ProfileImporter.split(text)){if(items.size()>=ProfileImporter.MAX_PROFILES){app.message("Config အများဆုံး 2000 ဖြစ်သည်။");return;}items.add(new ProfileImporter.Input(title+" "+(++n),part));}importItems(items,c,o);});break;

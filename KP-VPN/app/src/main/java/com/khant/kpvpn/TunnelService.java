@@ -50,7 +50,7 @@ public final class TunnelService extends Service {
   });return START_NOT_STICKY;
  }
  private void disconnect(int startId){app.work.execute(()->{
-  try{if(app.backend!=null)app.backend.setState(app.tunnel,Tunnel.State.DOWN,null);app.state="DOWN";app.activeId="";app.rx=app.tx=0;app.emit();stopSelfResult(startId);}
+  try{app.state="STOPPING";app.emit();if(app.backend!=null)app.backend.setState(app.tunnel,Tunnel.State.DOWN,null);app.state="DOWN";app.activeId="";app.rx=app.tx=0;app.emit();stopSelfResult(startId);}
   catch(Exception e){app.fail("VPN ဖြုတ်မရပါ။ Android VPN settings မှ ဖြုတ်ပါ။");}
  });}
  @Override public void onDestroy(){timer.removeCallbacksAndMessages(null);app.work.execute(()->{try{if(app.backend!=null)app.backend.setState(app.tunnel,Tunnel.State.DOWN,null);}catch(Exception ignored){}app.emit();});super.onDestroy();}

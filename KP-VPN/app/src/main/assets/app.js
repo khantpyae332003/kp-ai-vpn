@@ -6,7 +6,7 @@ window.showMessage=function(text){$('message').textContent=text;$('message').hid
 window.receive=function(next){state=next;if(next.activeId)selected=next.activeId;if(!next.profiles.some(p=>p.id===selected))selected=next.profiles[0]?.id||'';render();};
 function tags(){const [carrier,operator]=$('group').value.split('|');return {carrier,operator};}
 function render(){
- const busy=state.state==='STARTING',up=state.state==='UP';
+ const busy=(state.state==='STARTING'||state.state==='STOPPING'),up=state.state==='UP';
  $('status').textContent=Model.statusLabel(state.state);
  $('dot').style.background=up?'#4de0b5':busy?'#efc46f':'#8998ac';
  $('power').classList.toggle('connected',up);$('power').disabled=busy||(!up&&!selected)||!state.ready;

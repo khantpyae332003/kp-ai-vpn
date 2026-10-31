@@ -32,6 +32,15 @@ jobs:
         run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
       - name: UI behavior tests
         run: node --test tests/*.cjs
+      - name: Browser UI checks
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+          node tests/browser-check.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KP-VPN-UI
+          path: KP-VPN/build/ui/
       - name: Build, lint and Android unit tests
         run: gradle --no-daemon testDebugUnitTest lintDebug assembleDebug
       - name: Name APK
