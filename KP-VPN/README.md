@@ -1,6 +1,6 @@
 # KP VPN — Android 0.1.0
 
-**Build candidate. APK and on-device tunnel verification are pending.**
+**စမ်းသပ်ဗားရှင်း။ APK build နှင့် unit tests အောင်ထားသည်။ ဖုန်းပေါ် VPN ချိတ်ဆက်စမ်းသပ်မှု ကျန်သေးသည်။**
 
 ဖုန်းမှာ WireGuard config များကို စုစည်းပြီး ချိတ်ဆက်သုံးနိုင်ရန် Android project အသစ်ဖြစ်သည်။ Android 8.0 နှင့်အထက်အတွက် ရေးထားသည်။
 
@@ -39,7 +39,7 @@ Debug APK သည် စမ်းသပ်ရန်ဖြစ်သည်။ Build
 
 ## Local build
 
-JDK 17, Gradle 8.13, Android SDK platform 36 / build-tools 35.0.0.
+JDK 17, Gradle 8.13, Android SDK platform 36 / build-tools 35.0.0. Myanmar font အတွက် Debian/Ubuntu `fonts-noto-core` package ကို install လုပ်ပြီး project root မှ `bash scripts/prepare-font.sh` run ပါ။ CI က အလိုအလျောက် လုပ်ပေးသည်။
 
 ```sh
 node --test tests/*.cjs

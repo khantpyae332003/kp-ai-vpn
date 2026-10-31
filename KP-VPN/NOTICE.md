@@ -8,3 +8,5 @@ https://github.com/journeyapps/zxing-android-embedded
 https://github.com/zxing/zxing
 https://android.googlesource.com/platform/frameworks/support/
 https://github.com/google/desugar_jdk_libs
+
+Builds bundle Noto Sans Myanmar from the Ubuntu fonts-noto-core package under the SIL Open Font License. Its complete distribution copyright/license file is copied alongside Myanmar.ttf in assets/fonts/NOTICE.txt.

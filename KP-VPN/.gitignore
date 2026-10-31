@@ -7,3 +7,4 @@ local.properties
 *.apk
 node_modules/
 package-lock.json
+app/src/main/assets/fonts/
