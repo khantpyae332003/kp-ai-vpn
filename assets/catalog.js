@@ -2,13 +2,14 @@
 (function(){
 const root=document.getElementById('kp-catalog');if(!root)return;
 const $=s=>root.querySelector(s);
-let files=[],carrier='all',plan='all',lastUpdated=null,loadError=false,loading=false;
+let files=[],carrier='all',plan='all',lastUpdated=null,loadError=false,loading=false,renderedSignature='';
 const names={dtac:'dtac',true:'True',ais:'AIS',mpt:'MPT',atom:'ATOM',mytel:'Mytel','mm-other':'မြန်မာ အခြား',other:'အခြား'};
 function safeLink(url){try{const u=new URL(url,location.href);if(u.protocol!=='https:'||u.username||u.password)return null;return u.href;}catch{return null;}}
 function time(value){const date=new Date(value);return Number.isNaN(date.getTime())?'—':date.toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'});}
 function currentFiles(){return files.filter(f=>f&&typeof f.name==='string'&&typeof f.carrier==='string'&&f.server_status==='handshake_https_pass'&&Date.parse(f.expires_at)>Date.now());}
 function render(){
  const valid=currentFiles(),q=$('#kp-file-search').value.toLowerCase().trim(),container=$('#kp-file-list');container.replaceChildren();
+ renderedSignature=JSON.stringify(valid.map(f=>[f.id,f.carrier,f.plan,f.name,f.expires_at]));
  const rows=valid.filter(f=>(carrier==='all'||f.carrier===carrier)&&(plan==='all'||f.plan===plan)&&(!q||f.name.toLowerCase().includes(q)));
  $('#kp-count').textContent=String(rows.length);$('#kp-total').textContent=loadError?'—':String(valid.length);
  for(const f of rows.slice(0,100)){
@@ -50,5 +51,8 @@ async function loadSources(){
 $('#kp-refresh').addEventListener('click',()=>{loadCatalog();loadSources();});
 // Anchor links to a collapsed guide should reveal the requested explanation.
 root.querySelectorAll('a[href="#verification"]').forEach(a=>a.addEventListener('click',()=>{$('#verification').open=true;}));
-loadCatalog();loadSources();setInterval(render,60000);
+loadCatalog();loadSources();setInterval(()=>{
+ const signature=JSON.stringify(currentFiles().map(f=>[f.id,f.carrier,f.plan,f.name,f.expires_at]));
+ if(signature!==renderedSignature)render();
+},60000);
 })();
