@@ -53,7 +53,7 @@ root.querySelectorAll('[data-carrier]').forEach(b=>b.addEventListener('click',()
 $('#kp-plan').addEventListener('change',e=>{plan=e.target.value;render();});$('#kp-file-search').addEventListener('input',render);
 async function loadCatalog(){
  if(loading)return;let unchanged=false;const wasError=loadError;lastAttempt=Date.now();loading=true;$('#kp-refresh').disabled=true;$('#kp-refresh').textContent='စစ်နေသည်…';
- try{const r=await fetch('catalog/index.json',{cache:'no-store'});if(!r.ok)throw Error();const j=await r.json();if(!Array.isArray(j.files)||!Number.isFinite(Date.parse(j.updated_at)))throw Error();unchanged=!wasError&&JSON.stringify(files)===JSON.stringify(j.files);files=j.files;lastUpdated=j.updated_at;loadError=false;}
+ try{const r=await fetch('catalog/index.json',{cache:'no-store'});if(!r.ok)throw Error();const j=await r.json();if(!Array.isArray(j.files)||!Number.isFinite(Date.parse(j.updated_at)))throw Error();unchanged=renderedSignature!==''&&!wasError&&JSON.stringify(files)===JSON.stringify(j.files);files=j.files;lastUpdated=j.updated_at;loadError=false;}
  catch{files=[];loadError=true;$('#kp-updated').textContent='စာရင်းကို လောလောဆယ် ဖတ်မရပါ။';}
  finally{loading=false;$('#kp-refresh').disabled=false;$('#kp-refresh').textContent='ပြန်စစ်မယ်';if(unchanged){renderHealth();$('#kp-updated').textContent='နောက်ဆုံးစစ်ချိန် '+time(lastUpdated)+' · ထိုင်းစံတော်ချိန်';}else render();}
 }
