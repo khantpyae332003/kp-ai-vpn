@@ -6,3 +6,16 @@
 .builder-shell{margin-bottom:8px}.builder-shell>.guide-content{padding:0 24px 26px}.builder-shell h3{font-size:17px;color:var(--text);margin:28px 0 8px}.builder-shell h4{font-size:14px;color:var(--text);margin:24px 0 8px}.setup-guide{border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin:18px 0}.setup-guide>summary{display:list-item;padding:3px 0;min-height:0;font-size:13px;color:var(--text);list-style:revert}.setup-guide>summary::after{content:none}.setup-guide>summary::-webkit-details-marker{display:inline}.builder-shell pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:13px;font-size:11px;line-height:1.8;color:var(--text)}.builder-shell pre code{font-size:11px;color:var(--text)}.key-panel{background:var(--panel);padding:17px;border:1px solid var(--line);border-radius:11px;margin:18px 0}.key-panel label{margin-top:16px}.copy-line{display:flex;gap:8px}.copy-line input{min-width:0;width:100%;font-size:11px;font-family:monospace}.builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}.builder-grid .wide{grid-column:1/-1}.builder-grid input{width:100%;min-width:0;font-size:12px}.builder-grid label{line-height:1.8}.builder-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.builder-status{font-size:12px!important;color:var(--muted);line-height:1.9!important}.template-link{margin-top:22px!important;font-size:12px!important}.archive-note{padding-top:9px;color:var(--muted);font-size:11px}.source-archive{padding:10px 15px;border:1px solid #b0ed9330;border-radius:9px;background:var(--mint-dim);color:var(--mint);font-size:12px}.builder-actions button:disabled{opacity:.5;cursor:default}@media(max-width:620px){.builder-shell>.guide-content{padding:0 17px 22px}.builder-grid{grid-template-columns:1fr}.builder-grid .wide{grid-column:auto}.key-panel{padding:13px}.setup-guide{padding:11px}.builder-actions .button-primary{width:100%}.builder-shell h3{font-size:16px}.copy-line button{font-size:12px}.builder-shell pre code{font-size:11px}}
 
 #kp-health:empty{display:none}.updated.is-stale{color:#ffd18a}#kp-reset{margin-top:12px}.file-actions{flex-wrap:wrap}.archive-note{overflow-wrap:anywhere;user-select:text}
+
+/* Readable Burmese help and controls on phone screens. */
+.guide-content h3{font-size:16px;color:var(--text);margin:22px 0 8px}.guide-content h3:first-child{margin-top:0}
+@media(max-width:620px){
+.hero-description,.guide-content,.builder-status,.source-content{font-size:16px!important;line-height:2}
+.kp-file p,.kp-file .kp-muted,.updated,.results-note,.archive-note,.source-link,.summary-bottom{font-size:14px;line-height:1.9}
+.button-primary,.button-secondary,.source-archive,.carrier-list button,.file-actions .button-primary,.plan-filter select{font-size:14px;min-height:48px}
+.source-archive,.source-link{display:inline-flex;align-items:center;min-height:48px}
+.builder-grid input,.builder-grid label,.plan-filter label,.plan-filter select,#kp-file-search{font-size:16px}
+.builder-shell pre code,.guide-content code{font-size:13px}
+.results-toolbar{flex-wrap:wrap}.results-toolbar input{flex:1 1 180px;min-width:0}.file-actions{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

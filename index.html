@@ -7,8 +7,8 @@
 <meta name="theme-color" content="#0a1412">
 <meta name="description" content="KP VPN အတွက် WireGuard ဖိုင်များ။ ထိုင်း၊ မြန်မာ SIM အလိုက် ရွေးပြီး ဖိုင်စာရင်းနှင့် သုံးနည်းကို ကြည့်ပါ။">
 <title>KP VPN — Config Library</title>
-<link rel="stylesheet" href="assets/catalog.css?v=4">
-<script src="assets/catalog.js?v=4" defer></script>
+<link rel="stylesheet" href="assets/catalog.css?v=5">
+<script src="assets/catalog.js?v=5" defer></script>
 <script src="assets/config-builder-core.js?v=1" defer></script>
 <script src="assets/config-builder.js?v=1" defer></script>
 </head>
@@ -40,7 +40,7 @@
 <div class="results-panel"><div class="results-toolbar"><input id="kp-file-search" type="search" placeholder="ဖိုင်နာမည် ရှာရန်…" aria-label="ဖိုင်နာမည် ရှာရန်"><button id="kp-refresh" class="button-secondary" type="button">ပြန်စစ်မယ်</button></div><button id="kp-reset" class="button-secondary" type="button" hidden>ရွေးထားတာ ရှင်းမယ်</button><p id="kp-health" class="updated" role="status"></p><p id="kp-updated" class="updated" role="status">ဖိုင်စာရင်း ဖတ်နေသည်…</p>
 <div id="kp-file-list" aria-live="polite"></div>
 <div id="kp-empty" class="empty-state" role="status"><span class="empty-kicker">NOTHING HERE YET</span><h3 id="kp-empty-title">ဖိုင်စာရင်း ဖတ်နေသည်…</h3><p id="kp-empty-description">ခဏစောင့်ပါ။</p><a href="#make-config" class="button-primary">ကိုယ်ပိုင်ဖိုင် လုပ်မယ် <span aria-hidden="true">↗</span></a></div>
-<p class="results-note">Server စစ်ဆေးမှုနဲ့ SIM လက်တွေ့စမ်းသပ်မှုကို ဖိုင်တစ်ခုချင်းမှာ ခွဲပြထားသည်။ <a href="#verification">အသေးစိတ်</a></p>
+<p class="results-note">Server စစ်ဆေးမှုနဲ့ SIM လက်တွေ့စမ်းသပ်မှုကို ဖိုင်တစ်ခုချင်းမှာ ခွဲပြထားသည်။ <a href="#verification">အသေးစိတ်</a> · <a href="#troubleshooting">ချိတ်မရရင် ဒီမှာကြည့်ပါ</a></p>
 </div></div>
 </section>
 <section id="learn" class="learn-section" aria-labelledby="learn-title"><div class="section-heading"><div><p class="eyebrow">A LITTLE HELP</p><h2 id="learn-title">စသုံးဖို့ သိထားရမယ့်အချက်များ</h2></div></div>
@@ -48,6 +48,13 @@
 <details class="guide-card"><summary><span class="guide-number">02</span><span>ဖိုင် ဘယ်လိုရှာပြီး ထည့်မလဲ</span></summary><div class="guide-content"><ol><li>ယုံကြည်ရတဲ့ provider ရဲ့ official dashboard ထဲမှာ <b>WireGuard configuration</b> ကိုရှာပြီး .conf ကို ဖုန်းထဲသိမ်းပါ။</li><li>KP VPN → <b>ထည့်မယ်</b> → ကိုယ့် SIM အမျိုးအစား ရွေးပါ။</li><li><b>ဖိုင် / ZIP</b> ကနေ ဖိုင်ရွေးပါ။ QR ရှိရင် <b>QR ဖတ်မယ်</b> ကိုနှိပ်ပါ။</li><li>Config ရွေး → ပါဝါခလုတ်နှိပ် → Android VPN ခွင့်ပြုပြီး website တစ်ခု ဖွင့်စမ်းပါ။</li></ol><p>ကိုယ့် account config ထဲမှာ private key ပါလို့ public မတင်ပါနဲ့။ <a href="https://protonvpn.com/support/wireguard-configurations" target="_blank" rel="noopener noreferrer">Official config ရယူနည်း ↗</a></p></div></details>
 <details class="guide-card"><summary><span class="guide-number">03</span><span>SIM အလိုက် ဘယ်လိုပြင်မလဲ</span></summary><div class="guide-content"><p>App ထဲ SIM label ရွေးခြင်းနဲ့ <code>dtac-nopro-….conf</code> လို့ နာမည်ပေးခြင်းက စာရင်းခွဲဖို့သာ ဖြစ်သည်။ True ဖိုင်ကို dtac လို့ ပြောင်းခေါ်ရုံနဲ့ ချိတ်ဆက်မရလာပါ။</p><p>Provider က ကိုယ့် network အတွက် ထုတ်ပေးထားတဲ့ config ကို သုံးပါ။ PrivateKey / PublicKey / Endpoint / Address ကို ခန့်မှန်းပြီး မပြောင်းပါနဲ့။ Wi-Fi ပိတ်ပြီး SIM အစစ်နဲ့ စမ်းပါ။</p><p><b>nopro</b> သည် source ရဲ့ label ဖြစ်ပြီး ဒေတာ package မရှိဘဲ သုံးရမည်ဟု အာမခံခြင်း မဟုတ်ပါ။</p></div></details>
 <details id="verification" class="guide-card"><summary><span class="guide-number">04</span><span>“စစ်ပြီး” ဆိုတာ ဘယ်လောက်အထိလဲ</span></summary><div class="guide-content"><p><b>Server စစ်ပြီး:</b> ဖိုင်ပုံစံမှန်ပြီး cloud မှ WireGuard handshake + HTTPS စမ်းသပ်မှု အောင်ထားခြင်း။ SIM အစစ်နဲ့ စစ်ခြင်း မဟုတ်ပါ။</p><p><b>SIM စမ်းသုံးသူတင်ပြ:</b> Config hash တူပြီး ၂၄ နာရီအတွင်း cellular စမ်းသုံးသူ တင်ပြထားခြင်း။ အော်ပရေတာရဲ့ အတည်ပြုချက် မဟုတ်ပါ။</p><p>ဖိုင်များကို အများဆုံး ၂၄ နာရီသာ စာရင်းပြမည်။ မအောင်သောဖိုင်နဲ့ သက်တမ်းကုန်ဖိုင်ကို နောက် update မှာ ဖယ်မည်။ နေ့/ညမရွေး မိနစ် ၃၀ တစ်ခါ workflow စတင်ရန် သတ်မှတ်ထားသည်။ GitHub Actions သည် တစ်ခါ run ပြီးတစ်ခါ နားသောပုံစံဖြစ်ပြီး စတင်ချိန် နှောင့်နှေးနိုင်သည်။</p></div></details>
+<details id="troubleshooting" class="guide-card"><summary><span class="guide-number">05</span><span>ချိတ်မရရင် ဘယ်လိုဖြေရှင်းမလဲ</span></summary><div class="guide-content">
+<h3>၁။ ဖိုင်ထည့်လို့ မရဘူး</h3><p>ဖုန်းရဲ့ Downloads ထဲက ဖိုင်ကို ရွေးပါ။ KP VPN v0.1 အတွက် WireGuard <code>.conf</code> သို့မဟုတ် ၎င်းဖိုင်ပါသော ZIP ဖြစ်ရမည်။ <code>.ovpn</code> / <code>.ehi</code> ကို နာမည်ပြောင်းရုံနဲ့ သုံးမရပါ။ ကိုယ့် provider ဆီက WireGuard config ပြန်ယူပါ။</p>
+<h3>၂။ ZIP ထဲမှာ ဖိုင်တွေ အများကြီးပဲ</h3><p>ဖိုင်ကတ်ပေါ်က <b>ဖိုင်နာမည် ကူးမယ်</b> ကိုနှိပ်ပါ။ ဖုန်းရဲ့ Files app မှာ မူရင်း ZIP ကို ဖြည်ပြီး ကတ်ပေါ်ရေးထားသော ဖိုင်နာမည်အတိအကျကို ရှာပါ။ အဲဒီ <code>.conf</code> တစ်ဖိုင်ကိုသာ အရင်ထည့်စမ်းပါ။ တခြားဖိုင်အားလုံး အလုပ်လုပ်မည်ဟု မဆိုလိုပါ။</p>
+<h3>၃။ VPN စဖွင့်လို့ မရဘူး</h3><p>တခြား VPN app ချိတ်ထားရင် ပိတ်ပါ။ KP VPN မှာ ဖိုင်ရွေးပြီး စချိတ်ပါ။ Android ရဲ့ VPN ခွင့်ပြုချက်တောင်းလာရင် အတည်ပြုပါ။ ခွင့်ပြုချက်မပေါ်လျှင် Android Settings ထဲက VPN ဆက်တင်နဲ့ တခြား VPN ရဲ့ Always-on / Block connections ဆက်တင်ကို စစ်ပါ။</p>
+<h3>၄။ VPN ချိတ်ပြီး website မဖွင့်နိုင်ဘူး</h3><ol><li>VPN ကို ခဏပိတ်ပြီး ပုံမှန်အင်တာနက် ရမရ စမ်းပါ။ SIM ဒေတာနဲ့ package လက်ကျန်ကို စစ်ပါ။</li><li>ပုံမှန်အင်တာနက် ရပေမယ့် VPN နဲ့ မရရင် စစ်ချိန်အသစ်ဆုံး တခြားဖိုင်ကို စမ်းပါ။ Public server က ပြည့်နေခြင်း၊ key ပိတ်သွားခြင်း သို့မဟုတ် network က UDP ကို ကန့်သတ်ခြင်း ဖြစ်နိုင်သည်။</li><li>Provider ထုတ်ပေးထားတဲ့ config ကို အစစ်အတိုင်း ပြန်ထည့်ပါ။ PrivateKey / PublicKey / Endpoint ကို ခန့်မှန်းမပြင်ပါနဲ့။ ကိုယ့် server ဖြစ်လျှင် အောက်က server လမ်းညွှန်အတိုင်း key၊ firewall နဲ့ NAT ကို စစ်ပါ။</li></ol>
+<h3>၅။ SIM နဲ့ စမ်းမယ် / အကူအညီတောင်းမယ်</h3><p>Wi-Fi ပိတ်ပြီး mobile data နဲ့ စမ်းပါ။ အချိန်၊ SIM နာမည်၊ ဖိုင်နာမည်နဲ့ ပေါ်လာတဲ့ error စာသားကို မှတ်ထားပါ။ <b>PrivateKey၊ PresharedKey၊ config အပြည့်နဲ့ QR ကို public မတင်ပါနဲ့။</b> Server စစ်ပြီးဆိုတာ SIM / nopro စမ်းပြီးလို့ မဆိုလိုပါ။</p>
+</div></details>
 </div></section>
 <section id="make-config" class="learn-section" aria-labelledby="own-config-title"><div class="section-heading"><div><p class="eyebrow">YOUR KEYS · YOUR CONFIG</p><h2 id="own-config-title">ကိုယ်ပိုင်ဖိုင် ပြုလုပ်မယ်</h2></div></div>
 <details id="own-config-details" class="guide-card builder-shell"><summary><span class="guide-number">05</span><span>ဖိုင်ပြုလုပ်ရန်နှင့် အသေးစိတ်လမ်းညွှန်</span></summary><div class="guide-content">
@@ -84,6 +91,6 @@ sudo wg show wg0</code></pre><p>အပေါ် form ထဲ Endpoint ကို �
 
 <section class="sources-section"><details class="source-details"><summary><span>ရှာတွေ့ရင်းမြစ်များ</span><span class="source-hint">အတည်မပြုရသေး</span></summary><div class="source-content"><p>ဒီ link တွေက ရှာဖွေမှုရလဒ်များသာ ဖြစ်သည်။ KP VPN နဲ့ရမည့် download ဖိုင်ဟု မသတ်မှတ်ရသေးပါ။</p><ul id="kp-discovery"><li>ဖတ်နေသည်…</li></ul></div></details></section>
 </main>
-<!-- KP-DAILY-TIP-START --><div style="max-width:720px;margin:16px auto;padding:12px 16px;border:1px solid #334155;border-radius:12px;color:#cbd5e1;font-size:13px;text-align:center"><b>Daily Tip (2026-11-01)</b><br>VPN သုံးရင်တောင် အကောင့်ဝင်ထားတဲ့ဆိုရှယ်မီဒီယာနဲ့ browser cookies တွေက သင့်လှုပ်ရှားမှုကို ချိတ်ဆက်နိုင်ပါတယ်။ မသုံးတော့တဲ့အခါ logout လုပ်ပြီး cookies ကိုပုံမှန်ဖျက်ပါ။</div><!-- KP-DAILY-TIP-END -->\n<footer class="site-footer shell"><span>KP VPN<span class="footer-dot"> · </span>Config Library</span><span>ဖိုင်ရွေးပါ။ လွယ်လွယ်ချိတ်ပါ။</span></footer>
+<footer class="site-footer shell"><span>KP VPN<span class="footer-dot"> · </span>Config Library</span><span>ဖိုင်ရွေးပါ။ လွယ်လွယ်ချိတ်ပါ။</span></footer>
 </body>
 </html>

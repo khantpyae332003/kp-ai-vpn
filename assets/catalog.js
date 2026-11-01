@@ -70,7 +70,7 @@ document.addEventListener('visibilitychange',refreshIfDue);
 window.addEventListener('online',()=>{if(!document.hidden){loadCatalog();loadSources();}});
 $('#kp-refresh').addEventListener('click',()=>{loadCatalog();loadSources();});
 // Anchor links to a collapsed guide should reveal the requested explanation.
-root.querySelectorAll('a[href="#verification"]').forEach(a=>a.addEventListener('click',()=>{$('#verification').open=true;}));
+root.querySelectorAll('a[href="#verification"],a[href="#troubleshooting"]').forEach(a=>a.addEventListener('click',()=>{const guide=$(a.getAttribute('href'));if(guide)guide.open=true;}));
 loadCatalog();loadSources();setInterval(()=>{
  const signature=JSON.stringify(currentFiles().map(f=>[f.id,f.carrier,f.plan,f.name,f.expires_at]));
  if(signature!==renderedSignature)render();else renderHealth();
