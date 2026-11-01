@@ -1,8 +1,8 @@
 # Adding a real source feed
 
-The finder performs public GitHub repository metadata searches immediately. Those results are unapproved leads, not downloadable configuration files. `data/sources.json` starts empty because no public redistribution feed has been provided. Arbitrary GitHub configs may contain another person's account credentials; they are never scraped into this site.
+The finder performs public GitHub repository metadata searches immediately. Those results are unapproved leads, not downloadable configuration files. `data/sources.json` includes a public original-archive link source; only actual server-passed members are listed. Arbitrary GitHub configs may contain another person's account credentials; they are never scraped into this site.
 
-Only a source intentionally publishing WireGuard configs for public redistribution belongs in this registry. You must have explicit redistribution permission; your personal provider dashboard files are for your own device, not this public catalog.
+A source intentionally publishing public WireGuard configs can be linked to its original archive. Republishing config bytes requires redistribution permission. You must have explicit redistribution permission; your personal provider dashboard files are for your own device, not this public catalog.
 
 ## Registry shape
 
@@ -57,3 +57,13 @@ The verifier re-reads the trusted registry rather than trusting carrier or appro
 3. The live catalog displays only successful entries. It does not certify Thai/Myanmar SIM connectivity from cloud probes.
 
 For actual SIM evidence, put a report in `data/carrier-tests.json` with the exact canonical config `sha256`, `carrier`, `plan`, `network: "cellular"`, `result: "pass"`, UTC `tested_at`, and a public `https://github.com/...` evidence URL. It is explicitly labeled **user-reported**, and accepted only for the last 24 hours. Never include account keys or private config contents in the evidence.
+
+## Public original ZIP adapter
+
+The configured `github_zip` source uses `public_link_approved: true` and `redistribution_approved: false`. The README explicitly offers the author's ZIP for public normal use. This enables original-archive linking only, not rehosting shared keys.
+
+Finder resolves the source repository HEAD to a full commit SHA, downloads an at-most-8-MiB ZIP over pinned verified HTTPS, inspects names in memory without extracting paths, and selects at most 20 config members. It preserves up to eight previously working names and rotates remaining names per half-hour slot. Archive/member checksums travel as metadata; no config bytes are uploaded as a finder artifact.
+
+Verifier independently derives the exact original URL from the registry repository, pinned commit and archive path; arbitrary candidate flags cannot change carrier, plan or link-only policy. It downloads the archive independently, validates both checksums and tests standard one-peer configs in up to four isolated namespaces concurrently. Passing entries identify the original ZIP member; other members in that archive are not thereby verified.
+
+Public shared configs can stop working or be rate-limited. A generic standard source is never relabeled as a Thai carrier/nopro result. Actual live probe counts and current results are in the latest Actions run and catalog.

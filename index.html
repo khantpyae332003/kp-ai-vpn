@@ -7,14 +7,16 @@
 <meta name="theme-color" content="#0a1412">
 <meta name="description" content="KP VPN အတွက် WireGuard ဖိုင်များ။ ထိုင်း၊ မြန်မာ SIM အလိုက် ရွေးပြီး ဖိုင်စာရင်းနှင့် သုံးနည်းကို ကြည့်ပါ။">
 <title>KP VPN — Config Library</title>
-<link rel="stylesheet" href="assets/catalog.css?v=2">
-<script src="assets/catalog.js?v=2" defer></script>
+<link rel="stylesheet" href="assets/catalog.css?v=3">
+<script src="assets/catalog.js?v=3" defer></script>
+<script src="assets/config-builder-core.js?v=1" defer></script>
+<script src="assets/config-builder.js?v=1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#files">ဖိုင်စာရင်းသို့ ကျော်သွားရန်</a>
 <header class="site-header"><div class="shell header-inner">
 <a class="brand" href="#" aria-label="KP VPN ပင်မစာမျက်နှာ"><span class="brand-mark">KP</span><span class="brand-name">KP VPN<small>CONFIG LIBRARY</small></span></a>
-<nav aria-label="အဓိက လမ်းညွှန်"><a class="nav-active" href="#files">ဖိုင်များ</a><a href="#learn">သုံးနည်း</a></nav>
+<nav aria-label="အဓိက လမ်းညွှန်"><a class="nav-active" href="#files">ဖိုင်များ</a><a href="#make-config">ဖိုင်လုပ်ရန်</a></nav>
 </div></header>
 <main id="kp-catalog" class="shell">
 <section class="hero" aria-labelledby="page-title">
@@ -32,11 +34,12 @@
 <button data-carrier="mpt" aria-pressed="false"><span>MPT</span><small>MM</small></button>
 <button data-carrier="atom" aria-pressed="false"><span>ATOM</span><small>MM</small></button>
 <button data-carrier="mytel" aria-pressed="false"><span>Mytel</span><small>MM</small></button>
-<button data-carrier="mm-other" aria-pressed="false"><span>အခြား</span><small>MM</small></button>
+<button data-carrier="other" aria-pressed="false"><span>အခြား</span><small>SIM</small></button>
+<button data-carrier="mm-other" aria-pressed="false"><span>MM အခြား</span><small>MM</small></button>
 </div><div class="plan-filter"><label for="kp-plan">ဖိုင်အမျိုးအစား</label><select id="kp-plan"><option value="all">အားလုံး</option><option value="nopro">nopro</option><option value="standard">standard</option><option value="unknown">မသတ်မှတ်ထား</option></select></div></aside>
 <div class="results-panel"><div class="results-toolbar"><input id="kp-file-search" type="search" placeholder="ဖိုင်နာမည် ရှာရန်…" aria-label="ဖိုင်နာမည် ရှာရန်"><button id="kp-refresh" class="button-secondary" type="button">ပြန်စစ်မယ်</button></div><p id="kp-updated" class="updated" role="status">ဖိုင်စာရင်း ဖတ်နေသည်…</p>
 <div id="kp-file-list" aria-live="polite"></div>
-<div id="kp-empty" class="empty-state" role="status"><span class="empty-kicker">NOTHING HERE YET</span><h3 id="kp-empty-title">ဖိုင်စာရင်း ဖတ်နေသည်…</h3><p id="kp-empty-description">ခဏစောင့်ပါ။</p><a href="#learn" class="button-primary">ဖိုင်ထည့်သုံးနည်း ကြည့်မယ် <span aria-hidden="true">↗</span></a></div>
+<div id="kp-empty" class="empty-state" role="status"><span class="empty-kicker">NOTHING HERE YET</span><h3 id="kp-empty-title">ဖိုင်စာရင်း ဖတ်နေသည်…</h3><p id="kp-empty-description">ခဏစောင့်ပါ။</p><a href="#make-config" class="button-primary">ကိုယ်ပိုင်ဖိုင် လုပ်မယ် <span aria-hidden="true">↗</span></a></div>
 <p class="results-note">Server စစ်ဆေးမှုနဲ့ SIM လက်တွေ့စမ်းသပ်မှုကို ဖိုင်တစ်ခုချင်းမှာ ခွဲပြထားသည်။ <a href="#verification">အသေးစိတ်</a></p>
 </div></div>
 </section>
@@ -44,8 +47,41 @@
 <div class="guide-layout"><details class="guide-card"><summary><span class="guide-number">01</span><span>ဘယ်ဖိုင်တွေ သုံးလို့ရလဲ</span></summary><div class="guide-content"><div class="supported-formats"><div><b>WireGuard .conf</b><span>[Interface] နဲ့ [Peer] ပါသော config</span></div><div><b>ZIP ဖိုင်</b><span>အထဲမှာ WireGuard .conf ဖိုင်တွေ ပါရမည်</span></div><div><b>WireGuard QR</b><span>Config စာသားအပြည့် ပါသော QR</span></div></div><p><code>.ovpn</code>၊ <code>.ehi</code>၊ <code>.hc</code>၊ <code>.hat</code>၊ VMess/VLESS/Trojan/Shadowsocks၊ JSON/YAML တို့ကို KP VPN v0.1 မှာ မချိတ်နိုင်သေးပါ။ ဖိုင်နာမည်ပြောင်းရုံနဲ့ format မပြောင်းပါ။</p></div></details>
 <details class="guide-card"><summary><span class="guide-number">02</span><span>ဖိုင် ဘယ်လိုရှာပြီး ထည့်မလဲ</span></summary><div class="guide-content"><ol><li>ယုံကြည်ရတဲ့ provider ရဲ့ official dashboard ထဲမှာ <b>WireGuard configuration</b> ကိုရှာပြီး .conf ကို ဖုန်းထဲသိမ်းပါ။</li><li>KP VPN → <b>ထည့်မယ်</b> → ကိုယ့် SIM အမျိုးအစား ရွေးပါ။</li><li><b>ဖိုင် / ZIP</b> ကနေ ဖိုင်ရွေးပါ။ QR ရှိရင် <b>QR ဖတ်မယ်</b> ကိုနှိပ်ပါ။</li><li>Config ရွေး → ပါဝါခလုတ်နှိပ် → Android VPN ခွင့်ပြုပြီး website တစ်ခု ဖွင့်စမ်းပါ။</li></ol><p>ကိုယ့် account config ထဲမှာ private key ပါလို့ public မတင်ပါနဲ့။ <a href="https://protonvpn.com/support/wireguard-configurations" target="_blank" rel="noopener noreferrer">Official config ရယူနည်း ↗</a></p></div></details>
 <details class="guide-card"><summary><span class="guide-number">03</span><span>SIM အလိုက် ဘယ်လိုပြင်မလဲ</span></summary><div class="guide-content"><p>App ထဲ SIM label ရွေးခြင်းနဲ့ <code>dtac-nopro-….conf</code> လို့ နာမည်ပေးခြင်းက စာရင်းခွဲဖို့သာ ဖြစ်သည်။ True ဖိုင်ကို dtac လို့ ပြောင်းခေါ်ရုံနဲ့ ချိတ်ဆက်မရလာပါ။</p><p>Provider က ကိုယ့် network အတွက် ထုတ်ပေးထားတဲ့ config ကို သုံးပါ။ PrivateKey / PublicKey / Endpoint / Address ကို ခန့်မှန်းပြီး မပြောင်းပါနဲ့။ Wi-Fi ပိတ်ပြီး SIM အစစ်နဲ့ စမ်းပါ။</p><p><b>nopro</b> သည် source ရဲ့ label ဖြစ်ပြီး ဒေတာ package မရှိဘဲ သုံးရမည်ဟု အာမခံခြင်း မဟုတ်ပါ။</p></div></details>
-<details id="verification" class="guide-card"><summary><span class="guide-number">04</span><span>“စစ်ပြီး” ဆိုတာ ဘယ်လောက်အထိလဲ</span></summary><div class="guide-content"><p><b>Server စစ်ပြီး:</b> ဖိုင်ပုံစံမှန်ပြီး cloud မှ WireGuard handshake + HTTPS စမ်းသပ်မှု အောင်ထားခြင်း။ SIM အစစ်နဲ့ စစ်ခြင်း မဟုတ်ပါ။</p><p><b>SIM စမ်းသုံးသူတင်ပြ:</b> Config hash တူပြီး ၂၄ နာရီအတွင်း cellular စမ်းသုံးသူ တင်ပြထားခြင်း။ အော်ပရေတာရဲ့ အတည်ပြုချက် မဟုတ်ပါ။</p><p>ဖိုင်များကို အများဆုံး ၂၄ နာရီသာ စာရင်းပြမည်။ မအောင်သောဖိုင်နဲ့ သက်တမ်းကုန်ဖိုင်ကို နောက် update မှာ ဖယ်မည်။ Workflow စတင်ချိန်သည် နှောင့်နှေးနိုင်သည်။</p></div></details>
+<details id="verification" class="guide-card"><summary><span class="guide-number">04</span><span>“စစ်ပြီး” ဆိုတာ ဘယ်လောက်အထိလဲ</span></summary><div class="guide-content"><p><b>Server စစ်ပြီး:</b> ဖိုင်ပုံစံမှန်ပြီး cloud မှ WireGuard handshake + HTTPS စမ်းသပ်မှု အောင်ထားခြင်း။ SIM အစစ်နဲ့ စစ်ခြင်း မဟုတ်ပါ။</p><p><b>SIM စမ်းသုံးသူတင်ပြ:</b> Config hash တူပြီး ၂၄ နာရီအတွင်း cellular စမ်းသုံးသူ တင်ပြထားခြင်း။ အော်ပရေတာရဲ့ အတည်ပြုချက် မဟုတ်ပါ။</p><p>ဖိုင်များကို အများဆုံး ၂၄ နာရီသာ စာရင်းပြမည်။ မအောင်သောဖိုင်နဲ့ သက်တမ်းကုန်ဖိုင်ကို နောက် update မှာ ဖယ်မည်။ နေ့/ညမရွေး မိနစ် ၃၀ တစ်ခါ workflow စတင်ရန် သတ်မှတ်ထားသည်။ GitHub Actions သည် တစ်ခါ run ပြီးတစ်ခါ နားသောပုံစံဖြစ်ပြီး စတင်ချိန် နှောင့်နှေးနိုင်သည်။</p></div></details>
 </div></section>
+<section id="make-config" class="learn-section" aria-labelledby="own-config-title"><div class="section-heading"><div><p class="eyebrow">YOUR KEYS · YOUR CONFIG</p><h2 id="own-config-title">ကိုယ်ပိုင်ဖိုင် ပြုလုပ်မယ်</h2></div></div>
+<details id="own-config-details" class="guide-card builder-shell"><summary><span class="guide-number">05</span><span>ဖိုင်ပြုလုပ်ရန်နှင့် အသေးစိတ်လမ်းညွှန်</span></summary><div class="guide-content">
+<p>အလုပ်လုပ်တဲ့ VPN server သို့မဟုတ် ကိုယ်ပိုင် provider အကောင့် လိုအပ်သည်။ အောက်က builder က <b>ကိုယ်ပိုင် WireGuard server ရှိသူ</b> အတွက် client ဖိုင်လုပ်ပေးသည်။ Key ကို ဖုန်း browser ထဲမှာပဲ ထုတ်ပြီး server ဆီ မပို့ပါ။</p>
+<details class="setup-guide"><summary>နည်းလမ်း A — Server မရှိသူ၊ ဖုန်းတစ်လုံးနဲ့ အလွယ်ဆုံး</summary><ol><li>ယုံကြည်ရတဲ့ VPN provider ရဲ့ official website မှာ ကိုယ့်အကောင့်နဲ့ ဝင်ပါ။</li><li><b>Downloads → WireGuard configuration</b> ထဲမှာ platform / server ရွေးပြီး config ထုတ်ပါ။ ဥပမာ <a href="https://protonvpn.com/support/wireguard-configurations" target="_blank" rel="noopener noreferrer">Proton ရဲ့ official လမ်းညွှန်</a>။</li><li>ကိုယ့်အကောင့်အတွက် ထုတ်ပေးထားသော <code>.conf</code> ကို ဒေါင်းလုဒ်လုပ်ပါ။ Provider ထုတ်ပေးတဲ့ key တွေကို ဒီ builder က key အသစ်နဲ့ အစားမထိုးပါနဲ့။</li><li>KP VPN → ထည့်မယ် → SIM label ရွေး → ဖိုင်ရွေးပြီး ထည့်ပါ။ PrivateKey ပါသော ကိုယ့်ဖိုင်ကို public မတင်ပါနဲ့။</li></ol></details>
+<div class="builder-intro"><h3>နည်းလမ်း B — ကိုယ့် server အတွက် client ဖိုင်</h3><p>ပထမ key ထုတ်ပါ။ Client PublicKey ကို server မှာ မှတ်ပုံတင်ပြီး server ရဲ့ အချက်အလက်အစစ်တွေ ဖြည့်ပါ။</p></div>
+<div class="key-panel"><button id="kp-generate-keys" class="button-secondary" type="button">Client key ထုတ်မယ်</button><label for="kp-client-public">Client PublicKey — ဒီ key ကိုသာ server ဆီ ပေးပါ</label><div class="copy-line"><input id="kp-client-public" readonly autocomplete="off" spellcheck="false" placeholder="Key ထုတ်ပြီးလျှင် ဒီမှာပေါ်မည်"><button id="kp-copy-public" class="button-secondary" type="button" disabled>ကူးမယ်</button></div><p id="kp-key-status" class="builder-status" role="status">PrivateKey ကို ဖိုင်ဒေါင်းလုဒ်ထဲမှာပဲ ထည့်ပေးမည်။</p></div>
+<form id="kp-builder-form" autocomplete="off"><div class="builder-grid">
+<div><label for="kp-builder-carrier">SIM label — စာရင်းခွဲရန်သာ</label><select id="kp-builder-carrier"><option value="dtac">dtac</option><option value="true">True</option><option value="ais">AIS</option><option value="mpt">MPT</option><option value="atom">ATOM</option><option value="mytel">Mytel</option><option value="other">အခြား</option></select></div>
+<div><label for="kp-builder-address">Server က ခွင့်ပြုထားတဲ့ client IPv4/CIDR</label><input id="kp-builder-address" value="10.8.0.2/32" required spellcheck="false"></div>
+<div><label for="kp-builder-endpoint">Server public IPv4 သို့မဟုတ် DNS:port</label><input id="kp-builder-endpoint" placeholder="မိမိ server လိပ်စာ:51820" required spellcheck="false"></div>
+<div><label for="kp-builder-dns">DNS IPv4</label><input id="kp-builder-dns" value="1.1.1.1" required spellcheck="false"></div>
+<div class="wide"><label for="kp-builder-server-key">Server PublicKey — server ကနေ ယူပါ</label><input id="kp-builder-server-key" required maxlength="44" spellcheck="false" placeholder="Base64 WireGuard public key"></div>
+<div class="wide"><label for="kp-builder-psk">PresharedKey — Server က သတ်မှတ်ပေးထားမှ ဖြည့်ပါ</label><input id="kp-builder-psk" type="password" maxlength="44" spellcheck="false" placeholder="မရှိလျှင် အလွတ်ထားပါ"></div>
+</div><div class="builder-actions"><button id="kp-export-config" class="button-primary" type="submit" disabled>ကိုယ်ပိုင် .conf ဖိုင်ယူမယ်</button><button id="kp-clear-keys" class="button-secondary" type="button">Key ရှင်းမယ်</button></div><p id="kp-builder-status" class="builder-status" role="status">ဤနေရာမှ ပြုလုပ်သောဖိုင်သည် server စစ်ပြီးဖိုင် မဟုတ်သေးပါ။</p></form>
+<details class="setup-guide"><summary>ကိုယ်ပိုင် Ubuntu server ဘက်မှာ ဘာလုပ်ရမလဲ — အဆင့်လိုက်</summary>
+<p>ဤဥပမာမှာ မိမိပိုင် Ubuntu VPS / public IPv4 server၊ SSH အုပ်ချုပ်ခွင့်၊ UDP 51820 ဖွင့်ခွင့် လိုအပ်သည်။ ဖုန်းက SSH app သို့မဟုတ် provider ရဲ့ browser console နဲ့ ဝင်လုပ်နိုင်သည်။</p>
+<h4>၁။ WireGuard ထည့်ပြီး server key ထုတ်ပါ</h4><pre><code>sudo apt update
+sudo apt install wireguard iptables
+sudo install -d -m 700 /etc/wireguard
+sudo sh -c 'umask 077; wg genkey &gt; /etc/wireguard/server.key; wg pubkey &lt; /etc/wireguard/server.key &gt; /etc/wireguard/server.pub'
+sudo cat /etc/wireguard/server.pub</code></pre><p>နောက်ဆုံးပေါ်လာတဲ့ <b>server public key</b> ကို အပေါ် form ရဲ့ Server PublicKey ထဲ ထည့်ပါ။ <code>server.key</code> သည် private key ဖြစ်လို့ server ထဲမှာပဲ ထားပါ။</p>
+<h4>၂။ Server ရဲ့ internet interface နာမည် ကြည့်ပါ</h4><pre><code>ip -4 route show default</code></pre><p><code>dev</code> နောက်က <code>eth0</code> / <code>ens3</code> စသောနာမည်ကို ယူပါ။ <a href="assets/examples/server.conf.example" download>Server template ယူပါ</a>။ ဤဖိုင်သည် သင်ယူရန် placeholder ပါသော server ဥပမာဖြစ်ပြီး KP VPN ထဲ ထည့်သုံးရန် မဟုတ်ပါ။</p>
+<h4>၃။ /etc/wireguard/wg0.conf ပြုလုပ်ပါ</h4><pre><code>sudo nano /etc/wireguard/wg0.conf</code></pre><p>Template ထဲ <code>SERVER_PRIVATE_KEY</code> ကို server ပေါ်ရှိ <code>/etc/wireguard/server.key</code> နဲ့ ဖြည့်ပါ။ ဒီ key ကို server ပေါ်မှာ <code>sudo nano /etc/wireguard/server.key</code> နဲ့သာ ဖွင့်ဖတ်ပြီး ကူးပါ။ Website ထဲ မထည့်ပါနဲ့။ <code>CLIENT_PUBLIC_KEY</code> ကို အပေါ်က builder ထုတ်ပေးသော public key နဲ့ ဖြည့်ပါ။ <code>WAN_INTERFACE</code> ကို အဆင့် ၂ က နာမည်နဲ့ အစားထိုးပါ။ Client ရဲ့ <code>AllowedIPs = 10.8.0.2/32</code> နဲ့ form ထဲ client address တူရမည်။ ဖုန်းတစ်လုံးစီအတွက် သီးခြား key နဲ့ IP သုံးပါ။</p>
+<h4>၄။ IPv4 forwarding နဲ့ firewall ကို ပြင်ပါ</h4><pre><code>echo 'net.ipv4.ip_forward=1' | sudo tee /etc/sysctl.d/99-kp-wireguard.conf
+sudo sysctl --system
+sudo chmod 600 /etc/wireguard/wg0.conf</code></pre><p>Cloud firewall မှာ <b>UDP 51820 inbound</b> ကို ဖွင့်ပါ။ UFW သုံးလျှင် <code>sudo ufw allow 51820/udp</code> နဲ့ ကိုယ့် WAN interface အတွက် <code>sudo ufw route allow in on wg0 out on eth0</code> ကို ပြင်သုံးပါ။ SSH ဝင်ခွင့်ကို ဆက်ထားပြီး လက်ရှိ firewall policy နဲ့ ကိုက်ညီအောင် စစ်ပါ။ Template က IPv4 NAT လုပ်ပေးသည်။</p>
+<h4>၅။ Server စတင်ပြီး ဖုန်းဖိုင်ကို ထည့်ပါ</h4><pre><code>sudo systemctl enable --now wg-quick@wg0
+sudo wg show wg0</code></pre><p>အပေါ် form ထဲ Endpoint ကို ကိုယ့် server public IPv4:51820 နဲ့ဖြည့်ပါ။ ကိုယ်ပိုင်ဖိုင်ယူပြီး KP VPN ထဲ import လုပ်ပါ။ ဖုန်းက စချိတ်ပြီးနောက် <code>latest handshake</code> နဲ့ transfer bytes တက်မတက်၊ website ဖွင့်လို့ရမရ စမ်းပါ။ ဒီ IPv4 ဥပမာမှာ IPv6 ကိုလည်း tunnel ထဲ ညွှန်ထားသဖြင့် server က IPv6 မပံ့ပိုးလျှင် IPv6 ချိတ်ဆက်မှု မရနိုင်ပါ။</p>
+<p>မရလျှင် key နှစ်ဖက် ကိုက်ညီမှု၊ client IP၊ server Endpoint/port၊ UDP firewall၊ forwarding/NAT ကို အစဉ်လိုက်စစ်ပါ။ SIM နာမည်ပြောင်းခြင်းက ဒီပြဿနာတွေကို မဖြေရှင်းပါ။ <a href="https://www.wireguard.com/quickstart/" target="_blank" rel="noopener noreferrer">Official WireGuard လမ်းညွှန် ↗</a></p>
+</details>
+<p class="template-link"><a href="assets/examples/client.conf.example" download>Client သင်ယူရန် template ယူမယ် ↗</a> — placeholder များကို ဖြည့်ပြီးမှ .conf အဖြစ် သိမ်းသုံးပါ။</p>
+</div></details></section>
+
 <section class="sources-section"><details class="source-details"><summary><span>ရှာတွေ့ရင်းမြစ်များ</span><span class="source-hint">အတည်မပြုရသေး</span></summary><div class="source-content"><p>ဒီ link တွေက ရှာဖွေမှုရလဒ်များသာ ဖြစ်သည်။ KP VPN နဲ့ရမည့် download ဖိုင်ဟု မသတ်မှတ်ရသေးပါ။</p><ul id="kp-discovery"><li>ဖတ်နေသည်…</li></ul></div></details></section>
 </main>
 <footer class="site-footer shell"><span>KP VPN<span class="footer-dot"> · </span>Config Library</span><span>ဖိုင်ရွေးပါ။ လွယ်လွယ်ချိတ်ပါ။</span></footer>

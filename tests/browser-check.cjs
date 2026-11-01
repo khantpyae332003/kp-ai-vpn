@@ -12,12 +12,13 @@ const path=require('node:path');
   {...common,name:'<img src=x onerror=window.bad=1>',carrier:'dtac',plan:'nopro',source_url:'javascript:alert(1)',download:'javascript:alert(1)'},
   {...common,name:'dtac-standard.conf',carrier:'dtac',plan:'standard',source_url:'https://example.com/public.conf',download:'catalog/downloads/dtac/standard/dtac-standard-deadbeef.conf'},
   {...common,name:'true-nopro.conf',carrier:'true',plan:'nopro'},
+  {...common,name:'public-archive.conf',carrier:'other',plan:'standard',download_kind:'source_archive',archive_member:'US/public-archive.conf',download:'https://raw.githubusercontent.com/owner/repo/'+('a'.repeat(40))+'/bundle.zip',permission_url:'https://github.com/owner/repo/blob/main/README.md'},
   {...common,name:'expired.conf',carrier:'mpt',plan:'nopro',expires_at:new Date(Date.now()-3600000).toISOString()},
   {...common,name:'failed.conf',carrier:'ais',plan:'nopro',server_status:'failed'}
  ];
  await page.route('**/catalog/index.json',route=>route.fulfill({json:{updated_at:checked,files:fixtures}}));
  await page.goto(url);await page.waitForSelector('.kp-file');
- if(await page.locator('.kp-file').count()!==3)throw Error('Expired or failed files were displayed');
+ if(await page.locator('.kp-file').count()!==4)throw Error('Expired or failed files were displayed');
  if(await page.evaluate(()=>window.bad))throw Error('HTML executed');
  if(await page.locator('.kp-file').filter({hasText:'<img src=x'}).locator('a').count())throw Error('Unsafe link rendered');
  const download=page.locator('.kp-file').filter({hasText:'dtac-standard.conf'}).getByRole('link',{name:'ဖိုင်ယူမယ်'});
@@ -27,7 +28,7 @@ const path=require('node:path');
  await page.locator('#kp-plan').selectOption('nopro');if(await page.locator('.kp-file').count()!==1||await page.locator('.kp-file').filter({hasText:'dtac-standard.conf'}).count())throw Error('nopro plan filter failed');
  await page.locator('#kp-plan').selectOption('standard');if(await page.locator('.kp-file').count()!==1||!await download.count())throw Error('standard plan filter failed');
  await page.locator('#kp-file-search').fill('not-present');if(await page.locator('.kp-file').count())throw Error('Search failed');
- await page.unroute('**/catalog/index.json');await page.reload();await page.locator('#kp-empty').filter({hasText:'မရှိသေး'}).waitFor();
+ await page.unroute('**/catalog/index.json');await page.route('**/catalog/index.json',route=>route.fulfill({json:{updated_at:checked,files:[]}}));await page.reload();await page.locator('#kp-empty').filter({hasText:'မရှိသေး'}).waitFor();
  await page.locator('#kp-catalog').scrollIntoViewIfNeeded();fs.mkdirSync('qa',{recursive:true});await page.screenshot({path:'qa/catalog-mobile.png',fullPage:true});
  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Horizontal overflow');
  const guide=page.locator('.guide-card').first();
@@ -36,9 +37,24 @@ const path=require('node:path');
  await guide.locator('summary').click();
  await page.route('**/catalog/index.json',route=>route.fulfill({status:503,body:'unavailable'}));
  await page.locator('#kp-refresh').click();await page.getByRole('heading',{name:'ဖိုင်စာရင်း ဖတ်မရပါ'}).waitFor();
- await page.unroute('**/catalog/index.json');await page.locator('#kp-refresh').click();await page.locator('#kp-empty-title').filter({hasText:'မရှိသေး'}).waitFor();
+ await page.unroute('**/catalog/index.json');await page.route('**/catalog/index.json',route=>route.fulfill({json:{updated_at:checked,files:[]}}));await page.locator('#kp-refresh').click();await page.locator('#kp-empty-title').filter({hasText:'မရှိသေး'}).waitFor();
  await page.locator('a[href="#verification"]').click();if(await page.locator('#verification').getAttribute('open')===null)throw Error('Verification anchor did not expand guide');
  await page.locator('#verification summary').click();
+ await page.locator('.site-header a[href="#make-config"]').click();
+ if(await page.locator('#own-config-details').getAttribute('open')===null)throw Error('Builder navigation did not open');
+ const requests=[];page.on('request',r=>requests.push(r.url()+' '+(r.postData()||'')));
+ await page.locator('#kp-generate-keys').click();await page.waitForFunction(()=>document.getElementById('kp-client-public').value.length===44);
+ await page.locator('#kp-builder-endpoint').fill('8.8.8.8:51820');
+ await page.locator('#kp-builder-server-key').fill(Buffer.from(Array.from({length:32},(_,i)=>i+1)).toString('base64'));
+ const got=page.waitForEvent('download');await page.locator('#kp-export-config').click();const file=await got;
+ if(file.suggestedFilename()!=='dtac-personal.conf')throw Error('Wrong config filename');
+ const body=fs.readFileSync(await file.path(),'utf8');if(!body.includes('[Interface]')||!body.includes('Endpoint = 8.8.8.8:51820'))throw Error('Bad exported config');
+ const secret=/PrivateKey = ([^\n]+)/.exec(body)?.[1];if(!secret||requests.some(r=>r.includes(secret)))throw Error('Private key sent over network');
+ await page.locator('#kp-clear-keys').click();if(await page.locator('#kp-client-public').inputValue()!==''||!await page.locator('#kp-export-config').isDisabled())throw Error('Key clear failed');
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Builder horizontal overflow');
+ await page.screenshot({path:'qa/config-builder-mobile.png',fullPage:true});
+ await page.unroute('**/catalog/index.json');await page.reload();await page.waitForFunction(()=>document.getElementById('kp-total').textContent!=='—');
+ await page.screenshot({path:'qa/catalog-mobile.png',fullPage:true});
  await page.evaluate(()=>scrollTo(0,0));await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'qa/catalog-desktop.png',fullPage:true});
  if(errors.length)throw Error(errors.join('\n'));
  console.log('PASS: carrier/plan filters, valid downloads, expired/failed suppression, search, inert untrusted data/URLs, mobile overflow, refresh recovery, collapsed guides, explanatory anchor, empty state');

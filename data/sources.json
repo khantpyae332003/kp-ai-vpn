@@ -1,5 +1,19 @@
 {
   "schema": 1,
-  "sources": [],
-  "note": "No authorized public WireGuard redistribution feed has been supplied. Finder discovers source leads, but never scrapes arbitrary private keys. See docs/SOURCES.md."
+  "sources": [
+    {
+      "id": "deltakronecker-public-wireguard",
+      "kind": "github_zip",
+      "enabled": true,
+      "public_link_approved": true,
+      "redistribution_approved": false,
+      "github_repository": "Delta-Kronecker/ProtonVPN-WireGuard-configuration",
+      "archive_path": "ProtonVPN_WireGuard_Configs.zip",
+      "carrier": "other",
+      "plan": "standard",
+      "allowed_hosts": ["github.com", "raw.githubusercontent.com"],
+      "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
+      "note": "Author explicitly offers public normal-use configs. Link to the original commit-pinned ZIP only; do not republish shared keys. No SIM or nopro certification."
+    }
+  ]
 }

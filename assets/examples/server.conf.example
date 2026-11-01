@@ -1,0 +1,13 @@
+# Ubuntu IPv4 internet-gateway example, not a client import file.
+# Replace SERVER_PRIVATE_KEY, CLIENT_PUBLIC_KEY, and WAN_INTERFACE.
+# Open UDP 51820 and enable IPv4 forwarding on your own server.
+[Interface]
+Address = 10.8.0.1/24
+ListenPort = 51820
+PrivateKey = SERVER_PRIVATE_KEY
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o WAN_INTERFACE -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -s 10.8.0.0/24 -o WAN_INTERFACE -j MASQUERADE
+
+[Peer]
+PublicKey = CLIENT_PUBLIC_KEY
+AllowedIPs = 10.8.0.2/32
