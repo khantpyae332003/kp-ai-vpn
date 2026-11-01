@@ -7,6 +7,16 @@ ENV={'PATH':'/usr/sbin:/usr/bin:/sbin:/bin','LANG':'C'}
 def run(args,timeout=15):
  return subprocess.run(args,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,timeout=timeout,check=True,env=ENV).stdout.decode().strip()
 
+def https_targets():
+ targets=[]
+ for host,path in [('example.com','/'),('www.gstatic.com','/generate_204')]:
+  try:
+   answers=socket.getaddrinfo(host,443,family=socket.AF_INET,type=socket.SOCK_STREAM)
+   ips=[a[4][0] for a in answers]
+   if ips and all(global_ip(ip) for ip in ips):targets.append((host,ips[0],path))
+  except OSError:continue
+ return targets
+
 def probe(profile):
  name='kp'+uuid.uuid4().hex[:10];namespace=name;created=False;device=False
  try:
@@ -29,8 +39,18 @@ def probe(profile):
    run(['ip','-n',namespace,'link','set',name,'up'])
    run(['ip','-n',namespace,'route','add','default','dev',name])
    start=int(time.time())
-   # Fixed public HTTPS target; no private HTTP target or credentials.
-   run(['ip','netns','exec',namespace,'curl','--silent','--fail','--max-time','12','--noproxy','*','--resolve','www.cloudflare.com:443:104.16.132.229','https://www.cloudflare.com/cdn-cgi/trace'])
+   # Resolve fixed public hostnames outside the tunnel, validate their IPs and
+   # pin each HTTPS connection while retaining hostname/certificate checks.
+   # A second independent target avoids rejecting working tunnels for one CDN.
+   success=False;last_error=None
+   for target,target_ip,target_path in https_targets():
+    try:
+     run(['ip','netns','exec',namespace,'curl','--silent','--fail','--connect-timeout','5','--max-time','10','--noproxy','*','--proto','=https','--resolve',target+':443:'+target_ip,'https://'+target+target_path],timeout=13)
+     success=True;break
+    except (subprocess.CalledProcessError,subprocess.TimeoutExpired) as e:last_error=e
+   if not success:
+    if last_error:raise last_error
+    raise RuntimeError('No public HTTPS target')
    handshakes=run(['ip','netns','exec',namespace,'wg','show',name,'latest-handshakes'])
    values=[int(line.split()[1]) for line in handshakes.splitlines() if len(line.split())==2]
    return bool(values) and all(v>=start for v in values)
