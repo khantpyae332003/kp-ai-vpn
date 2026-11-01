@@ -65,7 +65,7 @@ class CatalogTests(unittest.TestCase):
   self.assertTrue(callable(cls),'Pinned HTTPS transport missing')
   connection=cls('source.example','8.8.8.8',timeout=15)
   tls=Mock();connection._context=tls
-  with patch('agents.core.socket.create_connection',return_value=object()) as dial:
+  with patch('agents.core.socket.create_connection',return_value=Mock(spec=['setsockopt'])) as dial:
    connection.connect()
   self.assertEqual(dial.call_args.args[0],('8.8.8.8',443))
   self.assertEqual(tls.wrap_socket.call_args.kwargs['server_hostname'],'source.example')
