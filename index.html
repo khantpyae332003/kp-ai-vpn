@@ -7,8 +7,8 @@
 <meta name="theme-color" content="#0a1412">
 <meta name="description" content="KP VPN အတွက် WireGuard ဖိုင်များ။ ထိုင်း၊ မြန်မာ SIM အလိုက် ရွေးပြီး ဖိုင်စာရင်းနှင့် သုံးနည်းကို ကြည့်ပါ။">
 <title>KP VPN — Config Library</title>
-<link rel="stylesheet" href="assets/catalog.css?v=3">
-<script src="assets/catalog.js?v=3" defer></script>
+<link rel="stylesheet" href="assets/catalog.css?v=4">
+<script src="assets/catalog.js?v=4" defer></script>
 <script src="assets/config-builder-core.js?v=1" defer></script>
 <script src="assets/config-builder.js?v=1" defer></script>
 </head>
@@ -37,7 +37,7 @@
 <button data-carrier="other" aria-pressed="false"><span>အခြား</span><small>SIM</small></button>
 <button data-carrier="mm-other" aria-pressed="false"><span>MM အခြား</span><small>MM</small></button>
 </div><div class="plan-filter"><label for="kp-plan">ဖိုင်အမျိုးအစား</label><select id="kp-plan"><option value="all">အားလုံး</option><option value="nopro">nopro</option><option value="standard">standard</option><option value="unknown">မသတ်မှတ်ထား</option></select></div></aside>
-<div class="results-panel"><div class="results-toolbar"><input id="kp-file-search" type="search" placeholder="ဖိုင်နာမည် ရှာရန်…" aria-label="ဖိုင်နာမည် ရှာရန်"><button id="kp-refresh" class="button-secondary" type="button">ပြန်စစ်မယ်</button></div><p id="kp-updated" class="updated" role="status">ဖိုင်စာရင်း ဖတ်နေသည်…</p>
+<div class="results-panel"><div class="results-toolbar"><input id="kp-file-search" type="search" placeholder="ဖိုင်နာမည် ရှာရန်…" aria-label="ဖိုင်နာမည် ရှာရန်"><button id="kp-refresh" class="button-secondary" type="button">ပြန်စစ်မယ်</button></div><button id="kp-reset" class="button-secondary" type="button" hidden>ရွေးထားတာ ရှင်းမယ်</button><p id="kp-health" class="updated" role="status"></p><p id="kp-updated" class="updated" role="status">ဖိုင်စာရင်း ဖတ်နေသည်…</p>
 <div id="kp-file-list" aria-live="polite"></div>
 <div id="kp-empty" class="empty-state" role="status"><span class="empty-kicker">NOTHING HERE YET</span><h3 id="kp-empty-title">ဖိုင်စာရင်း ဖတ်နေသည်…</h3><p id="kp-empty-description">ခဏစောင့်ပါ။</p><a href="#make-config" class="button-primary">ကိုယ်ပိုင်ဖိုင် လုပ်မယ် <span aria-hidden="true">↗</span></a></div>
 <p class="results-note">Server စစ်ဆေးမှုနဲ့ SIM လက်တွေ့စမ်းသပ်မှုကို ဖိုင်တစ်ခုချင်းမှာ ခွဲပြထားသည်။ <a href="#verification">အသေးစိတ်</a></p>
