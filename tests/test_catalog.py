@@ -58,4 +58,15 @@ class CatalogTests(unittest.TestCase):
   self.assertEqual(authorize([c],[]),[])
   registry=[{'id':'one','enabled':True,'redistribution_approved':True,'allowed_hosts':['example.com'],'permission_url':'https://example.com/license','carrier':'dtac','plan':'nopro'}]
   self.assertEqual(authorize([c],registry)[0]['carrier'],'dtac')
+ def test_https_transport_pins_validated_ip_but_preserves_tls_hostname(self):
+  from agents import core
+  from unittest.mock import patch,Mock
+  cls=getattr(core,'PinnedHTTPSConnection',None)
+  self.assertTrue(callable(cls),'Pinned HTTPS transport missing')
+  connection=cls('source.example','8.8.8.8',timeout=15)
+  tls=Mock();connection._context=tls
+  with patch('agents.core.socket.create_connection',return_value=object()) as dial:
+   connection.connect()
+  self.assertEqual(dial.call_args.args[0],('8.8.8.8',443))
+  self.assertEqual(tls.wrap_socket.call_args.kwargs['server_hostname'],'source.example')
 if __name__=='__main__':unittest.main()

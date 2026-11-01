@@ -1,5 +1,5 @@
 """Bounded WireGuard parsing and public-catalog policy. Never logs config bytes."""
-import base64,hashlib,ipaddress,json,re,shutil,socket
+import base64,hashlib,ipaddress,json,re,shutil,socket,http.client,ssl
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
 from urllib.parse import urlsplit
@@ -34,26 +34,34 @@ def public_https(url,allowed_hosts):
   if p.hostname in ('localhost',) or '.' not in p.hostname:raise ValueError('Non-public hostname')
  return url
 
-class NoRedirect(HTTPRedirectHandler):
- def redirect_request(self,*args,**kwargs):return None
+class PinnedHTTPSConnection(http.client.HTTPSConnection):
+ def __init__(self,hostname,validated_ip,timeout=15):
+  if not global_ip(validated_ip):raise ValueError('Non-public transport target')
+  super().__init__(hostname,port=443,timeout=timeout,context=ssl.create_default_context())
+  # HTTPSConnection keeps the original hostname for Host/SNI/certificate checks.
+  # Only the TCP destination is pinned, preventing a second DNS lookup/rebinding.
+  self._create_connection=lambda address,timeout=15,source_address=None:socket.create_connection((validated_ip,443),timeout,source_address)
 
 def fetch_url(url,allowed_hosts,limit=MAX_CONFIG):
- opener=build_opener(NoRedirect)
  for _ in range(4):
   public_https(url,allowed_hosts)
-  host=urlsplit(url).hostname
+  parts=urlsplit(url);host=parts.hostname
   answers=socket.getaddrinfo(host,443,type=socket.SOCK_STREAM)
   if not answers or any(not global_ip(x[4][0]) for x in answers):raise ValueError('Non-public DNS')
+  connection=PinnedHTTPSConnection(host,answers[0][4][0],timeout=15)
   try:
-   with opener.open(Request(url,headers={'User-Agent':'KP-VPN-Catalog/1.0'}),timeout=15) as r:
-    data=r.read(limit+1)
-    if len(data)>limit:raise ValueError('Response limit')
-    return data
-  except HTTPError as e:
-   if e.code in (301,302,303,307,308):
+   connection.request('GET',parts.path or '/',headers={'User-Agent':'KP-VPN-Catalog/1.0','Host':parts.netloc})
+   response=connection.getresponse()
+   if response.status in (301,302,303,307,308):
     from urllib.parse import urljoin
-    url=urljoin(url,e.headers.get('Location',''));continue
-   raise
+    location=response.getheader('Location')
+    if not location:raise ValueError('Missing redirect')
+    url=urljoin(url,location);continue
+   if response.status!=200:raise ValueError('Source HTTP status')
+   data=response.read(limit+1)
+   if len(data)>limit:raise ValueError('Response limit')
+   return data
+  finally:connection.close()
  raise ValueError('Redirect limit')
 
 def _key(value):
