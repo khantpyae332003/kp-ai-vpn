@@ -15,7 +15,7 @@ These agents are deterministic Python automation jobs, **not configured LLM agen
 
 ## Status and limits
 
-The initial authorized distribution source list is empty. Discovery can find source leads, but **there are zero server-verified downloads until a real authorized feed is configured and its tunnel tests pass**. See [docs/SOURCES.md](docs/SOURCES.md). No actual SIM hardware is attached; no free/no-package access claim is made. The real WireGuard probe is implemented but cannot be demonstrated against a working source without such a config.
+A real public archive source is configured in `data/sources.json`: Delta-Kronecker/ProtonVPN-WireGuard-configuration. Its author explicitly offers public normal-use configs. The workflow tests up to 20 entries per source/run, rechecks up to eight previously successful entries first, and rotates new entries. Up to four probes run concurrently in independent namespaces. Server-passed entries link to the original commit-pinned ZIP and identify the exact member to use; shared keys are not republished in this repository. No successful entries are claimed until the live tests actually pass. Carrier is `other` and plan `standard`; no actual SIM hardware or nopro certification is available.
 
 KP VPN v0.1 supports WireGuard `.conf`, ZIP containers of those files, and QR payloads containing the config text. It does not connect OpenVPN, VMess/VLESS/Trojan/Shadowsocks, or proprietary `.ehi/.hc/.hat` files.
 
@@ -42,3 +42,9 @@ node --check assets/catalog.js
 - https://www.wireguard.com/netns/
 - https://protonvpn.com/support/wireguard-configurations
 - https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+
+## Own-config creation
+
+The website includes a browser-local WebCrypto X25519 client-config builder and detailed Burmese provider/VPS instructions. Public-key derivation is independently checked using Node crypto in `tests/builder.test.cjs`. Private keys stay in browser memory and the locally downloaded `.conf`, with no localStorage, telemetry or network submission. A real server and registered client public key remain required; generated files are not marked server-verified. Static `.conf.example` client/server templates are educational placeholders.
+
+The `*/30 * * * *` schedule applies all 24 hours in UTC. Each run completes and exits; GitHub Actions is not a continuously running daemon. Queue delays, platform outages and repository scheduling policies still apply.

@@ -56,8 +56,10 @@ class CatalogTests(unittest.TestCase):
   from agents.verifier import authorize
   c={'source_id':'one','url':'https://example.com/a.conf','approved':True,'carrier':'ais'}
   self.assertEqual(authorize([c],[]),[])
-  registry=[{'id':'one','enabled':True,'redistribution_approved':True,'allowed_hosts':['example.com'],'permission_url':'https://example.com/license','carrier':'dtac','plan':'nopro'}]
-  self.assertEqual(authorize([c],registry)[0]['carrier'],'dtac')
+  registry=[{'manifest_url':'https://example.com/feed.json','id':'one','enabled':True,'redistribution_approved':True,'allowed_hosts':['example.com'],'permission_url':'https://example.com/license','carrier':'dtac','plan':'nopro'}]
+  from unittest.mock import patch
+  with patch('agents.verifier.fetch_url',return_value=json.dumps({'files':[{'url':c['url']}]}).encode()):
+   self.assertEqual(authorize([c],registry)[0]['carrier'],'dtac')
  def test_https_transport_pins_validated_ip_but_preserves_tls_hostname(self):
   from agents import core
   from unittest.mock import patch,Mock

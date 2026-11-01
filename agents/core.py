@@ -147,9 +147,16 @@ def build_catalog(candidates,reports,out,fetch,probe):
    tested=now_utc();expires=tested+timedelta(hours=24)
    if c.get('expires_at'):expires=min(expires,date(c['expires_at']))
    filename=f"{carrier}/{plan}/{carrier}-{plan}-{p['sha256'][:12]}.conf"
-   target=downloads/filename;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(p['config'])
+   target=downloads/filename
+   if c.get('link_only') is True:
+    public_https(c['url'],{'raw.githubusercontent.com'})
+    if not re.fullmatch(r'https://raw\.githubusercontent\.com/[^/]+/[^/]+/[a-f0-9]{40}/[^?#]+\.zip',c['url']):raise ValueError('Unpinned archive')
+    display_name=Path(c['member']).name;download=c['url'];kind='source_archive'
+   else:
+    target.parent.mkdir(parents=True,exist_ok=True);target.write_text(p['config'])
+    display_name=target.name;download='catalog/downloads/'+filename;kind='config' 
    seen.add(identity)
-   result['files'].append({'id':p['sha256'],'name':target.name,'source_name':str(c.get('name',''))[:100],'carrier':carrier,'country':CARRIERS[carrier],'plan':plan,'protocol':'wireguard','format':'.conf','source_url':c['url'],'permission_url':c['permission_url'],'download':'catalog/downloads/'+filename,'checked_at':stamp(tested),'expires_at':stamp(expires),'server_status':'handshake_https_pass','sim':sim_status(p['sha256'],carrier,plan,reports,tested)})
+   result['files'].append({'id':p['sha256'],'name':display_name,'source_name':str(c.get('name',''))[:100],'carrier':carrier,'country':CARRIERS[carrier],'plan':plan,'protocol':'wireguard','format':'.conf','source_url':c['url'],'permission_url':c['permission_url'],'download':download,'download_kind':kind,'archive_member':c.get('member'),'source_id':c.get('source_id'),'source_commit':c.get('commit_sha'),'checked_at':stamp(tested),'expires_at':stamp(expires),'server_status':'handshake_https_pass','sim':sim_status(p['sha256'],carrier,plan,reports,tested)})
   except Exception:result['stats']['rejected']+=1
  (out/'index.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
  for carrier in CARRIERS:

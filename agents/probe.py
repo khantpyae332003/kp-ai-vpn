@@ -34,7 +34,13 @@ def probe(profile):
    handshakes=run(['ip','netns','exec',namespace,'wg','show',name,'latest-handshakes'])
    values=[int(line.split()[1]) for line in handshakes.splitlines() if len(line.split())==2]
    return bool(values) and all(v>=start for v in values)
- except Exception:return False
+ except subprocess.TimeoutExpired:
+  print('Probe '+profile['sha256'][:12]+': timed_out',flush=True);return False
+ except subprocess.CalledProcessError as e:
+  category='https_failed' if 'curl' in e.cmd else 'tunnel_setup_failed'
+  print('Probe '+profile['sha256'][:12]+': '+category+' (exit '+str(e.returncode)+')',flush=True);return False
+ except Exception:
+  print('Probe '+profile['sha256'][:12]+': network_or_config_error',flush=True);return False
  finally:
   if device:
    try:run(['ip','link','del',name])

@@ -3,7 +3,7 @@
 const root=document.getElementById('kp-catalog');if(!root)return;
 const $=s=>root.querySelector(s);
 let files=[],carrier='all',plan='all',lastUpdated=null,loadError=false,loading=false,renderedSignature='';
-const names={dtac:'dtac',true:'True',ais:'AIS',mpt:'MPT',atom:'ATOM',mytel:'Mytel','mm-other':'မြန်မာ အခြား',other:'အခြား'};
+const names={dtac:'dtac',true:'True',ais:'AIS',mpt:'MPT',atom:'ATOM',mytel:'Mytel','mm-other':'မြန်မာ အခြား',other:'SIM မသတ်မှတ်ထား'};
 function safeLink(url){try{const u=new URL(url,location.href);if(u.protocol!=='https:'||u.username||u.password)return null;return u.href;}catch{return null;}}
 function time(value){const date=new Date(value);return Number.isNaN(date.getTime())?'—':date.toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'});}
 function currentFiles(){return files.filter(f=>f&&typeof f.name==='string'&&typeof f.carrier==='string'&&f.server_status==='handshake_https_pass'&&Date.parse(f.expires_at)>Date.now());}
@@ -24,7 +24,14 @@ function render(){
   if(/^catalog\/downloads\/(dtac|true|ais|mpt|atom|mytel|mm-other|other)\/(nopro|standard|unknown)\/[a-z0-9-]+\.conf$/.test(f.download)){
    const a=document.createElement('a');a.href=f.download;a.download=f.name;a.className='button-primary';a.textContent='ဖိုင်ယူမယ်';actions.append(a);
   }
-  const source=safeLink(f.source_url);if(source){const a=document.createElement('a');a.href=source;a.rel='noopener noreferrer';a.target='_blank';a.textContent='မူရင်းရင်းမြစ် ↗';a.className='source-link';actions.append(a);}
+  if(f.download_kind==='source_archive'){
+   const url=safeLink(f.download);
+   if(url&&/^https:\/\/raw\.githubusercontent\.com\/[^/]+\/[^/]+\/[a-f0-9]{40}\/[^?#]+\.zip$/.test(url)){
+    const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.className='source-archive';a.textContent='မူရင်း ZIP ယူမယ် ↗';actions.append(a);
+    const note=document.createElement('p');note.className='archive-note';note.textContent='ZIP ထဲမှ '+f.archive_member+' ကို ရွေးသုံးပါ။ ZIP ထဲက ဖိုင်အားလုံး စစ်ပြီးပြီဟု မဆိုလိုပါ။';row.append(note);
+   }
+  }
+  const source=safeLink(f.download_kind==='source_archive'?f.permission_url:f.source_url);if(source){const a=document.createElement('a');a.href=source;a.rel='noopener noreferrer';a.target='_blank';a.textContent='မူရင်းရင်းမြစ် ↗';a.className='source-link';actions.append(a);}
   row.append(actions);container.append(row);
  }
  $('#kp-empty').hidden=rows.length>0;

@@ -1,6 +1,7 @@
 name: KP VPN Catalog Agents
 on:
   schedule:
+    # All 24 hours, every 30 minutes (UTC); scheduled jobs can be delayed.
     - cron: '*/30 * * * *'
   workflow_dispatch:
   push:
@@ -57,6 +58,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Config-builder cryptographic tests
+        run: node --test tests/builder.test.cjs
       - name: Browser UI checks
         run: |
           npm install --no-save playwright@1.56.1
