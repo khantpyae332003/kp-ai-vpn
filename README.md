@@ -1,6 +1,6 @@
 # KP VPN Hub — file catalog agents
 
-Extends the existing KP VPN Hub webpage with carrier-filtered WireGuard config listings and Burmese lessons. Existing chat/contact/language toggle and daily-tip marker are preserved.
+A file-first KP VPN website with carrier-filtered WireGuard listings and concise Burmese help. The 2026-11-01 redesign removes unrelated chat, contact forms, generic safety cards and daily tips at the user’s request. It uses a dark green palette, mobile SIM controls, a genuine refresh action, and collapsed learning/source sections.
 
 ## Actual capabilities
 
