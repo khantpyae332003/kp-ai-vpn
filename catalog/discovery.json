@@ -1,6 +1,39 @@
 {
-  "updated_at": "2026-10-31T14:19:52+00:00",
-  "sources": [],
+  "updated_at": "2026-11-01T00:52:39+00:00",
+  "sources": [
+    {
+      "name": "Jetspeedvpn/DTAC-Nopro",
+      "url": "https://github.com/Jetspeedvpn/DTAC-Nopro",
+      "description": "0947069345",
+      "status": "source_not_approved",
+      "query": "dtac nopro",
+      "updated_at": "2025-12-19T20:10:12Z"
+    },
+    {
+      "name": "Jetspeedvpn/True-Nopro",
+      "url": "https://github.com/Jetspeedvpn/True-Nopro",
+      "description": "APN",
+      "status": "source_not_approved",
+      "query": "true nopro",
+      "updated_at": "2025-12-19T20:09:33Z"
+    },
+    {
+      "name": "Jetspeedvpn/AISplay-Nopro",
+      "url": "https://github.com/Jetspeedvpn/AISplay-Nopro",
+      "description": "APN",
+      "status": "source_not_approved",
+      "query": "ais nopro",
+      "updated_at": "2025-12-19T20:08:32Z"
+    },
+    {
+      "name": "houstoncmd/hermes-phone-control-skills",
+      "url": "https://github.com/houstoncmd/hermes-phone-control-skills",
+      "description": "Hermes Agent skills: remote Android phone control + screen unlock (WireGuard + adb + AutoJS6), secret-free, Thai usage guide",
+      "status": "source_not_approved",
+      "query": "wireguard thailand",
+      "updated_at": "2026-10-26T20:17:43Z"
+    }
+  ],
   "search_errors": 0,
-  "note": "Search skipped for local offline run"
+  "note": "Repository metadata only. These are not verified or approved VPN downloads."
 }
