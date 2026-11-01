@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "sources": [],
+  "note": "No authorized public WireGuard redistribution feed has been supplied. Finder discovers source leads, but never scrapes arbitrary private keys. See docs/SOURCES.md."
+}

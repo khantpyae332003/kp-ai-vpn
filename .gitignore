@@ -1,0 +1,5 @@
+__pycache__/
+work/
+qa/
+node_modules/
+package-lock.json

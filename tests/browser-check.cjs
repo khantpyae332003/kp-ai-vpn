@@ -1,0 +1,24 @@
+const {chromium}=require('playwright');
+const fs=require('node:fs');
+const http=require('node:http');
+const path=require('node:path');
+(async()=>{
+ const root=path.resolve('.');const server=http.createServer((req,res)=>{let p=path.join(root,new URL(req.url,'http://localhost').pathname);if(!p.startsWith(root+path.sep)&&p!==root){res.writeHead(403).end();return;}if(p===root+path.sep||p===root)p=path.join(root,'index.html');fs.readFile(p,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',p.endsWith('.js')?'application/javascript':p.endsWith('.css')?'text/css':p.endsWith('.json')?'application/json':'text/html');res.end(b);});});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const url='http://127.0.0.1:'+server.address().port;
+ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/catalog/index.json',route=>route.fulfill({json:{updated_at:new Date().toISOString(),files:[{name:'<img src=x onerror=window.bad=1>',carrier:'dtac',plan:'nopro',source_url:'javascript:alert(1)',download:'javascript:alert(1)',checked_at:new Date().toISOString(),expires_at:new Date(Date.now()+3600000).toISOString(),sim:{status:'not_tested'}}]}}));
+ await page.goto(url);await page.waitForSelector('.kp-file');
+ if(await page.evaluate(()=>window.bad))throw Error('HTML executed');
+ if(await page.locator('.kp-file a').count())throw Error('Unsafe link rendered');
+ await page.locator('[data-carrier="ais"]').click();if(await page.locator('.kp-file').count())throw Error('Wrong carrier filter');
+ await page.locator('[data-carrier="dtac"]').click();if(await page.locator('.kp-file').count()!==1)throw Error('Missing dtac row');
+ await page.locator('#kp-file-search').fill('not-present');if(await page.locator('.kp-file').count())throw Error('Search failed');
+ await page.unroute('**/catalog/index.json');await page.reload();await page.locator('#kp-empty').filter({hasText:'မရှိသေး'}).waitFor();
+ await page.locator('#kp-catalog').scrollIntoViewIfNeeded();fs.mkdirSync('qa',{recursive:true});await page.screenshot({path:'qa/catalog-mobile.png',fullPage:true});
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Horizontal overflow');
+ await page.locator('#lang-btn').click();if(await page.locator('html').getAttribute('lang')!=='en')throw Error('Language toggle failed');
+ await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'qa/catalog-desktop.png',fullPage:true});
+ if(errors.length)throw Error(errors.join('\n'));
+ console.log('PASS: catalog filters, search, inert untrusted data/URLs, mobile overflow, language preservation, empty state');
+ await browser.close();await new Promise(r=>server.close(r));
+})().catch(e=>{console.error(e);process.exit(1);});

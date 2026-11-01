@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "updated_at": "2026-10-31T14:19:52+00:00",
+  "files": [],
+  "stats": {
+    "candidates": 0,
+    "approved": 0,
+    "rejected": 0,
+    "duplicate": 0
+  },
+  "verification_scope": "Cloud WireGuard handshake + IPv4 HTTPS; actual SIM not automatically tested"
+}
