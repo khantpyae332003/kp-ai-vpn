@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "updated_at": "2026-11-04T17:40:01+00:00",
+  "updated_at": "2026-11-04T23:00:12+00:00",
   "files": [
     {
-      "id": "4d4d9ef4610191b66d84d52ff92f233b81e1fd6d44baac0f834423d08e7040a2",
-      "name": "wg-US-FREE-82.conf",
-      "source_name": "wg-US-FREE-82.conf",
+      "id": "523f675d3f49261bbd56b150eef0085d8c9e9c4cb706ebd640970653692883ae",
+      "name": "wg-NL-FREE-210.conf",
+      "source_name": "wg-NL-FREE-210.conf",
       "carrier": "other",
       "country": "OTHER",
       "plan": "standard",
@@ -15,20 +15,20 @@
       "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
       "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
       "download_kind": "source_archive",
-      "archive_member": "US/wg-US-FREE-82.conf",
+      "archive_member": "NL/wg-NL-FREE-210.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-04T17:40:01+00:00",
-      "expires_at": "2026-11-05T17:40:01+00:00",
+      "checked_at": "2026-11-04T23:00:12+00:00",
+      "expires_at": "2026-11-05T23:00:12+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
       }
     },
     {
-      "id": "4c6d07ebe34177359fcc599261ae206ac62fc275fd7074db2fdd947d74cafd66",
-      "name": "wg-US-FREE-95.conf",
-      "source_name": "wg-US-FREE-95.conf",
+      "id": "17f7531a8a9b208af9d6fef213519b8ebbf95a86a095d13e09359b5bde87cb3b",
+      "name": "wg-NL-FREE-249.conf",
+      "source_name": "wg-NL-FREE-249.conf",
       "carrier": "other",
       "country": "OTHER",
       "plan": "standard",
@@ -38,11 +38,34 @@
       "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
       "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
       "download_kind": "source_archive",
-      "archive_member": "US/wg-US-FREE-95.conf",
+      "archive_member": "NL/wg-NL-FREE-249.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-04T17:40:01+00:00",
-      "expires_at": "2026-11-05T17:40:01+00:00",
+      "checked_at": "2026-11-04T23:00:12+00:00",
+      "expires_at": "2026-11-05T23:00:12+00:00",
+      "server_status": "handshake_https_pass",
+      "sim": {
+        "status": "not_tested"
+      }
+    },
+    {
+      "id": "54be12df706fa091657e6bcb63917503737cfe8e871856cd41bbaf6bb031e607",
+      "name": "wg-NL-FREE-255.conf",
+      "source_name": "wg-NL-FREE-255.conf",
+      "carrier": "other",
+      "country": "OTHER",
+      "plan": "standard",
+      "protocol": "wireguard",
+      "format": ".conf",
+      "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+      "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
+      "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+      "download_kind": "source_archive",
+      "archive_member": "NL/wg-NL-FREE-255.conf",
+      "source_id": "deltakronecker-public-wireguard",
+      "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
+      "checked_at": "2026-11-04T23:00:12+00:00",
+      "expires_at": "2026-11-05T23:00:12+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
@@ -52,7 +75,7 @@
   "stats": {
     "candidates": 20,
     "approved": 20,
-    "rejected": 18,
+    "rejected": 17,
     "duplicate": 0,
     "source_errors": 0
   },
