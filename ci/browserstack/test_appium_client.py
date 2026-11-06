@@ -15,6 +15,7 @@ class ProtocolTests(unittest.TestCase):
   digest='sha256:'+'a'*64
   xml='<hierarchy><node text="KP:ROOT_UID:0&#10;KP:SUDO_UID:0&#10;KP:DESKTOP_READY:'+digest+'"/></hierarchy>'
   self.assertTrue(has_guest_proof(xml,digest))
+  self.assertTrue(has_guest_proof(xml.replace('<node ', '<android.widget.TextView '),digest))
   self.assertFalse(has_guest_proof(xml,'sha256:'+'b'*64))
   self.assertFalse(has_guest_proof(xml.replace('KP:SUDO_UID:0','prefixed KP:SUDO_UID:0'),digest))
   self.assertFalse(has_guest_proof(xml.replace('KP:ROOT_UID:0','KP:ROOT_UID:1000'),digest))

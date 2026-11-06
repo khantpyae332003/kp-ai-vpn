@@ -32,8 +32,8 @@ def publish():
   git('fetch','origin',BRANCH);git('rebase','FETCH_HEAD')
   if git('push','origin','HEAD:'+BRANCH,check=False).returncode==0:return
  raise RuntimeError('Progress publication failed; no device pass claimed')
-def node_texts(xml):return [n.attrib.get('text','') for n in ET.fromstring(xml).iter('node') if n.attrib.get('displayed')!='false' and n.attrib.get('visible-to-user')!='false']
-def in_app(xml):return any(n.attrib.get('package')=='com.kp.kali' for n in ET.fromstring(xml).iter('node'))
+def node_texts(xml):return [n.attrib.get('text','') for n in ET.fromstring(xml).iter() if n.attrib.get('displayed')!='false' and n.attrib.get('visible-to-user')!='false']
+def in_app(xml):return any(n.attrib.get('package')=='com.kp.kali' for n in ET.fromstring(xml).iter())
 def capture(client,label,xml=None):
  xml=xml if xml is not None else client.source()
  # Publish UI captures only when the observed hierarchy belongs to the test app.
@@ -105,7 +105,7 @@ def main():
   STATE['status']='UPLOADING_CANDIDATE';publish()
   app=client.upload(apks[0]);STATE['status']='REQUESTING_ONE_DEVICE';publish()
   STATE['session_creation_attempted']=True;STATE['cleanup_state']='unknown_until_session_reconciled';publish()
-  caps=client.start(app,RUN+'-'+ATTEMPT);STATE['session_started']=True;STATE['status']='OBSERVING_FIRST_SETUP'
+  caps=client.start(app,RUN+'-'+ATTEMPT);STATE['session_started']=True;STATE['cleanup_state']='active_known_session';STATE['status']='OBSERVING_FIRST_SETUP'
   STATE['reported_platform']=caps.get('platformName');publish()
   try:
    info=client.command('POST','/execute/sync',{'script':'mobile: deviceInfo','args':[]})
@@ -114,6 +114,7 @@ def main():
   deadline=time.monotonic()+45*60;last_capture=0;last_sequence=0;seen_boot_overlay=False;seen_app=False;outside_app=0
   while time.monotonic()<deadline:
    xml=client.source();texts=node_texts(xml);joined='\n'.join(texts)
+   STATE['visible_packages']=sorted({n.attrib.get('package') for n in ET.fromstring(xml).iter() if n.attrib.get('package')})[:8]
    if ('permissioncontroller' in xml and 'KP Kali VM' in joined and 'notifications' in joined.lower()
        and any(t.casefold()=='allow' for t in texts)):
     client.click_text('Allow');STATE['notification_permission_dialog_handled']=True;continue

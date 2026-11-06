@@ -18,7 +18,7 @@ def decode_value(payload):
 
 def has_guest_proof(xml,digest):
  tree=ET.fromstring(xml);lines=set()
- for node in tree.iter('node'):lines.update(line.strip() for line in node.attrib.get('text','').splitlines())
+ for node in tree.iter():lines.update(line.strip() for line in node.attrib.get('text','').splitlines())
  return all(line in lines for line in ['KP:ROOT_UID:0','KP:SUDO_UID:0','KP:DESKTOP_READY:'+digest])
 
 class Client:
