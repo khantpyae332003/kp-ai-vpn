@@ -11,7 +11,7 @@ ATTEMPT=os.environ.get('GITHUB_RUN_ATTEMPT','1')
 if not ATTEMPT.isdigit():raise SystemExit('Invalid run attempt')
 OUT=ROOT/'.ci/phone-observation'/(RUN+'-'+ATTEMPT)
 OUT.mkdir(parents=True,exist_ok=True)
-STATE={'status':'PREPARING','run_id':RUN,'run_attempt':ATTEMPT,'apk_release':'WITHHELD','device':'Samsung Galaxy S23 Ultra','os_version':'13.0',
+STATE={'status':'PREPARING','run_id':RUN,'run_attempt':ATTEMPT,'apk_release':'WITHHELD','device':os.environ.get('DEVICE_NAME','Samsung Galaxy S23 Ultra'),'os_version':os.environ.get('DEVICE_OS_VERSION','13.0'),
        'root_sudo_manifest_observed':False,'visible_desktop_reviewed':False,'tools_verified':False,'shutdown_reopen_verified':False,
        'installed_apk_bytes_independently_verified':False,'session_started':False,'session_creation_attempted':False,'cleanup_confirmed':False,'cleanup_state':'not_required'}
 BRANCH='codex/browserstack-connection'
@@ -111,13 +111,16 @@ def main():
   STATE['status']='UPLOADING_CANDIDATE';publish()
   app=client.upload(apks[0]);STATE['status']='REQUESTING_ONE_DEVICE';publish()
   STATE['session_creation_attempted']=True;STATE['cleanup_state']='unknown_until_session_reconciled';publish()
-  caps=client.start(app,RUN+'-'+ATTEMPT);STATE['session_started']=True;STATE['cleanup_state']='active_known_session';STATE['status']='OBSERVING_FIRST_SETUP'
+  caps=client.start(app,RUN+'-'+ATTEMPT,STATE['device'],STATE['os_version']);STATE['session_started']=True;STATE['cleanup_state']='active_known_session';STATE['status']='OBSERVING_FIRST_SETUP'
   STATE['reported_platform']=caps.get('platformName');publish()
   try:
    info=client.command('POST','/execute/sync',{'script':'mobile: deviceInfo','args':[]})
    if isinstance(info,dict):STATE['device_info']={k:info[k] for k in ['model','manufacturer','apiVersion','platformVersion','cpuAbi','realDisplaySize','displayDensity'] if k in info}
   except RemoteFailure:STATE['device_info']='not_available_through_provider'
-  deadline=time.monotonic()+45*60;last_capture=0;last_sequence=0;seen_boot_overlay=False;seen_app=False;outside_app=0
+  minutes=int(os.environ.get('SESSION_MINUTES','45'))
+  if not 1<=minutes<=48:raise RuntimeError('Observation duration must be within1..48minutes')
+  STATE['observation_minutes_limit']=minutes
+  deadline=time.monotonic()+minutes*60;last_capture=0;last_sequence=0;seen_boot_overlay=False;seen_app=False;outside_app=0
   while time.monotonic()<deadline:
    xml=client.source();texts=node_texts(xml);joined='\n'.join(texts)
    STATE['visible_packages']=sorted({n.attrib.get('package') for n in ET.fromstring(xml).iter() if n.attrib.get('package')})[:8]

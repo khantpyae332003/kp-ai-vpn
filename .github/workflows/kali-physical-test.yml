@@ -69,7 +69,7 @@ jobs:
     if: startsWith(github.event.head_commit.message, 'Start BrowserStack physical validation') || (github.event_name == 'workflow_dispatch' && inputs.run_device_test)
     needs: build
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 55
     permissions:
       contents: write
     steps:
@@ -84,6 +84,9 @@ jobs:
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           EXPECTED_APK_SHA256: ${{ needs.build.outputs.apk_sha256 }}
           PUBLISH_PHONE_PROGRESS: '1'
+          DEVICE_NAME: Samsung Galaxy S24 Ultra
+          DEVICE_OS_VERSION: '14.0'
+          SESSION_MINUTES: '48'
         run: python3 ci/browserstack/observe_phone.py
       - name: Retain actual phone observation evidence
         if: always()

@@ -49,9 +49,9 @@ class Client:
   url=result.get('app_url') if isinstance(result,dict) else None
   if not isinstance(url,str) or not url.startswith('bs://'):raise RemoteFailure('app_upload_not_confirmed')
   return url
- def start(self,app_url,run):
-  caps={'platformName':'Android','appium:automationName':'UiAutomator2','appium:deviceName':'Samsung Galaxy S23 Ultra',
-        'appium:platformVersion':'13.0','appium:app':app_url,'appium:appPackage':'com.kp.kali',
+ def start(self,app_url,run,device="Samsung Galaxy S23 Ultra",os_version="13.0"):
+  caps={'platformName':'Android','appium:automationName':'UiAutomator2','appium:deviceName':device,
+        'appium:platformVersion':os_version,'appium:app':app_url,'appium:appPackage':'com.kp.kali',
         'appium:appActivity':'com.kp.kali.BootstrapActivity','appium:autoGrantPermissions':True,'appium:noReset':False,'appium:fullReset':True,
         'bstack:options':{'projectName':'KP Kali Rootless VM','buildName':'GitHub '+run,'sessionName':'Real first setup and readiness',
                          'idleTimeout':120,'networkLogs':False,'video':True}}
