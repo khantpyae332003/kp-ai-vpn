@@ -1,0 +1,11 @@
+{
+  "run_id": "42300739526",
+  "run_attempt": "1",
+  "sequence": 1,
+  "actions": [
+    {
+      "type": "stop_observation"
+    }
+  ],
+  "note": "Stop cleanly to correct Appium class-tag XML parsing; no app pass claimed."
+}
