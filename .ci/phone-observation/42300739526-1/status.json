@@ -14,7 +14,7 @@
   "session_creation_attempted": true,
   "cleanup_confirmed": false,
   "cleanup_state": "unknown_until_session_reconciled",
-  "checked_at_utc": "2026-11-06T21:59:42.591039+00:00",
+  "checked_at_utc": "2026-11-06T22:00:49.440826+00:00",
   "uploaded_apk_sha256": "6e04ae20ecc60230eab8846d2adcb16c3a35c205e85d82161bf50760bc36a521",
   "reported_platform": "Android",
   "device_info": {
