@@ -1,0 +1,99 @@
+{
+  "account_api_check": "passed",
+  "device_session_started": false,
+  "plan_field_names": [
+    "automate_plan",
+    "parallel_sessions_max_allowed",
+    "parallel_sessions_running",
+    "queued_sessions",
+    "queued_sessions_max_allowed",
+    "team_parallel_sessions_max_allowed",
+    "terminal_access"
+  ],
+  "plan": {
+    "automate_plan": "Free",
+    "parallel_sessions_running": 0,
+    "team_parallel_sessions_max_allowed": 5,
+    "parallel_sessions_max_allowed": 5,
+    "queued_sessions": 0,
+    "queued_sessions_max_allowed": 5
+  },
+  "android_catalog_entries": 43,
+  "samsung_candidates": [
+    {
+      "device": "Samsung Galaxy S23 Ultra",
+      "os_version": "13.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S23",
+      "os_version": "13.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S22 Ultra",
+      "os_version": "12.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S22 Plus",
+      "os_version": "12.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S22",
+      "os_version": "12.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S21",
+      "os_version": "12.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S21",
+      "os_version": "11.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S20",
+      "os_version": "10.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S26 Ultra",
+      "os_version": "16.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S26",
+      "os_version": "16.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S24",
+      "os_version": "16.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S25 Ultra",
+      "os_version": "15.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S25",
+      "os_version": "15.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S24 Ultra",
+      "os_version": "14.0",
+      "real_mobile": null
+    },
+    {
+      "device": "Samsung Galaxy S24",
+      "os_version": "14.0",
+      "real_mobile": null
+    }
+  ]
+}
