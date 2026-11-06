@@ -4,7 +4,7 @@ A standalone Android front end to the actual Limbo/QEMU engine. No Termux or And
 
 **Release withheld:** existing APKs are development candidates. Full Android install, visible desktop and reopen verification must finish before an APK is offered as validated.
 
-## Automatic setup — version0.2.2 development build
+## Automatic setup — version0.2.3 development build
 
 Install and open the APK. The default launcher automatically downloads the pinned Kasm Kali-based desktop, installs it into a private VM and opens XFCE without an image picker or password prompt. First setup needs about4.75GB Internet download,18GiB free storage and4GiB reported RAM;8GiB RAM is recommended. A Root Terminal shortcut provides guest administrator access. This uses a Debian kernel and Kasm's Kali userspace, not an official Kali QEMU appliance. See [automatic setup details](docs/automatic-setup-build.md) and [actual validation limits](VALIDATION.md).
 

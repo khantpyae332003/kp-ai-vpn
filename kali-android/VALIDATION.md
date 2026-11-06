@@ -1,4 +1,6 @@
-# Current validation — version0.2.2 development build
+# Current validation — version0.2.3 development build
+
+- Version0.2.3 fixes returning from the managed desktop: Bootstrap previously reset its automatic-open flag on every resume, immediately reopening the desktop and blocking Advanced controls. An actual Robolectric Android29 activity-lifecycle regression failed with the duplicate desktop intent, then passed after retaining the per-activity flag. A fresh activity still opens the running guest automatically. All41JUnit tests (40core plus1navigation), build and lint passed. The initial Robolectric SDK download needed inherited proxy/trust settings; that setup failure is separate from the behavioral RED. Native guest installation was not interrupted. BrowserStack Free-plan physical verification is being prepared; no release yet.
 
 **Release withheld (2026-11-06):** Android first installation is still in progress, currently extracting layer5of6. The original observer failed on an ADB read timeout at2026-11-05T20:33:54Z; the app itself continued in the same PID15198 and reached later layers. This is not a desktop pass. No new APK is offered until the full guest flow and reopening have been verified.
 

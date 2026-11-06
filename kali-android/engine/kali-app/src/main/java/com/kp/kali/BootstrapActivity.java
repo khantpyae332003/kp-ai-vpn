@@ -41,6 +41,6 @@ public final class BootstrapActivity extends Activity {
         long total=ManagedSetupService.total;progress.setIndeterminate(total<=0);if(total>0)progress.setProgress((int)Math.min(1000,ManagedSetupService.done*1000/total));
         retry.setVisibility(ManagedSetupService.busy?View.GONE:View.VISIBLE);cancel.setVisibility(ManagedSetupService.busy?View.VISIBLE:View.GONE);
     }
-    @Override protected void onResume(){super.onResume();opened=false;handler.post(refresh);}
+    @Override protected void onResume(){super.onResume();handler.post(refresh);}
     @Override protected void onPause(){handler.removeCallbacks(refresh);super.onPause();}
 }

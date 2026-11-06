@@ -2,6 +2,11 @@ name: Kali Android Candidate Verification
 
 on:
   workflow_dispatch:
+    inputs:
+      run_device_test:
+        description: 'Use one bounded Free-plan physical-device session'
+        type: boolean
+        default: false
   push:
     branches: [codex/browserstack-connection]
     paths: ['kali-android/**', 'ci/browserstack/**', '.github/workflows/kali-physical-test.yml']
@@ -30,7 +35,7 @@ jobs:
         run: python3 scripts/bootstrap.py --accept-sdk-license
       - name: Build candidate and run core tests and lint
         working-directory: kali-android
-        run: python3 scripts/gradle.py :kali-core:test :kali-app:assembleDebug :kali-app:lintDebug
+        run: python3 scripts/gradle.py :kali-core:test :kali-app:testDebugUnitTest :kali-app:assembleDebug :kali-app:lintDebug
       - name: Verify actual packaged boot assets and record candidate hash
         id: verify
         run: |
@@ -58,4 +63,32 @@ jobs:
           path: |
             kali-android/engine/kali-app/build/outputs/apk/debug/kali-app-debug.apk
             candidate-sha256.txt
+          retention-days: 7
+
+  physical-observation:
+    if: startsWith(github.event.head_commit.message, 'Start BrowserStack physical validation') || (github.event_name == 'workflow_dispatch' && inputs.run_device_test)
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/download-artifact@v4
+        with:
+          name: kali-internal-test-candidate
+          path: candidate
+      - name: Observe one bounded Free-plan physical device session
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          EXPECTED_APK_SHA256: ${{ needs.build.outputs.apk_sha256 }}
+          PUBLISH_PHONE_PROGRESS: '1'
+        run: python3 ci/browserstack/observe_phone.py
+      - name: Retain actual phone observation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phone-observation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .ci/phone-observation/
           retention-days: 7

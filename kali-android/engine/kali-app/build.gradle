@@ -7,8 +7,8 @@ android {
         applicationId 'com.kp.kali'
         minSdkVersion 29
         targetSdkVersion 29
-        versionCode 5
-        versionName '0.2.2-dev'
+        versionCode 6
+        versionName '0.2.3-dev'
         ndk { abiFilters 'arm64-v8a', 'x86_64' }
     }
     compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
@@ -19,4 +19,15 @@ dependencies {
     implementation project(':limbo-android-lib')
     implementation project(':kali-core')
     implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.11.1'
+}
+
+// Keep Robolectric's SDK download on the same verified HTTPS/proxy route as Gradle.
+tasks.withType(Test).configureEach {
+    systemProperty 'robolectric.dependency.repo.url', 'https://repo.maven.apache.org/maven2'
+    ['http.proxyHost', 'http.proxyPort', 'https.proxyHost', 'https.proxyPort',
+     'javax.net.ssl.trustStore', 'javax.net.ssl.trustStorePassword'].each { name ->
+        if (System.getProperty(name) != null) systemProperty name, System.getProperty(name)
+    }
 }
