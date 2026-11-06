@@ -11,9 +11,9 @@
   "shutdown_reopen_verified": false,
   "installed_apk_bytes_independently_verified": false,
   "session_started": false,
-  "session_creation_attempted": false,
+  "session_creation_attempted": true,
   "cleanup_confirmed": false,
-  "cleanup_state": "not_required",
-  "checked_at_utc": "2026-11-06T21:58:07.345562+00:00",
+  "cleanup_state": "unknown_until_session_reconciled",
+  "checked_at_utc": "2026-11-06T21:58:08.782797+00:00",
   "uploaded_apk_sha256": "6e04ae20ecc60230eab8846d2adcb16c3a35c205e85d82161bf50760bc36a521"
 }
