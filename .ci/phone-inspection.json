@@ -1,0 +1,10 @@
+{
+  "created_new_session": false,
+  "android_root_requested": false,
+  "owner_session_closed": false,
+  "run_id": "42302378168",
+  "checked_at_utc": "2026-11-06T22:39:47.880058+00:00",
+  "provider_session_status": "running",
+  "inspection": "unavailable",
+  "reason": "HTTP_500"
+}
