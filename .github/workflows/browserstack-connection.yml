@@ -1,0 +1,80 @@
+name: BrowserStack Connection Check
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/browserstack-connection]
+    paths: [.github/workflows/browserstack-connection.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browserstack-connection-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  connection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check BrowserStack credentials and Android device catalog
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import sys
+          import urllib.error
+          import urllib.request
+
+          names = ('BROWSERSTACK_USERNAME', 'BROWSERSTACK_ACCESS_KEY')
+          missing = [name for name in names if not os.environ.get(name)]
+          if missing:
+              print('::error::Missing repository secrets: ' + ', '.join(missing))
+              sys.exit(1)
+          pair = ':'.join(os.environ[name] for name in names).encode()
+          authorization = 'Basic ' + base64.b64encode(pair).decode()
+
+          def read_api(path):
+              request = urllib.request.Request(
+                  'https://api-cloud.browserstack.com' + path,
+                  headers={'Authorization': authorization, 'Accept': 'application/json'},
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=45) as response:
+                      return json.load(response)
+              except urllib.error.HTTPError as error:
+                  print('::error::BrowserStack API returned HTTP ' + str(error.code)
+                        + '. Check credentials and App Automate access.')
+              except (urllib.error.URLError, TimeoutError, OSError):
+                  print('::error::BrowserStack network request failed.')
+              except ValueError:
+                  print('::error::BrowserStack returned an unexpected response.')
+              sys.exit(1)
+
+          plan = read_api('/app-automate/plan.json')
+          if not isinstance(plan, dict):
+              print('::error::Unexpected App Automate account response.')
+              sys.exit(1)
+          devices = read_api('/app-automate/devices.json')
+          if not isinstance(devices, list):
+              print('::error::Unexpected device catalog response.')
+              sys.exit(1)
+          android = [device for device in devices if isinstance(device, dict)
+                     and str(device.get('os', '')).lower() == 'android']
+          if not android:
+              print('::error::No Android entries found in the device catalog.')
+              sys.exit(1)
+          text = ('BrowserStack account API check passed.\n'
+                  + 'Android catalog entries: ' + str(len(android)) + '\n'
+                  + 'Connection check only: no device session or app test has run.\n'
+                  + 'Kali installation, visible desktop, root/sudo and reopen checks remain pending.\n')
+          print(text)
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write(text)
+          PY
