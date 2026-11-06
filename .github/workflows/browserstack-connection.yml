@@ -7,7 +7,7 @@ on:
     paths: [.github/workflows/browserstack-connection.yml]
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: browserstack-connection-${{ github.ref }}
@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: Check BrowserStack credentials and Android device catalog
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
@@ -84,7 +85,23 @@ jobs:
                         for device in android if 'Samsung Galaxy S2' in str(device.get('device', ''))]
           text += '\nAccount plan/quota fields:\n```json\n' + json.dumps(safe_plan, indent=2) + '\n```\n'
           text += '\nSamsung device candidates:\n```json\n' + json.dumps(candidates[:20], indent=2) + '\n```\n'
+          from pathlib import Path
+          report = {'account_api_check': 'passed', 'device_session_started': False,
+                    'plan_field_names': sorted(plan), 'plan': safe_plan,
+                    'android_catalog_entries': len(android), 'samsung_candidates': candidates[:20]}
+          Path('.ci').mkdir(exist_ok=True)
+          Path('.ci/browserstack-preflight.json').write_text(json.dumps(report, indent=2) + '\n')
           print(text)
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
               summary.write(text)
           PY
+      - name: Save non-secret connection report on this test branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/codex/browserstack-connection'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .ci/browserstack-preflight.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record BrowserStack connection and device preflight'
+            git push origin HEAD:codex/browserstack-connection
+          fi
