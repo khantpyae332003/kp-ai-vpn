@@ -74,6 +74,16 @@ jobs:
                   + 'Android catalog entries: ' + str(len(android)) + '\n'
                   + 'Connection check only: no device session or app test has run.\n'
                   + 'Kali installation, visible desktop, root/sudo and reopen checks remain pending.\n')
+          safe_plan = {key: value for key, value in plan.items()
+                       if key in {'automate_plan', 'app_automate_plan', 'parallel_sessions_running',
+                                  'parallel_sessions_max_allowed', 'team_parallel_sessions_max_allowed',
+                                  'queued_sessions', 'queued_sessions_max_allowed', 'remaining_minutes',
+                                  'minutes_remaining', 'trial_minutes_remaining', 'used_minutes'}
+                       and isinstance(value, (str, int, float, bool))}
+          candidates = [{key: device.get(key) for key in ('device', 'os_version', 'real_mobile')}
+                        for device in android if 'Samsung Galaxy S2' in str(device.get('device', ''))]
+          text += '\nAccount plan/quota fields:\n```json\n' + json.dumps(safe_plan, indent=2) + '\n```\n'
+          text += '\nSamsung device candidates:\n```json\n' + json.dumps(candidates[:20], indent=2) + '\n```\n'
           print(text)
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
               summary.write(text)
