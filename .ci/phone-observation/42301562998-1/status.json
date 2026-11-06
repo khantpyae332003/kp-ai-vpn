@@ -1,5 +1,5 @@
 {
-  "status": "OBSERVING_FIRST_SETUP",
+  "status": "FAILED_OR_INCOMPLETE",
   "run_id": "42301562998",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
@@ -12,9 +12,22 @@
   "installed_apk_bytes_independently_verified": false,
   "session_started": true,
   "session_creation_attempted": true,
-  "cleanup_confirmed": false,
-  "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-06T22:05:06.951030+00:00",
+  "cleanup_confirmed": true,
+  "cleanup_state": "delete_confirmed",
+  "checked_at_utc": "2026-11-06T22:05:26.454534+00:00",
   "uploaded_apk_sha256": "32f72d0c70ec38dad3eb735aaf3eea66c36ae8f857d9ed2977b7e655af41ad65",
-  "reported_platform": "Android"
+  "reported_platform": "Android",
+  "device_info": {
+    "model": "SM-S918B",
+    "manufacturer": "samsung",
+    "apiVersion": "33",
+    "platformVersion": "13",
+    "realDisplaySize": "1080x2316",
+    "displayDensity": 450
+  },
+  "visible_packages": [
+    "com.kp.kali"
+  ],
+  "last_app_phase": "Downloading layer 1 / 6 \u00b7 78 / 4533 MiB",
+  "reason": "Error"
 }
