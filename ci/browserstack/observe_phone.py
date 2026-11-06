@@ -38,7 +38,13 @@ def capture(client,label,xml=None):
  xml=xml if xml is not None else client.source()
  # Publish UI captures only when the observed hierarchy belongs to the test app.
  if not in_app(xml):return False
- (OUT/(label+'.xml')).write_text(xml);(OUT/(label+'.png')).write_bytes(client.screenshot());return True
+ (OUT/(label+'.xml')).write_text(xml)
+ try:
+  image=client.screenshot();(OUT/(label+'.png')).write_bytes(image)
+  STATE.pop('screenshot_capture_error',None);STATE['last_screenshot_sha256']=hashlib.sha256(image).hexdigest();return True
+ except (RemoteFailure,ValueError) as error:
+  STATE['screenshot_capture_error']=str(error) if isinstance(error,RemoteFailure) else type(error).__name__
+  return False
 
 def collect_guest_proof(client,digest):
  client.command('POST','/back',{});time.sleep(2)

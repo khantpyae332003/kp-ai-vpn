@@ -69,7 +69,12 @@ class Client:
   if not isinstance(value,str):raise RemoteFailure('invalid_source_response')
   ET.fromstring(value);return value
  def screenshot(self):
-  data=base64.b64decode(self.command('GET','/screenshot'),validate=True)
+  encoded=self.command('GET','/screenshot')
+  if not isinstance(encoded,str):raise RemoteFailure('invalid_screenshot_value')
+  if encoded.startswith('data:image/png;base64,'):encoded=encoded[len('data:image/png;base64,'):]
+  encoded=''.join(encoded.split())
+  try:data=base64.b64decode(encoded,validate=True)
+  except ValueError:raise RemoteFailure('invalid_screenshot_encoding') from None
   if not data.startswith(b'\x89PNG\r\n\x1a\n'):raise RemoteFailure('invalid_screenshot_response')
   return data
  def click_text(self,text,scroll=False):

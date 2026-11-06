@@ -34,4 +34,11 @@ class ProtocolTests(unittest.TestCase):
    with self.assertRaises(RemoteFailure):Client('fixture-user','NOT_A_REAL_KEY').request('GET','http://127.0.0.1:'+str(server.server_port)+'/start')
    self.assertEqual(paths,['/start'])
   finally:server.shutdown();server.server_close();thread.join()
+ def test_wrapped_screenshot_base64_decodes_without_losing_the_real_png(self):
+  encoded='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a0l8AAAAASUVORK5CYII='
+  class ScreenshotClient(Client):
+   def command(self,*args,**kwargs):return encoded[:40]+'\n'+encoded[40:]+'\n'
+  try:image=ScreenshotClient('fixture','NOT_A_REAL_KEY').screenshot()
+  except Exception:self.fail('Valid line-wrapped screenshot was rejected')
+  self.assertTrue(image.startswith(b'\x89PNG\r\n\x1a\n'));self.assertEqual(len(image),68)
 if __name__=='__main__':unittest.main()
