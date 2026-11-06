@@ -14,7 +14,20 @@
   "session_creation_attempted": true,
   "cleanup_confirmed": false,
   "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-06T22:10:41.513430+00:00",
+  "checked_at_utc": "2026-11-06T22:10:43.837547+00:00",
   "uploaded_apk_sha256": "c4f7ab7daab49f4c8b968b2a4413f30ebb293fb2ee1aada54b807a228a4851d5",
-  "reported_platform": "Android"
+  "reported_platform": "Android",
+  "device_info": {
+    "model": "SM-S918B",
+    "manufacturer": "samsung",
+    "apiVersion": "33",
+    "platformVersion": "13",
+    "realDisplaySize": "1080x2316",
+    "displayDensity": 450
+  },
+  "visible_packages": [
+    "com.kp.kali"
+  ],
+  "last_app_phase": "Downloading layer 1 / 6 \u00b7 3 / 4533 MiB",
+  "last_screenshot_sha256": "ab9b724ff3f84b8a9ae37a0fb5efc1b0f0eafc802882da25892a6f53bc4d7c17"
 }
