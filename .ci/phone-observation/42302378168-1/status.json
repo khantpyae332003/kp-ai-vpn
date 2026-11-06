@@ -1,5 +1,5 @@
 {
-  "status": "OBSERVING_FIRST_SETUP",
+  "status": "TIME_LIMIT_INCOMPLETE",
   "run_id": "42302378168",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
@@ -12,9 +12,9 @@
   "installed_apk_bytes_independently_verified": false,
   "session_started": true,
   "session_creation_attempted": true,
-  "cleanup_confirmed": false,
-  "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-06T22:55:16.822470+00:00",
+  "cleanup_confirmed": true,
+  "cleanup_state": "delete_confirmed",
+  "checked_at_utc": "2026-11-06T22:55:49.053083+00:00",
   "uploaded_apk_sha256": "c4f7ab7daab49f4c8b968b2a4413f30ebb293fb2ee1aada54b807a228a4851d5",
   "reported_platform": "Android",
   "device_info": {
@@ -29,5 +29,5 @@
     "com.kp.kali"
   ],
   "last_app_phase": "Kali: Extracting verified Kali layer 5 of 6",
-  "last_screenshot_sha256": "6ec5e974a4b3db4ecff1e2aff145c7ee6b535027a01d86ad0dfaf34ba6ce7399"
+  "last_screenshot_sha256": "656dfddd38b9198700b55df276772b9b5530a23cd49d4db2bbd239656ef73451"
 }
