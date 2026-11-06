@@ -1,0 +1,66 @@
+#!/bin/busybox sh
+# SPDX-License-Identifier: GPL-2.0-or-later
+export PATH=/usr/sbin:/sbin:/usr/bin:/bin
+mount -t devtmpfs devtmpfs /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+echo /bin/modprobe > /proc/sys/kernel/modprobe
+mkdir -p /run /newroot
+mount -t tmpfs tmpfs /run
+fail() { echo "KP:ERROR:$*" > /dev/ttyS0; echo "$*" > /dev/console; while :; do sleep 3600; done; }
+phase() { echo "KP:PHASE:$*" > /dev/ttyS0; }
+for arg in $(cat /proc/cmdline); do case "$arg" in kp.uuid=*) uuid=${arg#*=};; kp.profile=*) profile=${arg#*=};; kp.format=*) format=${arg#*=};; esac; done
+[ -n "$uuid" ] && [ "$profile" = "$(cat /kp/profile-digest)" ] || fail 'Missing or unsupported volume identity'
+phase 'Loading Linux drivers'
+for m in crc32c_generic crc32c_intel virtio_pci virtio_blk ext4 e1000 bochs_drm usbhid psmouse atkbd; do modprobe "$m" 2>/dev/null || true; done
+for n in $(seq 1 60); do [ -b /dev/vda ] && break; sleep 1; done
+[ -b /dev/vda ] || fail 'Managed root drive not found'
+actual=$(/usr/sbin/blkid -s UUID -o value /dev/vda 2>/dev/null)
+if [ -z "$actual" ]; then
+ [ "${format:-0}" = 1 ] || fail "Existing managed volume is unreadable. Refusing to format"
+ # Only a blank newly created managed drive may be formatted. Unknown data is retained.
+ dd if=/dev/vda bs=1048576 count=1 2>/dev/null | tr -d '\000' > /run/nonzero
+ [ ! -s /run/nonzero ] || fail 'Unrecognized volume data; refusing to format'
+ phase 'Creating private Kali filesystem'
+ /usr/sbin/mke2fs -q -t ext4 -U "$uuid" -m 0 /dev/vda || fail 'Filesystem creation failed'
+else
+ [ "$actual" = "$uuid" ] || fail 'Volume UUID mismatch; data retained'
+ /usr/sbin/e2fsck -p /dev/vda; result=$?
+ [ "$result" -le 1 ] || fail 'Filesystem needs repair; data retained'
+fi
+mount -t ext4 /dev/vda /newroot || fail 'Cannot mount managed filesystem'
+if [ -f /newroot/etc/kp-install-complete ]; then
+ [ "$(cat /newroot/etc/kp-install-complete)" = "$profile" ] || fail 'Installed image identity differs; data retained'
+else
+ # A partial setup may resume by replaying verified layers. A ready volume is never replayed.
+ phase 'Installing Kali desktop. This can take a long time'
+ mkdir -p /newroot/.kp-tools
+ cp /bin/busybox /newroot/.kp-tools/busybox
+ for i in 1 2 3 4 5 6; do
+  . /kp/layer-$i
+  phase "Extracting verified Kali layer $i of 6"
+  sh /kp/whiteout-$i.sh || fail 'Whiteout application failed'
+  chroot /newroot /.kp-tools/busybox tar -xzpf - --numeric-owner < "$drive" || fail "Layer $i extraction failed"
+  sh /kp/cleanup-$i.sh || fail 'Layer cleanup failed'
+ done
+ rm -rf /newroot/.kp-tools
+ phase 'Preparing guest kernel and automatic desktop'
+ mkdir -p /newroot/lib/modules
+ cp -a /lib/modules/. /newroot/lib/modules/ || fail 'Module copy failed'
+ cp /kp/configure-root.sh /newroot/tmp/kp-configure
+ mount --bind /dev /newroot/dev
+ mount -t proc proc /newroot/proc
+ mount -t sysfs sysfs /newroot/sys
+ chroot /newroot /bin/sh /tmp/kp-configure "$profile" || fail 'Desktop configuration failed'
+ umount /newroot/sys; umount /newroot/proc; umount /newroot/dev
+ rm -f /newroot/tmp/kp-configure
+ echo "$profile" > /newroot/etc/kp-install-complete
+ sync
+fi
+phase 'Starting Kali desktop'
+mount --move /dev /newroot/dev
+mount --move /proc /newroot/proc
+mount --move /sys /newroot/sys
+mount --move /run /newroot/run
+exec switch_root /newroot /sbin/init
+fail 'Cannot start Kali init'

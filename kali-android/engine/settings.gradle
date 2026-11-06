@@ -1,0 +1,2 @@
+include ':limbo-android-lib', ':limbo-android-x86'
+include ':kali-core', ':kali-app'

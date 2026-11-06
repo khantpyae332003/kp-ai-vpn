@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <instrumentation android:name="com.kp.kali.NetworkProbe" android:targetPackage="com.kp.kali" android:label="Private registry boundary probe"/>
+    <instrumentation android:name="com.kp.kali.FirmwareTest" android:targetPackage="com.kp.kali" android:label="Direct kernel boot firmware regression"/>
+    <instrumentation android:name="com.kp.kali.SerialIdleTest" android:targetPackage="com.kp.kali" android:label="Idle serial transport regression"/>
+</manifest>

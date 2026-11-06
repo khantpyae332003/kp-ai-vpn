@@ -1,0 +1,13 @@
+.tools/
+upstream/
+**/build/
+**/.gradle/
+**/local.properties
+.superpowers/
+artifacts/
+
+__pycache__/
+*.pyc
+
+# Reconstructed from checked source payload parts before CI build.
+/engine/kali-app/src/main/assets/managed/initrd.bin

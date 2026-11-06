@@ -1,0 +1,10 @@
+<resources>
+    <style name="KaliTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0B1220</item>
+        <item name="android:navigationBarColor">#0B1220</item>
+        <item name="colorAccent">#5EDBD1</item>
+        <item name="android:windowBackground">#0B1220</item>
+    </style>
+</resources>

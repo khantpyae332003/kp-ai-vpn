@@ -1,0 +1,61 @@
+name: Kali Android Candidate Verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/browserstack-connection]
+    paths: ['kali-android/**', 'ci/browserstack/**', '.github/workflows/kali-physical-test.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kali-device-verification
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    outputs:
+      apk_sha256: ${{ steps.verify.outputs.apk_sha256 }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Test payload reconstruction and restore pinned boot payload
+        run: |
+          python3 -m unittest discover -s ci/browserstack -p 'test_*.py'
+          python3 ci/browserstack/restore_payload.py kali-android
+      - name: Install checksum-pinned build prerequisites and runtime
+        working-directory: kali-android
+        run: python3 scripts/bootstrap.py --accept-sdk-license
+      - name: Build candidate and run core tests and lint
+        working-directory: kali-android
+        run: python3 scripts/gradle.py :kali-core:test :kali-app:assembleDebug :kali-app:lintDebug
+      - name: Verify actual packaged boot assets and record candidate hash
+        id: verify
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,zipfile
+          from pathlib import Path
+          apk=Path('kali-android/engine/kali-app/build/outputs/apk/debug/kali-app-debug.apk')
+          with zipfile.ZipFile(apk) as z:
+              profile=json.loads(z.read('assets/managed/profile.json'))
+              for name,key in [('vmlinuz','kernelSha256'),('initrd.bin','initrdSha256')]:
+                  assert hashlib.sha256(z.read('assets/managed/'+name)).hexdigest()==profile[key],name
+              for name in ['linuxboot.bin','linuxboot_dma.bin']:
+                  rom=z.read('assets/roms/'+name)
+                  assert rom[:2]==b'\x55\xaa' and len(rom)==rom[2]*512 and sum(rom)%256==0,name
+          sha=hashlib.sha256(apk.read_bytes()).hexdigest()
+          Path('candidate-sha256.txt').write_text(sha+'\n')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('apk_sha256='+sha+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              f.write('Candidate build and packaged-asset checks passed.\nSHA256: `'+sha+'`\n\nPhysical desktop/root/tools/reopen verification remains pending. APK release is withheld.\n')
+          PY
+      - name: Retain internal candidate for device verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: kali-internal-test-candidate
+          path: |
+            kali-android/engine/kali-app/build/outputs/apk/debug/kali-app-debug.apk
+            candidate-sha256.txt
+          retention-days: 7

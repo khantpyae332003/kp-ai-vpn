@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "publisher": "Kasm Technologies",
+  "repository": "kasmweb/kali-rolling-desktop",
+  "tag": "1.19.0",
+  "manifestDigest": "sha256:e1734859c9c508c41c0f30cb33cfa56c9d9a7044a4250dc9ae0be078792623d4",
+  "layers": [
+    {
+      "digest": "sha256:885505ba41ba02415cb77ffb72e9e61696b62703ae3dc485a98768a9e8cd2f15",
+      "size": 1562922221,
+      "whiteouts": [],
+      "regularBytes": 3693690581
+    },
+    {
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+      "size": 32,
+      "whiteouts": [],
+      "regularBytes": 0
+    },
+    {
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+      "size": 32,
+      "whiteouts": [],
+      "regularBytes": 0
+    },
+    {
+      "digest": "sha256:9f0ba9c2f63c8e358b150aecfdc7e71cc9908691b081add06be2ab2dd0b499a7",
+      "size": 893893,
+      "whiteouts": [],
+      "regularBytes": 1204207
+    },
+    {
+      "digest": "sha256:114016d9b54e43ad5cc825ce853f4d9c9e99219f898387a3c8230637e2078c0f",
+      "size": 3189593510,
+      "whiteouts": [
+        {
+          "type": "remove",
+          "path": "dockerstartup/install"
+        },
+        {
+          "type": "remove",
+          "path": "usr/lib/locale/locale-archive"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Adwaita/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Blue-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Blue-Light/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Green-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Orange-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Pink-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Purple-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Red-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Slate-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Teal-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/Flat-Remix-Yellow-Dark/icon-theme.cache"
+        },
+        {
+          "type": "remove",
+          "path": "usr/share/icons/hicolor/icon-theme.cache"
+        }
+      ],
+      "regularBytes": 7969622578
+    },
+    {
+      "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+      "size": 32,
+      "whiteouts": [],
+      "regularBytes": 0
+    }
+  ],
+  "kernelSha256": "ffbde3c2e962dbec1dba21519370ff81926addd85f7f9b58167b0321ba2735e8",
+  "initrdSha256": "1157c0d60d2a77c83bbb6e8e59c3386726472ac4e119de542155b225110de0f1",
+  "minimumFreeBytes": 19327352832,
+  "logicalVolumeBytes": 34359738368,
+  "kernel": "Debian Linux 6.1.0-54-amd64; Kali userspace from Kasm Technologies"
+}

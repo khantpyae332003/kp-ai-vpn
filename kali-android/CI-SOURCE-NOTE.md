@@ -1,0 +1,1 @@
+CI source mirror of /workspace/kali-android commit0996eb1. App production code is unchanged. Compressed third-party source tarballs are excluded from this mirror; their manifests/notices are retained and the complete corresponding-source bundle remains in the original source archive for final packaging. This is internal development/test input, not a validated APK release.

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "glib-2.56.1",
+    "url": "https://codeload.github.com/GNOME/glib/tar.gz/2.56.1",
+    "sha256": "634f84d1ba9b5680c00795452aba8967186f84d707cf81eca9fddb1e9c49e0cf",
+    "file": "glib-2.56.1.tar.gz"
+  },
+  {
+    "name": "libffi-3.3",
+    "url": "https://codeload.github.com/libffi/libffi/tar.gz/v3.3",
+    "sha256": "3f2f86094f5cf4c36cfe850d2fe029d01f5c2c2296619407c8ba0d8207da9a6b",
+    "file": "libffi-3.3.tar.gz"
+  },
+  {
+    "name": "pixman-0.40.0",
+    "url": "https://codeload.github.com/aseprite/pixman/tar.gz/pixman-0.40.0",
+    "sha256": "3a68a28318a78fffc61603c8385bb0010c3fb23d17cd1285d36a7148c87a3b91",
+    "file": "pixman-0.40.0.tar.gz"
+  },
+  {
+    "name": "SDL2-2.0.8",
+    "url": "https://codeload.github.com/libsdl-org/SDL/tar.gz/release-2.0.8",
+    "sha256": "9f7541890803ec6ac490af3b49a64d3eb0107e2367aae033fe031d3680a010aa",
+    "file": "SDL2-2.0.8.tar.gz"
+  },
+  {
+    "name": "seabios",
+    "url": "https://codeload.github.com/qemu/seabios/tar.gz/d9c812dda519a1a73e8370e1b81ddf46eb22ed16",
+    "sha256": "69711628bb5a1ea0089f43bff86a022fbd60f48d2c72251f3d977f92718d4300",
+    "file": "seabios.tar.gz"
+  },
+  {
+    "name": "ipxe",
+    "url": "https://codeload.github.com/qemu/ipxe/tar.gz/de4565cbe76ea9f7913a01f331be3ee901bb6e17",
+    "sha256": "af7b40e8ec0a55d7f3ba0be9a6f934671951c41905fc0fd0c40e21b8b521f5ba",
+    "file": "ipxe.tar.gz"
+  },
+  {
+    "name": "slirp",
+    "url": "https://codeload.github.com/qemu/libslirp/tar.gz/ce94eba2042d52a0ba3d9e252ebce86715e94275",
+    "sha256": "c5b4e2cd4141130bf9fe0e736d9f921c0f1ca3f3ac15f7e8b7db704aa061710b",
+    "file": "slirp.tar.gz"
+  },
+  {
+    "name": "keycodemapdb",
+    "url": "https://codeload.github.com/qemu/keycodemapdb/tar.gz/6b3d716e2b6472eb7189d3220552280ef3d832ce",
+    "sha256": "c61611a13bb6e7eb6889e63c99ce8d91353eb3f6c58a9ccaffea5f1c511d413a",
+    "file": "keycodemapdb.tar.gz"
+  },
+  {
+    "name": "capstone",
+    "url": "https://codeload.github.com/qemu/capstone/tar.gz/22ead3e0bfdb87516656453336160e0a37b066bf",
+    "sha256": "b8725c1ae2c88fe2b9a08d78662064f6cd5ab44d0188df15196347ae4cbd18d3",
+    "file": "capstone.tar.gz"
+  },
+  {
+    "name": "qemu-5.1.0",
+    "commit": "d0ed6a69d399ae193959225cdeaa9382746c91cc",
+    "file": "qemu-5.1.0.tar.gz",
+    "sha256": "58ab0d4098d644684a8b4856c99ce3679f5d7815cd3c7c07bd3db237da148826"
+  }
+]

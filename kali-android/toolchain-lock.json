@@ -1,0 +1,23 @@
+{
+  "jdk": {
+    "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.17%2B10/OpenJDK17U-jdk_x64_linux_hotspot_17.0.17_10.tar.gz",
+    "sha256": "992f96e7995075ac7636bb1a8de52b0c61d71ed3137fafc979ab96b4ab78dd75"
+  },
+  "gradle": {
+    "url": "https://services.gradle.org/distributions/gradle-7.6.4-bin.zip",
+    "sha256": "bed1da33cca0f557ab13691c77f38bb67388119e4794d113e051039b80af9bb1"
+  },
+  "platform": {
+    "url": "https://dl.google.com/android/repository/platform-33-ext3_r03.zip",
+    "sha1": "394bc86d8d3452aa4d419b67743025a6fb2cd9d0"
+  },
+  "build-tools": {
+    "url": "https://dl.google.com/android/repository/build-tools_r33.0.2-linux.zip",
+    "sha1": "9def17c815f46ac09024ebb674466d39d039255c"
+  },
+  "runtime": {
+    "url": "https://github.com/limboemu/limbo/releases/download/v6.0.1-LimboEmulator/limbo-android-x86-6.0.1-qemu-5.1.0.apk",
+    "sha256": "38d8a68a92c709d3f21682fbc317246a527779648c5c8962926d19a12468a0b6"
+  },
+  "upstream_commit": "887c6a68cd6b414377d7f8071bc12bbc16e59809"
+}
