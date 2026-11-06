@@ -1,0 +1,18 @@
+{
+  "status": "PREPARING",
+  "run_id": "42302378168",
+  "run_attempt": "1",
+  "apk_release": "WITHHELD",
+  "device": "Samsung Galaxy S23 Ultra",
+  "os_version": "13.0",
+  "root_sudo_manifest_observed": false,
+  "visible_desktop_reviewed": false,
+  "tools_verified": false,
+  "shutdown_reopen_verified": false,
+  "installed_apk_bytes_independently_verified": false,
+  "session_started": false,
+  "session_creation_attempted": false,
+  "cleanup_confirmed": false,
+  "cleanup_state": "not_required",
+  "checked_at_utc": "2026-11-06T22:10:10.419360+00:00"
+}
