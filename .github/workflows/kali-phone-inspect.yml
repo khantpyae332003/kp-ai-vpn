@@ -1,0 +1,58 @@
+name: Inspect Active Kali Phone Test
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/browserstack-connection]
+    paths: [.github/workflows/kali-phone-inspect.yml]
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Read existing session metadata and own-app volume usage if permitted
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: |
+          python3 - <<'PY'
+          import datetime,json,os,re,sys
+          from pathlib import Path
+          sys.path.insert(0,'ci/browserstack')
+          from appium_client import Client,RemoteFailure
+          report={'created_new_session':False,'android_root_requested':False,'owner_session_closed':False,
+                  'run_id':'42302378168','checked_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          client=Client(os.environ['BROWSERSTACK_USERNAME'],os.environ['BROWSERSTACK_ACCESS_KEY'])
+          try:
+              builds=client.api('/app-automate/builds.json?limit=10')
+              matches=[row['automation_build'] for row in builds if row.get('automation_build',{}).get('name')=='GitHub 42302378168-1']
+              if len(matches)!=1:raise RemoteFailure('target_build_not_unique')
+              sessions=client.api('/app-automate/builds/'+matches[0]['hashed_id']+'/sessions.json?limit=10')
+              matches=[row['automation_session'] for row in sessions if row.get('automation_session',{}).get('status')=='running']
+              if len(matches)!=1:raise RemoteFailure('target_running_session_not_unique')
+              # Borrow the existing session for one read-only query. Never start/close/reset it.
+              client.session=matches[0]['hashed_id']
+              report['provider_session_status']='running'
+              result=client.command('POST','/execute/sync',{'script':'mobile: shell','args':[{
+                  'command':'run-as','args':['com.kp.kali','du','-k','files/managed/volume.ext4'],
+                  'timeout':5000,'includeStderr':False}]})
+              match=re.fullmatch(r'\s*(\d+)\s+files/managed/volume\.ext4\s*',str(result))
+              if not match:raise RemoteFailure('volume_usage_not_available')
+              report['allocated_volume_kib']=int(match[1]);report['inspection']='read_only_volume_usage_observed'
+          except RemoteFailure as error:
+              report['inspection']='unavailable';report['reason']=str(error)
+          Path('.ci').mkdir(exist_ok=True)
+          Path('.ci/phone-inspection.json').write_text(json.dumps(report,indent=2)+'\n')
+          print('Existing-session read-only inspection recorded; no device session created or closed.')
+          PY
+      - name: Retain non-secret inspection result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .ci/phone-inspection.json
+          git commit -qm 'Record read-only phone inspection'
+          git fetch origin codex/browserstack-connection
+          git rebase FETCH_HEAD
+          git push origin HEAD:codex/browserstack-connection
