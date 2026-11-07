@@ -71,7 +71,7 @@ def collect_guest_proof(client,digest):
   xml=client.source()
   if has_guest_proof(xml,digest):
    capture(client,'guest-proof',xml);STATE['root_sudo_manifest_observed']=True
-   client.click_text('Close');client.click_text('Open desktop',scroll=True);time.sleep(2)
+   client.click_text('CLOSE');client.click_text('Open desktop',scroll=True);time.sleep(2)
    capture(client,'observed-desktop');return
   time.sleep(2)
  raise RemoteFailure('missing_real_root_sudo_manifest_proof')
