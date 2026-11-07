@@ -34,6 +34,23 @@ class ProtocolTests(unittest.TestCase):
    with self.assertRaises(RemoteFailure):Client('fixture-user','NOT_A_REAL_KEY').request('GET','http://127.0.0.1:'+str(server.server_port)+'/start')
    self.assertEqual(paths,['/start'])
   finally:server.shutdown();server.server_close();thread.join()
+ def test_unicode_button_locator_preserves_exact_android_text(self):
+  requests=[]
+  class Handler(BaseHTTPRequestHandler):
+   def log_message(self,*args):pass
+   def do_POST(self):
+    payload=json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+    requests.append(payload)
+    body=json.dumps({'value':{'element-6066-11e4-a52e-4f735466cecf':'button'}} if self.path.endswith('/element') else {'value':None}).encode()
+    self.send_response(200);self.end_headers();self.wfile.write(body)
+  server=HTTPServer(('127.0.0.1',0),Handler);thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+  class LocalClient(Client):
+   def command(self,method,path,body=None):
+    return decode_value(self.request(method,'http://127.0.0.1:'+str(server.server_port)+path,body))
+  try:
+   LocalClient('fixture','NOT_A_REAL_KEY').click_text('Advanced · manual disk & diagnostics')
+   self.assertEqual(requests[0]['value'],'new UiSelector().text("Advanced · manual disk & diagnostics")')
+  finally:server.shutdown();server.server_close();thread.join()
  def test_wrapped_screenshot_base64_decodes_without_losing_the_real_png(self):
   encoded='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a0l8AAAAASUVORK5CYII='
   class ScreenshotClient(Client):

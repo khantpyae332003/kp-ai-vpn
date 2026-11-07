@@ -56,11 +56,16 @@ def capture(client,label,xml=None):
   return False
 
 def collect_guest_proof(client,digest):
+ STATE['proof_check_stage']='return_to_launcher';publish()
  client.command('POST','/back',{});time.sleep(2)
  xml=client.source()
  if 'Kali desktop ready' not in '\n'.join(node_texts(xml)):raise RemoteFailure('ready_overlay_without_current_runtime_readiness')
+ STATE['proof_check_stage']='open_advanced_controls';publish()
  client.click_text('Advanced · manual disk & diagnostics');time.sleep(2)
+ capture(client,'advanced-controls')
+ STATE['proof_check_stage']='open_startup_diagnostics';publish()
  client.click_text('Startup diagnostics',scroll=True)
+ STATE['proof_check_stage']='read_guest_proof';publish()
  end=time.monotonic()+20
  while time.monotonic()<end:
   xml=client.source()

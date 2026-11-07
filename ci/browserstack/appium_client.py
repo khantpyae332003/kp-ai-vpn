@@ -78,7 +78,7 @@ class Client:
   if not data.startswith(b'\x89PNG\r\n\x1a\n'):raise RemoteFailure('invalid_screenshot_response')
   return data
  def click_text(self,text,scroll=False):
-  selector='new UiSelector().textMatches('+json.dumps('(?i)^'+re.escape(text)+'$')+')'
+  selector='new UiSelector().text('+json.dumps(text,ensure_ascii=False)+')'
   if scroll:selector='new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView('+selector+')'
   element=self.command('POST','/element',{'using':'-android uiautomator','value':selector})
   identifier=element.get('element-6066-11e4-a52e-4f735466cecf') or element.get('ELEMENT')
