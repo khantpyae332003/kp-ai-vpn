@@ -6,7 +6,7 @@ from urllib.parse import urlsplit
 from urllib.request import build_opener,HTTPRedirectHandler,Request
 from urllib.error import HTTPError
 
-CARRIERS={'dtac':'TH','true':'TH','ais':'TH','mpt':'MM','atom':'MM','mytel':'MM','mm-other':'MM','other':'OTHER'}
+CARRIERS={'dtac':'TH','true':'TH','ais':'TH','mpt':'MM','atom':'MM','mytel':'MM','mm-other':'MM','other':'GLOBAL'}
 PLANS={'nopro','standard','unknown'}
 MAX_CONFIG=128*1024
 

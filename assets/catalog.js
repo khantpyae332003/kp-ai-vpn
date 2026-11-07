@@ -3,10 +3,12 @@
 const root=document.getElementById('kp-catalog');if(!root)return;
 const $=s=>root.querySelector(s);
 let lastAttempt=0;
-let files=[],carrier='all',plan='all',lastUpdated=null,loadError=false,loading=false,renderedSignature='';
+let files=[],carrier='all',country='all',plan='all',lastUpdated=null,loadError=false,loading=false,renderedSignature='';
 const names={dtac:'dtac',true:'True',ais:'AIS',mpt:'MPT',atom:'ATOM',mytel:'Mytel','mm-other':'မြန်မာ အခြား',other:'SIM မသတ်မှတ်ထား'};
 function safeLink(url){try{const u=new URL(url,location.href);if(u.protocol!=='https:'||u.username||u.password)return null;return u.href;}catch{return null;}}
 function time(value){const date=new Date(value);return Number.isNaN(date.getTime())?'—':date.toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'});}
+const carrierCountries={dtac:'TH',true:'TH',ais:'TH',mpt:'MM',atom:'MM',mytel:'MM','mm-other':'MM',other:'GLOBAL'};
+function simCountry(f){return ['TH','MM','GLOBAL'].includes(f.sim_country)?f.sim_country:['TH','MM','GLOBAL'].includes(f.country)?f.country:(carrierCountries[f.carrier]||'GLOBAL');}
 function currentFiles(){return files.filter(f=>f&&typeof f.name==='string'&&typeof f.carrier==='string'&&f.server_status==='handshake_https_pass'&&Date.parse(f.expires_at)>Date.now());}
 function renderHealth(){
  const age=Date.now()-Date.parse(lastUpdated),health=$('#kp-health');
@@ -16,12 +18,12 @@ function renderHealth(){
 function render(){
  const valid=currentFiles(),q=$('#kp-file-search').value.toLowerCase().trim(),container=$('#kp-file-list');container.replaceChildren();
  renderedSignature=JSON.stringify(valid.map(f=>[f.id,f.carrier,f.plan,f.name,f.expires_at]));
- const rows=valid.filter(f=>(carrier==='all'||f.carrier===carrier)&&(plan==='all'||f.plan===plan)&&(!q||f.name.toLowerCase().includes(q)));
+ const rows=valid.filter(f=>(country==='all'||simCountry(f)===country)&&(carrier==='all'||f.carrier===carrier)&&(plan==='all'||(f.plan||'unknown')===plan)&&(!q||f.name.toLowerCase().includes(q)));
  $('#kp-count').textContent=String(rows.length);$('#kp-total').textContent=loadError?'—':String(valid.length);
  for(const f of rows.slice(0,100)){
   const row=document.createElement('article');row.className='kp-file';
   const title=document.createElement('h4');title.textContent=f.name;
-  const detail=document.createElement('p');detail.textContent=(names[f.carrier]||f.carrier)+' · '+f.plan+' · WireGuard .conf';
+  const detail=document.createElement('p');detail.textContent=simCountry(f)+' · '+(names[f.carrier]||f.carrier)+' · '+(f.plan||'unknown')+' · WireGuard .conf';
   const status=document.createElement('p');status.className='kp-verify';status.textContent='Server handshake + HTTPS စစ်ပြီး';
   const sim=document.createElement('p');sim.textContent=f.sim?.status==='user_reported_pass'?'SIM စမ်းသုံးသူ အောင်ကြောင်းတင်ပြထားသည်':'SIM / nopro လက်တွေ့ မစစ်ရသေးပါ';
   const checked=document.createElement('p');checked.className='kp-muted';checked.textContent='စစ်ချိန် '+time(f.checked_at)+' · သက်တမ်း '+time(f.expires_at)+' (TH)';
@@ -43,13 +45,14 @@ function render(){
   row.append(actions);container.append(row);
  }
  $('#kp-empty').hidden=rows.length>0;
- $('#kp-reset').hidden=carrier==='all'&&plan==='all'&&!q;renderHealth();
+ $('#kp-reset').hidden=country==='all'&&carrier==='all'&&plan==='all'&&!q;renderHealth();
  if(loadError){$('#kp-empty-title').textContent='ဖိုင်စာရင်း ဖတ်မရပါ';$('#kp-empty-description').textContent='အင်တာနက်ချိတ်ဆက်မှု စစ်ပြီး “ပြန်စစ်မယ်” ကိုနှိပ်ပါ။';}
  else if(valid.length){$('#kp-empty-title').textContent='ကိုက်ညီတဲ့ဖိုင် မရှိပါ';$('#kp-empty-description').textContent='တခြား SIM၊ ဖိုင်အမျိုးအစား သို့မဟုတ် ရှာဖွေစာသားကို ပြောင်းကြည့်ပါ။';}
  else{$('#kp-empty-title').textContent='စစ်ပြီးသားဖိုင် မရှိသေးပါ';$('#kp-empty-description').textContent='ချိတ်ဆက်စစ်ဆေးမှု အောင်တဲ့ဖိုင်တွေကို ဒီနေရာမှာ ပြပေးမယ်။ အခုတော့ ဖိုင်ထည့်သုံးနည်းကို အရင်ကြည့်နိုင်တယ်။';}
  if(!loadError&&lastUpdated)$('#kp-updated').textContent='နောက်ဆုံးစစ်ချိန် '+time(lastUpdated)+' · ထိုင်းစံတော်ချိန်';
 }
 root.querySelectorAll('[data-carrier]').forEach(b=>b.addEventListener('click',()=>{carrier=b.dataset.carrier;root.querySelectorAll('[data-carrier]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();}));
+$('#kp-country').addEventListener('change',e=>{country=e.target.value;render();});
 $('#kp-plan').addEventListener('change',e=>{plan=e.target.value;render();});$('#kp-file-search').addEventListener('input',render);
 async function loadCatalog(){
  if(loading)return;let unchanged=false;const wasError=loadError;lastAttempt=Date.now();loading=true;$('#kp-refresh').disabled=true;$('#kp-refresh').textContent='စစ်နေသည်…';
@@ -64,7 +67,7 @@ async function loadSources(){
   if(!count){const li=document.createElement('li');li.textContent='ရင်းမြစ်အသစ် ရှာဖွေနေဆဲ ဖြစ်သည်။';list.append(li);}
  }catch{$('#kp-source-count').textContent='—';$('#kp-discovery').textContent='ရင်းမြစ်စာရင်း ဖတ်မရပါ။ နောက်မှ ပြန်စမ်းပါ။';}
 }
-$('#kp-reset').addEventListener('click',()=>{carrier='all';plan='all';$('#kp-plan').value='all';$('#kp-file-search').value='';root.querySelectorAll('[data-carrier]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.carrier==='all')));render();$('#kp-file-search').focus();});
+$('#kp-reset').addEventListener('click',()=>{country='all';$('#kp-country').value='all';carrier='all';plan='all';$('#kp-plan').value='all';$('#kp-file-search').value='';root.querySelectorAll('[data-carrier]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.carrier==='all')));render();$('#kp-file-search').focus();});
 function refreshIfDue(){if(!document.hidden&&Date.now()-lastAttempt>=5*60000){loadCatalog();loadSources();}}
 document.addEventListener('visibilitychange',refreshIfDue);
 window.addEventListener('online',()=>{if(!document.hidden){loadCatalog();loadSources();}});

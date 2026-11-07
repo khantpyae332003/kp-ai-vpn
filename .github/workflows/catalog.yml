@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
       - name: Run policy tests
@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python -m agents.finder --discover
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: catalog-candidates
           path: work/
@@ -39,11 +39,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: catalog-candidates
           path: work/
@@ -53,9 +53,11 @@ jobs:
           sudo apt-get install -y wireguard-tools iproute2 curl fonts-noto-core
       - name: Agent 2 — independently verify, test and publish catalog
         run: sudo "$(command -v python)" -m agents.verifier
+      - name: Roles 3-8 — classify, publish, daily learning and bounded monitors
+        run: python -m agents.pipeline --out catalog
       - name: Run policy tests again
         run: python -m unittest discover -s tests -v
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - name: Config builder and checker tests
@@ -65,7 +67,7 @@ jobs:
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
           node tests/browser-check.cjs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: catalog-ui-checks
           path: qa/
@@ -78,7 +80,13 @@ jobs:
           git add catalog/
           if ! git diff --cached --quiet; then
             git commit -m 'Update verified VPN catalog [skip ci]'
-            git push origin HEAD:main
+            pushed=false
+            for attempt in 1 2 3; do
+              git pull --rebase origin main
+              if git push origin HEAD:main; then pushed=true; break; fi
+              sleep 2
+            done
+            test "$pushed" = true
           fi
       - name: Stage existing GitHub Pages site
         run: |
@@ -86,7 +94,7 @@ jobs:
           cp index.html site/
           cp -r assets catalog site/
           touch site/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site/
   deploy:
@@ -102,4 +110,4 @@ jobs:
     steps:
       - name: Publish updated website
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

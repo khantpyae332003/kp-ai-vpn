@@ -1,0 +1,258 @@
+[
+  {
+    "id": "lesson-01",
+    "title": "VPN data allowance",
+    "body": [
+      "A VPN still uses your mobile connection. A successful tunnel does not demonstrate free mobile data or a free carrier package."
+    ],
+    "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
+  },
+  {
+    "id": "lesson-02",
+    "title": "Read the server result",
+    "body": [
+      "A server handshake and HTTPS check show that the tested tunnel worked from the test environment. Your SIM, signal and mobile plan still need their own test."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-03",
+    "title": "Protect private keys",
+    "body": [
+      "A WireGuard private key is a credential. Keep configuration files private and avoid posting their contents in public support requests."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-04",
+    "title": "Public keys identify peers",
+    "body": [
+      "WireGuard peers exchange public keys. A public key and a private key have different roles; never substitute one for the other."
+    ],
+    "source_url": "https://www.wireguard.com/"
+  },
+  {
+    "id": "lesson-05",
+    "title": "Endpoint addresses",
+    "body": [
+      "An endpoint tells WireGuard where a peer can be reached. Its location does not establish which mobile carrier supports a configuration."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-06",
+    "title": "Handshake timing",
+    "body": [
+      "WireGuard establishes encrypted sessions when traffic is needed. A quiet connection can differ from a failed connection; check using actual traffic."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-07",
+    "title": "Keepalive purpose",
+    "body": [
+      "Persistent keepalive can help a peer behind NAT remain reachable. It does not unlock a mobile package or change carrier billing."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-08",
+    "title": "Allowed IP routing",
+    "body": [
+      "AllowedIPs helps determine what traffic belongs to a WireGuard peer. Review routing before importing an unfamiliar configuration."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-09",
+    "title": "Install official tools",
+    "body": [
+      "Use the WireGuard installation documentation to find supported installation methods for your platform."
+    ],
+    "source_url": "https://www.wireguard.com/install/"
+  },
+  {
+    "id": "lesson-10",
+    "title": "WireGuard on Android",
+    "body": [
+      "WireGuard provides Android installation information. Review the app source and publisher before installing a VPN application."
+    ],
+    "source_url": "https://www.wireguard.com/install/"
+  },
+  {
+    "id": "lesson-11",
+    "title": "WireGuard on Windows",
+    "body": [
+      "The installation page links the Windows client. Download software through the official project rather than an unknown mirror."
+    ],
+    "source_url": "https://www.wireguard.com/install/"
+  },
+  {
+    "id": "lesson-12",
+    "title": "WireGuard on Linux",
+    "body": [
+      "WireGuard installation steps vary by Linux distribution. Follow the instructions for your own distribution."
+    ],
+    "source_url": "https://www.wireguard.com/install/"
+  },
+  {
+    "id": "lesson-13",
+    "title": "WireGuard on macOS",
+    "body": [
+      "The official installation page lists macOS options. A configuration still needs valid credentials and a reachable server."
+    ],
+    "source_url": "https://www.wireguard.com/install/"
+  },
+  {
+    "id": "lesson-14",
+    "title": "Understand VPN scope",
+    "body": [
+      "A VPN carries traffic through a tunnel to another network. It does not replace the internet connection used to reach that tunnel."
+    ],
+    "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
+  },
+  {
+    "id": "lesson-15",
+    "title": "Review the provider",
+    "body": [
+      "VPN protection depends partly on the service operating the exit server. Read the provider’s documentation before trusting a shared configuration."
+    ],
+    "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
+  },
+  {
+    "id": "lesson-16",
+    "title": "HTTPS remains useful",
+    "body": [
+      "Keep using HTTPS websites while connected to a VPN. A tunnel and website encryption protect different parts of the connection."
+    ],
+    "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
+  },
+  {
+    "id": "lesson-17",
+    "title": "Check your plan separately",
+    "body": [
+      "Check mobile data allowance with your carrier. VPN connection success alone is not billing evidence."
+    ],
+    "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
+  },
+  {
+    "id": "lesson-18",
+    "title": "Use a clear test record",
+    "body": [
+      "When reporting a cellular test, record the exact configuration hash, carrier, plan and time. A result for another file cannot verify yours."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-19",
+    "title": "Avoid command hooks",
+    "body": [
+      "Inspect unfamiliar configuration files before importing them. Some command-line helpers support additional behavior beyond tunnel settings."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-20",
+    "title": "Route changes affect apps",
+    "body": [
+      "Routing configuration determines which traffic uses the tunnel. Test the applications you actually intend to use."
+    ],
+    "source_url": "https://www.wireguard.com/quickstart/"
+  },
+  {
+    "id": "lesson-21",
+    "title": "Android VPN permission",
+    "body": [
+      "Android requires user approval when an application prepares a VPN service. Read the permission prompt before allowing a new VPN app."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-22",
+    "title": "One Android VPN service",
+    "body": [
+      "Android allows one active VPN service per user or profile. Starting a different service can replace the existing VPN connection."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-23",
+    "title": "Always-on VPN",
+    "body": [
+      "Android supports always-on VPN settings. Review their behavior before relying on the tunnel for continuous connectivity."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-24",
+    "title": "Blocking without VPN",
+    "body": [
+      "Android VPN settings can block connections without a VPN. Losing the tunnel can then affect internet access."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-25",
+    "title": "Android per-app routing",
+    "body": [
+      "Android VPN applications can support app-specific routing. Check your app settings to understand which traffic uses the VPN."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-26",
+    "title": "VPN lifecycle",
+    "body": [
+      "An Android VPN service must handle its connection lifecycle. Switching networks or stopping the service can affect an active tunnel."
+    ],
+    "source_url": "https://developer.android.com/develop/connectivity/vpn"
+  },
+  {
+    "id": "lesson-27",
+    "title": "Commit-pinned downloads",
+    "body": [
+      "A Git commit identifier points to a specific revision. A branch name can move as the repository changes."
+    ],
+    "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files"
+  },
+  {
+    "id": "lesson-28",
+    "title": "Read repository permission",
+    "body": [
+      "Public visibility lets you view a repository, but permission to reuse material depends on its license and the author’s terms."
+    ],
+    "source_url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
+  },
+  {
+    "id": "lesson-29",
+    "title": "Report security privately",
+    "body": [
+      "If you find exposed credentials in a project, use its documented security reporting process when available. Avoid copying secrets into public issues."
+    ],
+    "source_url": "https://docs.github.com/en/code-security/security-advisories/working-with-repository-security-advisories/privately-reporting-a-security-vulnerability"
+  },
+  {
+    "id": "lesson-30",
+    "title": "Inspect file history",
+    "body": [
+      "Repository history helps you review how a file changed. A newer revision still needs fresh verification before it is trusted as working."
+    ],
+    "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/viewing-and-understanding-files"
+  },
+  {
+    "id": "lesson-31",
+    "title": "Follow source provenance",
+    "body": [
+      "Keep the original source and revision alongside a download link. Provenance helps users understand exactly which published file was tested."
+    ],
+    "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files"
+  },
+  {
+    "id": "lesson-32",
+    "title": "Revoke leaked credentials",
+    "body": [
+      "Deleting a public copy is not enough after a credential leaks. Follow the provider’s process to revoke or replace affected credentials."
+    ],
+    "source_url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+  }
+]

@@ -5,7 +5,7 @@ const path=require('node:path');
 (async()=>{
  const root=path.resolve('.');const server=http.createServer((req,res)=>{let p=path.join(root,new URL(req.url,'http://localhost').pathname);if(!p.startsWith(root+path.sep)&&p!==root){res.writeHead(403).end();return;}if(p===root+path.sep||p===root)p=path.join(root,'index.html');fs.readFile(p,(e,b)=>{if(e){res.writeHead(404).end();return;}res.setHeader('Content-Type',p.endsWith('.js')?'application/javascript':p.endsWith('.css')?'text/css':p.endsWith('.json')?'application/json':'text/html');res.end(b);});});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const url='http://127.0.0.1:'+server.address().port;
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE||undefined,args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const checked=new Date().toISOString(),expires=new Date(Date.now()+3600000).toISOString();
  const common={server_status:'handshake_https_pass',checked_at:checked,expires_at:expires,sim:{status:'not_tested'}};
  const fixtures=[
@@ -16,8 +16,20 @@ const path=require('node:path');
   {...common,name:'expired.conf',carrier:'mpt',plan:'nopro',expires_at:new Date(Date.now()-3600000).toISOString()},
   {...common,name:'failed.conf',carrier:'ais',plan:'nopro',server_status:'failed'}
  ];
+ await page.route('**/assets/app-release.json',route=>route.fulfill({json:{version:'0.2.0',version_code:2,apk_url:'https://github.com/khantpyae332003/kp-ai-vpn/releases/download/v0.2.0/KP-VPN-0.2.0.apk',sha256:'a'.repeat(64),size_bytes:16000000,published_at:checked}}));
+ await page.route('**/catalog/daily.json',route=>route.fulfill({json:{date:checked.slice(0,10),title:'Daily learning',body:['<img src=x onerror=window.bad=2>'],source_url:'javascript:alert(1)',mode:'curated'}}));
+ await page.route('**/catalog/agents.json',route=>route.fulfill({json:{updated_at:checked,ai:{configured:false,mode:'deterministic'},roles:[{id:'finder',status:'pass',detail:'Source discovery complete'}]}}));
  await page.route('**/catalog/index.json',route=>route.fulfill({json:{updated_at:checked,files:fixtures}}));
  await page.clock.install();await page.goto(url);await page.waitForSelector('.kp-file');
+ await page.locator('#kp-apk-download[href]').waitFor();
+ if(!await page.locator('#kp-apk-download').getAttribute('href'))throw Error('Valid APK release missing');
+ await page.waitForFunction(()=>document.querySelectorAll('#kp-agents .agent-card').length===8);
+ if(!(await page.locator('#kp-ai-status').innerText()).includes('AI မချိတ်ဆက်ရသေး'))throw Error('AI state misrepresented');
+ if(await page.locator('#kp-daily img,#kp-daily a').count())throw Error('Unsafe daily content rendered');
+ await page.locator('#kp-country').selectOption('TH');if(await page.locator('.kp-file').count()!==3)throw Error('TH SIM country inference failed');
+ await page.locator('#kp-country').selectOption('MM');if(await page.locator('.kp-file').count())throw Error('MM country displayed expired files');
+ await page.locator('#kp-country').selectOption('GLOBAL');if(await page.locator('.kp-file').count()!==1)throw Error('Global SIM filter failed');
+ await page.locator('#kp-reset').click();
  if(await page.locator('.kp-file').count()!==4)throw Error('Expired or failed files were displayed');
  if(await page.evaluate(()=>window.bad))throw Error('HTML executed');
  if(await page.locator('.kp-file').filter({hasText:'<img src=x'}).locator('a').count())throw Error('Unsafe link rendered');
@@ -70,7 +82,7 @@ const path=require('node:path');
  await page.locator('#kp-check-clear').click();if(await page.locator('#kp-check-file').inputValue())throw Error('Checker did not clear file selection');
  await page.screenshot({path:'qa/config-checker-mobile.png',fullPage:true});
  await page.locator('#check-config summary').click();
- await page.locator('.site-header a[href="#make-config"]').click();
+ await page.locator('.site-header a[href="#learn"]').click();await page.locator('a[href="#make-config"]').first().click();
  if(await page.locator('#own-config-details').getAttribute('open')===null)throw Error('Builder navigation did not open');
  const requests=[];page.on('request',r=>requests.push(r.url()+' '+(r.postData()||'')));
  await page.locator('#kp-generate-keys').click();await page.waitForFunction(()=>document.getElementById('kp-client-public').value.length===44);
@@ -86,6 +98,8 @@ const path=require('node:path');
  await page.unroute('**/catalog/index.json');await page.reload();await page.waitForFunction(()=>document.getElementById('kp-total').textContent!=='—');
  await page.screenshot({path:'qa/catalog-mobile.png',fullPage:true});
  await page.evaluate(()=>scrollTo(0,0));await page.setViewportSize({width:1280,height:900});await page.screenshot({path:'qa/catalog-desktop.png',fullPage:true});
+ await page.unroute('**/assets/app-release.json');await page.route('**/assets/app-release.json',route=>route.fulfill({json:{version:'0.2.0',version_code:2,apk_url:'javascript:alert(1)',sha256:'a'.repeat(64),size_bytes:16000000,published_at:checked}}));
+ await page.reload();await page.locator('#kp-apk-download').filter({hasText:'ပြင်ဆင်နေဆဲ'}).waitFor();if(await page.locator('#kp-apk-download').getAttribute('href'))throw Error('Invalid APK manifest enabled download');
  if(errors.length)throw Error(errors.join('\n'));
  console.log('PASS: carrier/plan filters, valid downloads, expired/failed suppression, search, inert untrusted data/URLs, mobile overflow, refresh recovery, collapsed guides, explanatory anchor, empty state');
  await browser.close();await new Promise(r=>server.close(r));
