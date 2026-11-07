@@ -22,16 +22,25 @@ def save():
  STATE['checked_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
  (OUT/'status.json').write_text(json.dumps(STATE,indent=2)+'\n')
 def publish():
+ # Local evidence is authoritative; remote progress transport must not stop a phone.
+ STATE.pop('progress_publication_error',None)
  save()
  if os.environ.get('PUBLISH_PHONE_PROGRESS')!='1':return
- git('config','user.name','github-actions[bot]');git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
- git('add',str(OUT.relative_to(ROOT)))
- if git('diff','--cached','--quiet',check=False).returncode==0:return
- git('commit','-q','-m','Record phone observation '+RUN)
- for attempt in range(3):
-  git('fetch','origin',BRANCH);git('rebase','FETCH_HEAD')
-  if git('push','origin','HEAD:'+BRANCH,check=False).returncode==0:return
- raise RuntimeError('Progress publication failed; no device pass claimed')
+ try:
+  git('config','user.name','github-actions[bot]');git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
+  git('add',str(OUT.relative_to(ROOT)))
+  if git('diff','--cached','--quiet',check=False).returncode!=0:
+   git('commit','-q','-m','Record phone observation '+RUN)
+  # Retry unpushed commits even when no new evidence needs a commit.
+  for attempt in range(3):
+   git('fetch','origin',BRANCH);git('rebase','FETCH_HEAD')
+   if git('push','origin','HEAD:'+BRANCH,check=False).returncode==0:return
+  raise RuntimeError('progress_push_rejected')
+ except (subprocess.SubprocessError,RuntimeError) as error:
+  # Never retain raw git output: a remote error may include credential material.
+  STATE['progress_publication_error']=type(error).__name__
+  save()
+  print('::warning::Remote progress unavailable; local evidence retained and phone observation continues.',flush=True)
 def node_texts(xml):return [n.attrib.get('text','') for n in ET.fromstring(xml).iter() if n.attrib.get('displayed')!='false' and n.attrib.get('visible-to-user')!='false']
 def in_app(xml):return any(n.attrib.get('package')=='com.kp.kali' for n in ET.fromstring(xml).iter())
 def capture(client,label,xml=None):
