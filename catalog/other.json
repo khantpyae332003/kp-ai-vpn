@@ -1,33 +1,10 @@
 [
   {
-    "id": "65f64c78d1d6251930ca494c2df36cd8992929e8fe0a6180f199c24288ff628e",
-    "name": "wg-NO-FREE-7.conf",
-    "source_name": "wg-NO-FREE-7.conf",
-    "carrier": "other",
-    "country": "OTHER",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "NO/wg-NO-FREE-7.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-07T16:42:04+00:00",
-    "expires_at": "2026-11-08T16:42:04+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
     "id": "07b7fa93380ec7022ee21ef6e46bd641bb58e4fe0f276d6920daf0f5bcf394d6",
     "name": "wg-NL-FREE-138.conf",
     "source_name": "wg-NL-FREE-138.conf",
     "carrier": "other",
-    "country": "OTHER",
+    "country": "GLOBAL",
     "plan": "standard",
     "protocol": "wireguard",
     "format": ".conf",
@@ -38,8 +15,54 @@
     "archive_member": "NL/wg-NL-FREE-138.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-07T16:42:04+00:00",
-    "expires_at": "2026-11-08T16:42:04+00:00",
+    "checked_at": "2026-11-07T17:23:38+00:00",
+    "expires_at": "2026-11-08T17:23:38+00:00",
+    "server_status": "handshake_https_pass",
+    "sim": {
+      "status": "not_tested"
+    }
+  },
+  {
+    "id": "75c2c031b43e9fccbf56f1f4f25cf95436cad6e09f0ad8f24b129305d8beee5c",
+    "name": "wg-CA-FREE-32.conf",
+    "source_name": "wg-CA-FREE-32.conf",
+    "carrier": "other",
+    "country": "GLOBAL",
+    "plan": "standard",
+    "protocol": "wireguard",
+    "format": ".conf",
+    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
+    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "download_kind": "source_archive",
+    "archive_member": "CA/wg-CA-FREE-32.conf",
+    "source_id": "deltakronecker-public-wireguard",
+    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
+    "checked_at": "2026-11-07T17:23:38+00:00",
+    "expires_at": "2026-11-08T17:23:38+00:00",
+    "server_status": "handshake_https_pass",
+    "sim": {
+      "status": "not_tested"
+    }
+  },
+  {
+    "id": "940061ec6450a483f88db1885e86707adbdd5e17a4ab971630f3a20319b90a7a",
+    "name": "wg-JP-FREE-29.conf",
+    "source_name": "wg-JP-FREE-29.conf",
+    "carrier": "other",
+    "country": "GLOBAL",
+    "plan": "standard",
+    "protocol": "wireguard",
+    "format": ".conf",
+    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
+    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "download_kind": "source_archive",
+    "archive_member": "JP/wg-JP-FREE-29.conf",
+    "source_id": "deltakronecker-public-wireguard",
+    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
+    "checked_at": "2026-11-07T17:23:38+00:00",
+    "expires_at": "2026-11-08T17:23:38+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"

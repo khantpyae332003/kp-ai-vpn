@@ -1,257 +1,257 @@
 [
   {
     "id": "lesson-01",
-    "title": "VPN data allowance",
+    "title": "VPN နှင့် မိုဘိုင်းဒေတာသုံးစွဲမှု",
     "body": [
-      "A VPN still uses your mobile connection. A successful tunnel does not demonstrate free mobile data or a free carrier package."
+      "VPN သုံးနေချိန်မှာလည်း သင့်မိုဘိုင်းအင်တာနက်ကို အသုံးပြုနေဆဲဖြစ်ပါတယ်။ VPN ချိတ်ဆက်နိုင်ခြင်းတစ်ခုတည်းနဲ့ ဒေတာအခမဲ့ရတယ်၊ အော်ပရေတာပက်ကေ့ချ်အခမဲ့ရတယ်လို့ မသတ်မှတ်နိုင်ပါ။"
     ],
     "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
   },
   {
     "id": "lesson-02",
-    "title": "Read the server result",
+    "title": "ဆာဗာစမ်းသပ်ရလဒ်ကို နားလည်ခြင်း",
     "body": [
-      "A server handshake and HTTPS check show that the tested tunnel worked from the test environment. Your SIM, signal and mobile plan still need their own test."
+      "ဆာဗာ handshake နှင့် HTTPS စစ်ဆေးမှုအောင်မြင်ရင် စမ်းသပ်ထားတဲ့ပတ်ဝန်းကျင်ကနေ VPN ချိတ်ဆက်အသုံးပြုနိုင်ခဲ့တယ်လို့ သိနိုင်ပါတယ်။ သင့် SIM၊ လိုင်းအားနဲ့ မိုဘိုင်းပက်ကေ့ချ်ကိုတော့ သီးခြားစမ်းသပ်ဖို့ လိုပါသေးတယ်။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-03",
-    "title": "Protect private keys",
+    "title": "Private key ကို လုံခြုံစွာသိမ်းပါ",
     "body": [
-      "A WireGuard private key is a credential. Keep configuration files private and avoid posting their contents in public support requests."
+      "WireGuard private key ဟာ ချိတ်ဆက်ခွင့်ရဖို့ အသုံးပြုတဲ့ လျှို့ဝှက်အချက်အလက်ဖြစ်ပါတယ်။ Config ဖိုင်ကို သီးသန့်သိမ်းထားပြီး အကူအညီတောင်းတဲ့အခါ ဖိုင်အတွင်းစာသားတွေကို လူအများမြင်နိုင်တဲ့နေရာမှာ မတင်ပါနဲ့။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-04",
-    "title": "Public keys identify peers",
+    "title": "Public key ၏ အခန်းကဏ္ဍ",
     "body": [
-      "WireGuard peers exchange public keys. A public key and a private key have different roles; never substitute one for the other."
+      "WireGuard ချိတ်ဆက်ဖက်တွေက public key ကို အပြန်အလှန်ဖလှယ်ကြပါတယ်။ Public key နဲ့ private key တို့ရဲ့ အခန်းကဏ္ဍမတူတာကြောင့် တစ်ခုအစားတစ်ခု မထည့်ပါနဲ့။"
     ],
     "source_url": "https://www.wireguard.com/"
   },
   {
     "id": "lesson-05",
-    "title": "Endpoint addresses",
+    "title": "Endpoint လိပ်စာဆိုတာ",
     "body": [
-      "An endpoint tells WireGuard where a peer can be reached. Its location does not establish which mobile carrier supports a configuration."
+      "Endpoint က WireGuard ချိတ်ဆက်ဖက်ကို ဘယ်လိပ်စာမှာ ဆက်သွယ်ရမလဲဆိုတာ သတ်မှတ်ပေးပါတယ်။ အဲဒီဆာဗာတည်နေရာကိုကြည့်ပြီး ဘယ်မိုဘိုင်းအော်ပရေတာနဲ့ config အလုပ်လုပ်မယ်ဆိုတာ မဆုံးဖြတ်နိုင်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-06",
-    "title": "Handshake timing",
+    "title": "Handshake ပြုလုပ်ချိန်",
     "body": [
-      "WireGuard establishes encrypted sessions when traffic is needed. A quiet connection can differ from a failed connection; check using actual traffic."
+      "WireGuard ဟာ ဒေတာပို့ဖို့လိုတဲ့အချိန်မှာ ကုဒ်ဝှက်ထားတဲ့ ချိတ်ဆက်မှုကို တည်ဆောက်ပါတယ်။ ဒေတာမပို့ဘဲ ငြိမ်နေတဲ့ချိတ်ဆက်မှုနဲ့ ပျက်နေတဲ့ချိတ်ဆက်မှုကို ခွဲသိဖို့ အမှန်တကယ်ဒေတာပို့ပြီး စမ်းသပ်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-07",
-    "title": "Keepalive purpose",
+    "title": "Keepalive ကို ဘာအတွက်သုံးသလဲ",
     "body": [
-      "Persistent keepalive can help a peer behind NAT remain reachable. It does not unlock a mobile package or change carrier billing."
+      "Persistent keepalive က NAT နောက်ကွယ်မှာရှိတဲ့ ချိတ်ဆက်ဖက်ကို ဆက်သွယ်နိုင်အောင် ကူညီပေးနိုင်ပါတယ်။ မိုဘိုင်းပက်ကေ့ချ်ကို ဖွင့်ပေးခြင်း၊ အော်ပရေတာရဲ့ ငွေကောက်ခံပုံကို ပြောင်းလဲပေးခြင်း မဟုတ်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-08",
-    "title": "Allowed IP routing",
+    "title": "AllowedIPs နှင့် ဒေတာလမ်းကြောင်း",
     "body": [
-      "AllowedIPs helps determine what traffic belongs to a WireGuard peer. Review routing before importing an unfamiliar configuration."
+      "AllowedIPs က ဘယ်ဒေတာကို WireGuard ချိတ်ဆက်ဖက်ဆီ ပို့မလဲဆိုတာ သတ်မှတ်ရာမှာ ပါဝင်ပါတယ်။ မရင်းနှီးတဲ့ config ကို မထည့်သွင်းခင် ဒေတာလမ်းကြောင်းသတ်မှတ်ချက်တွေကို စစ်ဆေးပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-09",
-    "title": "Install official tools",
+    "title": "တရားဝင် WireGuard ကို ထည့်သွင်းပါ",
     "body": [
-      "Use the WireGuard installation documentation to find supported installation methods for your platform."
+      "သင့်စက်စနစ်အတွက် ပံ့ပိုးထားတဲ့ ထည့်သွင်းနည်းတွေကို WireGuard ရဲ့ တရားဝင် installation လမ်းညွှန်မှာ ကြည့်နိုင်ပါတယ်။"
     ],
     "source_url": "https://www.wireguard.com/install/"
   },
   {
     "id": "lesson-10",
-    "title": "WireGuard on Android",
+    "title": "Android တွင် WireGuard ထည့်သွင်းခြင်း",
     "body": [
-      "WireGuard provides Android installation information. Review the app source and publisher before installing a VPN application."
+      "WireGuard မှာ Android အတွက် ထည့်သွင်းနည်းတွေ ရှိပါတယ်။ VPN အက်ပ်တစ်ခုကို မထည့်သွင်းခင် ဒေါင်းလုဒ်ရင်းမြစ်နဲ့ ထုတ်ဝေသူကို စစ်ဆေးပါ။"
     ],
     "source_url": "https://www.wireguard.com/install/"
   },
   {
     "id": "lesson-11",
-    "title": "WireGuard on Windows",
+    "title": "Windows တွင် WireGuard ထည့်သွင်းခြင်း",
     "body": [
-      "The installation page links the Windows client. Download software through the official project rather than an unknown mirror."
+      "တရားဝင် installation စာမျက်နှာမှာ Windows client လင့်ခ်ကို ဖော်ပြထားပါတယ်။ ဆော့ဖ်ဝဲကို တရားဝင်စီမံကိန်းရဲ့ လင့်ခ်ကနေ ဒေါင်းလုဒ်လုပ်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/install/"
   },
   {
     "id": "lesson-12",
-    "title": "WireGuard on Linux",
+    "title": "Linux တွင် WireGuard ထည့်သွင်းခြင်း",
     "body": [
-      "WireGuard installation steps vary by Linux distribution. Follow the instructions for your own distribution."
+      "WireGuard ထည့်သွင်းပုံဟာ Linux ဖြန့်ချိမှုတစ်ခုနဲ့တစ်ခု ကွဲပြားနိုင်ပါတယ်။ သင်အသုံးပြုနေတဲ့ Linux ဖြန့်ချိမှုအတွက် လမ်းညွှန်ကို လိုက်နာပါ။"
     ],
     "source_url": "https://www.wireguard.com/install/"
   },
   {
     "id": "lesson-13",
-    "title": "WireGuard on macOS",
+    "title": "macOS တွင် WireGuard ထည့်သွင်းခြင်း",
     "body": [
-      "The official installation page lists macOS options. A configuration still needs valid credentials and a reachable server."
+      "တရားဝင် installation စာမျက်နှာမှာ macOS အတွက် ရွေးချယ်စရာတွေ ရှိပါတယ်။ Config တစ်ခု အလုပ်လုပ်ဖို့ မှန်ကန်တဲ့ ချိတ်ဆက်ခွင့်အချက်အလက်နဲ့ ဆက်သွယ်နိုင်တဲ့ဆာဗာ လိုအပ်နေဆဲဖြစ်ပါတယ်။"
     ],
     "source_url": "https://www.wireguard.com/install/"
   },
   {
     "id": "lesson-14",
-    "title": "Understand VPN scope",
+    "title": "VPN ၏ လုပ်ဆောင်နိုင်သည့်အတိုင်းအတာ",
     "body": [
-      "A VPN carries traffic through a tunnel to another network. It does not replace the internet connection used to reach that tunnel."
+      "VPN ဟာ ဒေတာကို လုံခြုံတဲ့ tunnel ကနေ အခြားကွန်ရက်တစ်ခုဆီ ပို့ပေးပါတယ်။ အဲဒီ tunnel ကို ရောက်ဖို့ အသုံးပြုနေတဲ့ အင်တာနက်ချိတ်ဆက်မှုကိုတော့ အစားမထိုးပေးပါ။"
     ],
     "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
   },
   {
     "id": "lesson-15",
-    "title": "Review the provider",
+    "title": "ဝန်ဆောင်မှုပေးသူကို လေ့လာပါ",
     "body": [
-      "VPN protection depends partly on the service operating the exit server. Read the provider’s documentation before trusting a shared configuration."
+      "VPN ရဲ့ အကာအကွယ်ဟာ အင်တာနက်ဆီ ထွက်ပေါက်ဆာဗာကို လည်ပတ်ပေးနေတဲ့ ဝန်ဆောင်မှုပေါ်လည်း မူတည်ပါတယ်။ မျှဝေထားတဲ့ config ကို မယုံကြည်ခင် ဝန်ဆောင်မှုပေးသူရဲ့ လမ်းညွှန်တွေကို ဖတ်ပါ။"
     ],
     "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
   },
   {
     "id": "lesson-16",
-    "title": "HTTPS remains useful",
+    "title": "VPN သုံးနေချိန်မှာလည်း HTTPS သုံးပါ",
     "body": [
-      "Keep using HTTPS websites while connected to a VPN. A tunnel and website encryption protect different parts of the connection."
+      "VPN ချိတ်ထားချိန်မှာလည်း HTTPS ဝက်ဘ်ဆိုက်တွေကို ဆက်သုံးပါ။ VPN tunnel နဲ့ ဝက်ဘ်ဆိုက်ရဲ့ ကုဒ်ဝှက်မှုတို့က ချိတ်ဆက်မှုရဲ့ မတူညီတဲ့အစိတ်အပိုင်းတွေကို ကာကွယ်ပေးပါတယ်။"
     ],
     "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
   },
   {
     "id": "lesson-17",
-    "title": "Check your plan separately",
+    "title": "မိုဘိုင်းပက်ကေ့ချ်ကို သီးခြားစစ်ဆေးပါ",
     "body": [
-      "Check mobile data allowance with your carrier. VPN connection success alone is not billing evidence."
+      "သင့်မှာ အသုံးပြုခွင့်ရှိတဲ့ မိုဘိုင်းဒေတာပမာဏကို အော်ပရေတာဆီမှာ စစ်ဆေးပါ။ VPN ချိတ်ဆက်နိုင်ခြင်းတစ်ခုတည်းက ငွေဘယ်လိုကောက်ခံမလဲဆိုတဲ့ အထောက်အထား မဟုတ်ပါ။"
     ],
     "source_url": "https://protonvpn.com/support/what-is-a-vpn/"
   },
   {
     "id": "lesson-18",
-    "title": "Use a clear test record",
+    "title": "စမ်းသပ်မှတ်တမ်းကို တိတိကျကျ ရေးပါ",
     "body": [
-      "When reporting a cellular test, record the exact configuration hash, carrier, plan and time. A result for another file cannot verify yours."
+      "SIM နဲ့ စမ်းသပ်ထားတဲ့ရလဒ်ကို တင်ပြရာမှာ config ရဲ့ hash၊ အော်ပရေတာ၊ ပက်ကေ့ချ်နဲ့ စမ်းသပ်ချိန်ကို မှတ်တမ်းတင်ပါ။ အခြားဖိုင်တစ်ခုရဲ့ ရလဒ်က သင့်ဖိုင်ကို အတည်မပြုပေးနိုင်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-19",
-    "title": "Avoid command hooks",
+    "title": "Config ထဲက အပို command များကို စစ်ဆေးပါ",
     "body": [
-      "Inspect unfamiliar configuration files before importing them. Some command-line helpers support additional behavior beyond tunnel settings."
+      "မရင်းနှီးတဲ့ config ဖိုင်တွေကို မထည့်သွင်းခင် စစ်ဆေးပါ။ Command-line အကူကိရိယာအချို့မှာ VPN သတ်မှတ်ချက်တွေအပြင် အပိုလုပ်ဆောင်ချက်တွေကိုပါ လုပ်ဆောင်နိုင်ပါတယ်။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-20",
-    "title": "Route changes affect apps",
+    "title": "ဒေတာလမ်းကြောင်းပြောင်းလဲမှုနှင့် အက်ပ်များ",
     "body": [
-      "Routing configuration determines which traffic uses the tunnel. Test the applications you actually intend to use."
+      "ဒေတာလမ်းကြောင်းသတ်မှတ်ချက်တွေက ဘယ်ဒေတာကို VPN tunnel ထဲကနေ ပို့မလဲဆိုတာ ဆုံးဖြတ်ပါတယ်။ သင်တကယ်အသုံးပြုမယ့် အက်ပ်တွေကို ချိတ်ဆက်ပြီး စမ်းသပ်ပါ။"
     ],
     "source_url": "https://www.wireguard.com/quickstart/"
   },
   {
     "id": "lesson-21",
-    "title": "Android VPN permission",
+    "title": "Android ၏ VPN ခွင့်ပြုချက်",
     "body": [
-      "Android requires user approval when an application prepares a VPN service. Read the permission prompt before allowing a new VPN app."
+      "Android မှာ အက်ပ်တစ်ခုက VPN ဝန်ဆောင်မှု ပြင်ဆင်အသုံးပြုဖို့ အသုံးပြုသူရဲ့ ခွင့်ပြုချက် လိုအပ်ပါတယ်။ VPN အက်ပ်အသစ်ကို ခွင့်မပြုခင် ပြထားတဲ့ ခွင့်ပြုချက်စာကို ဖတ်ပါ။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-22",
-    "title": "One Android VPN service",
+    "title": "Android တွင် တစ်ပြိုင်တည်းအသုံးပြုနိုင်သည့် VPN",
     "body": [
-      "Android allows one active VPN service per user or profile. Starting a different service can replace the existing VPN connection."
+      "Android မှာ အသုံးပြုသူတစ်ဦး သို့မဟုတ် profile တစ်ခုအတွက် VPN ဝန်ဆောင်မှုတစ်ခုကိုသာ တစ်ချိန်တည်း အသုံးပြုနိုင်ပါတယ်။ အခြား VPN ဝန်ဆောင်မှုတစ်ခုကို ဖွင့်လိုက်ရင် လက်ရှိ VPN ချိတ်ဆက်မှုကို အစားထိုးနိုင်ပါတယ်။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-23",
-    "title": "Always-on VPN",
+    "title": "အမြဲဖွင့်ထားသော VPN စနစ်",
     "body": [
-      "Android supports always-on VPN settings. Review their behavior before relying on the tunnel for continuous connectivity."
+      "Android မှာ Always-on VPN သတ်မှတ်ချက်ကို ပံ့ပိုးထားပါတယ်။ အင်တာနက်အဆက်မပြတ်ရဖို့ VPN ကို အားကိုးမယ့်အခါ အဲဒီသတ်မှတ်ချက်ရဲ့ အလုပ်လုပ်ပုံကို အရင်လေ့လာပါ။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-24",
-    "title": "Blocking without VPN",
+    "title": "VPN မရှိချိန် အင်တာနက်ပိတ်ထားခြင်း",
     "body": [
-      "Android VPN settings can block connections without a VPN. Losing the tunnel can then affect internet access."
+      "Android ရဲ့ VPN သတ်မှတ်ချက်မှာ VPN မချိတ်ထားတဲ့အချိန် အင်တာနက်ချိတ်ဆက်မှုကို ပိတ်ထားနိုင်ပါတယ်။ ဒီသတ်မှတ်ချက်ဖွင့်ထားရင် VPN ပြတ်သွားတဲ့အခါ အင်တာနက်အသုံးပြုမှုလည်း ထိခိုက်နိုင်ပါတယ်။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-25",
-    "title": "Android per-app routing",
+    "title": "Android အက်ပ်အလိုက် ဒေတာလမ်းကြောင်း",
     "body": [
-      "Android VPN applications can support app-specific routing. Check your app settings to understand which traffic uses the VPN."
+      "Android VPN အက်ပ်တွေမှာ အက်ပ်တစ်ခုချင်းအလိုက် ဒေတာလမ်းကြောင်း ရွေးနိုင်တဲ့စနစ် ပါဝင်နိုင်ပါတယ်။ ဘယ်အက်ပ်ရဲ့ ဒေတာက VPN ကို ဖြတ်သန်းမလဲဆိုတာ သိဖို့ အက်ပ်သတ်မှတ်ချက်တွေကို စစ်ဆေးပါ။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-26",
-    "title": "VPN lifecycle",
+    "title": "VPN ချိတ်ဆက်မှု၏ အပြောင်းအလဲများ",
     "body": [
-      "An Android VPN service must handle its connection lifecycle. Switching networks or stopping the service can affect an active tunnel."
+      "Android VPN ဝန်ဆောင်မှုဟာ ချိတ်ဆက်မှုစတင်ခြင်း၊ ရပ်တန့်ခြင်း စတဲ့ အခြေအနေတွေကို ကိုင်တွယ်ပေးရပါတယ်။ ကွန်ရက်ပြောင်းခြင်း သို့မဟုတ် ဝန်ဆောင်မှုရပ်ခြင်းက လက်ရှိ VPN ချိတ်ဆက်မှုကို ထိခိုက်နိုင်ပါတယ်။"
     ],
     "source_url": "https://developer.android.com/develop/connectivity/vpn"
   },
   {
     "id": "lesson-27",
-    "title": "Commit-pinned downloads",
+    "title": "Commit အတိအကျဖြင့် ချိတ်ထားသော ဒေါင်းလုဒ်",
     "body": [
-      "A Git commit identifier points to a specific revision. A branch name can move as the repository changes."
+      "Git commit အမှတ်ဟာ ဖိုင်တွေရဲ့ သတ်မှတ်ထားတဲ့ ဗားရှင်းတစ်ခုကို ညွှန်းပါတယ်။ Branch အမည်ကတော့ repository ပြောင်းလဲလာတာနဲ့အမျှ အခြားဗားရှင်းဆီ ရွေ့သွားနိုင်ပါတယ်။"
     ],
     "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files"
   },
   {
     "id": "lesson-28",
-    "title": "Read repository permission",
+    "title": "Repository ၏ အသုံးပြုခွင့်ကို ဖတ်ပါ",
     "body": [
-      "Public visibility lets you view a repository, but permission to reuse material depends on its license and the author’s terms."
+      "Repository ကို လူအများမြင်နိုင်တာကြောင့် ကြည့်ရှုလို့ရပါတယ်။ အဲဒီထဲက အကြောင်းအရာတွေကို ပြန်သုံးခွင့်ရှိမရှိကတော့ license နဲ့ စာရေးသူရဲ့ စည်းကမ်းချက်တွေပေါ် မူတည်ပါတယ်။"
     ],
     "source_url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
   },
   {
     "id": "lesson-29",
-    "title": "Report security privately",
+    "title": "လုံခြုံရေးပြဿနာကို သီးသန့်အကြောင်းကြားပါ",
     "body": [
-      "If you find exposed credentials in a project, use its documented security reporting process when available. Avoid copying secrets into public issues."
+      "စီမံကိန်းတစ်ခုမှာ လျှို့ဝှက်ချိတ်ဆက်ခွင့်အချက်အလက်တွေ ပေါက်ကြားနေတာတွေ့ရင် သတ်မှတ်ထားတဲ့ လုံခြုံရေးအကြောင်းကြားနည်းရှိပါက အဲဒီနည်းကို သုံးပါ။ လျှို့ဝှက်ချက်တွေကို လူအများမြင်နိုင်တဲ့ issue ထဲ မကူးထည့်ပါနဲ့။"
     ],
     "source_url": "https://docs.github.com/en/code-security/security-advisories/working-with-repository-security-advisories/privately-reporting-a-security-vulnerability"
   },
   {
     "id": "lesson-30",
-    "title": "Inspect file history",
+    "title": "ဖိုင်ပြောင်းလဲမှုမှတ်တမ်းကို စစ်ဆေးပါ",
     "body": [
-      "Repository history helps you review how a file changed. A newer revision still needs fresh verification before it is trusted as working."
+      "Repository ရဲ့ မှတ်တမ်းက ဖိုင်တစ်ခု ဘယ်လိုပြောင်းလဲခဲ့သလဲဆိုတာ ပြန်ကြည့်ဖို့ ကူညီပေးပါတယ်။ ဗားရှင်းအသစ်ဖြစ်နေပေမယ့် အလုပ်လုပ်တယ်လို့ မယုံကြည်ခင် ပြန်စမ်းသပ်ဖို့ လိုပါတယ်။"
     ],
     "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/viewing-and-understanding-files"
   },
   {
     "id": "lesson-31",
-    "title": "Follow source provenance",
+    "title": "မူရင်းရင်းမြစ်ကို မှတ်တမ်းတင်ပါ",
     "body": [
-      "Keep the original source and revision alongside a download link. Provenance helps users understand exactly which published file was tested."
+      "ဒေါင်းလုဒ်လင့်ခ်နဲ့အတူ မူရင်းရင်းမြစ်နဲ့ ဗားရှင်းအမှတ်ကို ထိန်းသိမ်းထားပါ။ ဒီအချက်တွေကြောင့် ထုတ်ဝေထားတဲ့ ဘယ်ဖိုင်ကို အတိအကျစမ်းသပ်ခဲ့သလဲဆိုတာ သိနိုင်ပါတယ်။"
     ],
     "source_url": "https://docs.github.com/en/repositories/working-with-files/using-files/getting-permanent-links-to-files"
   },
   {
     "id": "lesson-32",
-    "title": "Revoke leaked credentials",
+    "title": "ပေါက်ကြားသွားသော ချိတ်ဆက်ခွင့်ကို ရုပ်သိမ်းပါ",
     "body": [
-      "Deleting a public copy is not enough after a credential leaks. Follow the provider’s process to revoke or replace affected credentials."
+      "လျှို့ဝှက်ချိတ်ဆက်ခွင့်အချက်အလက် ပေါက်ကြားသွားရင် လူအများမြင်နိုင်တဲ့မိတ္တူကို ဖျက်ရုံနဲ့ မလုံလောက်ပါ။ သက်ဆိုင်ရာဝန်ဆောင်မှုပေးသူရဲ့ လုပ်ထုံးလုပ်နည်းအတိုင်း အဲဒီချိတ်ဆက်ခွင့်ကို ရုပ်သိမ်းပါ သို့မဟုတ် အသစ်အစားထိုးပါ။"
     ],
     "source_url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
   }

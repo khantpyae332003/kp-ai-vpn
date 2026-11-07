@@ -1,36 +1,13 @@
-# Validation and device test handoff
+# KP VPN 0.2.0 validation
 
-## Automated evidence
+GitHub Actions staging build: https://github.com/khantpyae332003/kp-ai-vpn/actions/runs/42394555292
 
-GitHub Actions builds the Android APK from `kp-vpn-new` in `khantpyae332003/kp-ai-vpn`:
-https://github.com/khantpyae332003/kp-ai-vpn/actions
+- Android compilation, native parser/importer/label tests, lintDebug and assembleDebug passed.
+- Five Node UI model tests passed.
+- Chromium at 390x844 verified import dialog, country/search filters, legacy Global metadata, injection safety, 48px button targets, website action and no horizontal overflow.
+- Home/import screenshots were inspected after CI. These screenshots test bundled UI, not the Android bridge or live SIM connectivity.
+- The Noto Sans Myanmar font and its license notice are bundled by CI.
 
-An earlier revision (`58886afc06600837494b8b406494f98deb0b27a7`, run `41207180899`) successfully ran Android compilation, the seven parser/importer unit tests, Android lint and APK assembly, plus four UI model tests. Later source changes fix worker-thread storage and disconnect lifecycle behavior; check the current branch's latest run for their build result.
+The app uses versionCode2 / versionName0.2.0 and the existing com.khant.kpvpn application ID. This is a newly debug-signed preview; the previous private signing key was unavailable, so in-place upgrade compatibility is not established. No keystore or VPN config credentials are distributed with the release.
 
-The final pipeline also runs a Chromium UI check at 390×844: opening the import dialog, country/search filtering, inert display of an HTML-like profile name, no horizontal overflow, and no JavaScript page errors. It records home/import screenshots for visual inspection. These checks test the bundled UI, not Android bridge/VPN behavior.
-
-Local validation from the earlier release: four Node UI model tests, JS syntax checks, XML parsing and workflow YAML parsing. The local environment lacks Android SDK/build tools and blocks their downloads; actual native compilation runs in GitHub Actions. Read-only code review found and led to fixes for stale foreground notifications after backend DOWN and main-thread storage lock contention. Disconnect errors now restore actual backend state.
-
-The pipeline bundles Noto Sans Myanmar before UI checks and APK assembly. License notices are included with that font. The app is a debug test build and has not been published to Google Play.
-
-## Still needs real Android device testing
-
-- First VPN consent acceptance/denial; notification permission acceptance/denial.
-- Camera granted/denied; importing a valid WireGuard QR.
-- Batch .conf and ZIP import; duplicate/invalid counts and import near capacity.
-- App close/reopen and encrypted profile recovery; interrupted writes.
-- Start/stop with a valid reachable WireGuard server; independent verification of routing and DNS.
-- Unreachable/revoked server config; no claim that tunnel UP proves internet connectivity.
-- Disconnect through notification, Android VPN settings, or by starting another VPN; confirm no stale controller notification.
-- Background operation, Android process reclaim, network changes and restart behavior.
-- Actual Thai/Myanmar SIM networks. Carrier tags are organization labels only.
-
-No working server configs are bundled. There is no evidence or promise of free mobile data, automatic failover, multi-protocol connectivity or always-on VPN.
-
-## Version 0.2.0 local checks (2026-11-07)
-
-Five Node model tests pass, including legacy OTHER profiles under Global. Added five native label inference tests for ZIP country/SIM paths, explicit override, substring boundaries, legacy/unknown Global and NoPro spelling. These native tests require the Android CI build; they have not run in this workspace, which has no JDK/Gradle.
-
-The browser check now verifies visible v0.2.0, legacy Global filtering, preview website action and 48px button targets. Local Chromium launch was attempted using `/usr/bin/chromium`, but the execution sandbox denied `socket()` and Chromium exited before navigation. Screenshots and visual QA for this version remain pending a browser-capable CI/runtime.
-
-Native versionCode is 2 and versionName is 0.2.0. The application ID is unchanged. Previous signing key availability is unverified, so in-place installation over the earlier APK must not be promised.
+Actual device tests still required: Android VPN consent, notification/camera permission acceptance and denial, QR import, encrypted profile recovery, background/process lifecycle, live tunnel DNS/routing, network switches and real Thai/Myanmar cellular SIM service. Tunnel UP and cloud HTTPS checks do not certify package-free mobile data.
