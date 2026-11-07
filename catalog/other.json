@@ -1,8 +1,8 @@
 [
   {
-    "id": "07b7fa93380ec7022ee21ef6e46bd641bb58e4fe0f276d6920daf0f5bcf394d6",
-    "name": "wg-NL-FREE-138.conf",
-    "source_name": "wg-NL-FREE-138.conf",
+    "id": "eb3e6b426a34d2115dd0d47fc880c8396120fb6d2ed3df405806c03267f01736",
+    "name": "wg-NL-FREE-248.conf",
+    "source_name": "wg-NL-FREE-248.conf",
     "carrier": "other",
     "country": "GLOBAL",
     "plan": "standard",
@@ -12,57 +12,11 @@
     "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
     "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
     "download_kind": "source_archive",
-    "archive_member": "NL/wg-NL-FREE-138.conf",
+    "archive_member": "NL/wg-NL-FREE-248.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-07T17:43:24+00:00",
-    "expires_at": "2026-11-08T17:43:24+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
-    "id": "ec810737e99bab36509bee36fe007902c719ed703a2214820c40159671d82e1c",
-    "name": "wg-NO-FREE-9.conf",
-    "source_name": "wg-NO-FREE-9.conf",
-    "carrier": "other",
-    "country": "GLOBAL",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "NO/wg-NO-FREE-9.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-07T17:43:24+00:00",
-    "expires_at": "2026-11-08T17:43:24+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
-    "id": "99df7ebf0b63ae58228dea86c103016db83a8bcd5153d8246bdfceee3a9934b0",
-    "name": "wg-RO-FREE-21.conf",
-    "source_name": "wg-RO-FREE-21.conf",
-    "carrier": "other",
-    "country": "GLOBAL",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "RO/wg-RO-FREE-21.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-07T17:43:24+00:00",
-    "expires_at": "2026-11-08T17:43:24+00:00",
+    "checked_at": "2026-11-07T20:36:51+00:00",
+    "expires_at": "2026-11-08T20:36:51+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
