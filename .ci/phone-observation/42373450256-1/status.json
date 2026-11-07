@@ -1,5 +1,5 @@
 {
-  "status": "OBSERVING_FIRST_SETUP",
+  "status": "FAILED_OR_INCOMPLETE",
   "run_id": "42373450256",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
@@ -12,9 +12,9 @@
   "installed_apk_bytes_independently_verified": false,
   "session_started": true,
   "session_creation_attempted": true,
-  "cleanup_confirmed": false,
-  "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-07T13:20:47.606327+00:00",
+  "cleanup_confirmed": true,
+  "cleanup_state": "delete_confirmed",
+  "checked_at_utc": "2026-11-07T13:21:55.031289+00:00",
   "uploaded_apk_sha256": "c271025f576c3c98115ff0e82704df7209dfb7b67c3e6e23950f4d42c86a6bb4",
   "reported_platform": "Android",
   "device_info": {
@@ -30,5 +30,6 @@
     "com.kp.kali"
   ],
   "last_app_phase": "Kali: Starting Kali desktop",
-  "last_screenshot_sha256": "f624e27a204563c073d2c7bc436a451d3a1351641e219195be91fefb66729ed3"
+  "last_screenshot_sha256": "fe7e562160f1af4f135141febc5a31d2bb3c6fa9ff69458b4ea3b4ad0f092149",
+  "reason": "HTTP_404"
 }
