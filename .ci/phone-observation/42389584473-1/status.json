@@ -1,20 +1,20 @@
 {
-  "status": "OBSERVING_FIRST_SETUP",
+  "status": "FAILED_OR_INCOMPLETE",
   "run_id": "42389584473",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
   "device": "Samsung Galaxy S24 Ultra",
   "os_version": "14.0",
-  "root_sudo_manifest_observed": false,
+  "root_sudo_manifest_observed": true,
   "visible_desktop_reviewed": false,
   "tools_verified": false,
   "shutdown_reopen_verified": false,
   "installed_apk_bytes_independently_verified": false,
   "session_started": true,
   "session_creation_attempted": true,
-  "cleanup_confirmed": false,
-  "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-07T16:42:47.705273+00:00",
+  "cleanup_confirmed": true,
+  "cleanup_state": "delete_confirmed",
+  "checked_at_utc": "2026-11-07T16:42:50.737065+00:00",
   "uploaded_apk_sha256": "65fca032aa11e02193b1d2c61900a4a773737cd1f0d078f186f5323c71c0c3a1",
   "reported_platform": "Android",
   "device_info": {
@@ -30,6 +30,7 @@
     "com.kp.kali"
   ],
   "last_app_phase": "Kali: Starting Kali desktop",
-  "last_screenshot_sha256": "1b55218ee744a51e243424efe5a04b91c992f4287f5481e8f0a81df478cf2349",
-  "proof_check_stage": "read_guest_proof"
+  "last_screenshot_sha256": "c5cefe3c3a9f9a15a469c651aa1907994611890587c01b7c48f9d8471686c48a",
+  "proof_check_stage": "read_guest_proof",
+  "reason": "HTTP_404"
 }
