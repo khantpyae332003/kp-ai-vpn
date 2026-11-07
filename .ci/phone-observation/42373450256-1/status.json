@@ -1,5 +1,5 @@
 {
-  "status": "REQUESTING_ONE_DEVICE",
+  "status": "OBSERVING_FIRST_SETUP",
   "run_id": "42373450256",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
@@ -10,10 +10,11 @@
   "tools_verified": false,
   "shutdown_reopen_verified": false,
   "installed_apk_bytes_independently_verified": false,
-  "session_started": false,
+  "session_started": true,
   "session_creation_attempted": true,
   "cleanup_confirmed": false,
-  "cleanup_state": "unknown_until_session_reconciled",
-  "checked_at_utc": "2026-11-07T12:41:30.518654+00:00",
-  "uploaded_apk_sha256": "c271025f576c3c98115ff0e82704df7209dfb7b67c3e6e23950f4d42c86a6bb4"
+  "cleanup_state": "active_known_session",
+  "checked_at_utc": "2026-11-07T12:42:00.485159+00:00",
+  "uploaded_apk_sha256": "c271025f576c3c98115ff0e82704df7209dfb7b67c3e6e23950f4d42c86a6bb4",
+  "reported_platform": "Android"
 }
