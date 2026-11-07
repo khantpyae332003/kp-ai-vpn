@@ -1,5 +1,5 @@
 {
-  "status": "PREPARING",
+  "status": "UPLOADING_CANDIDATE",
   "run_id": "42389584473",
   "run_attempt": "1",
   "apk_release": "WITHHELD",
@@ -14,5 +14,6 @@
   "session_creation_attempted": false,
   "cleanup_confirmed": false,
   "cleanup_state": "not_required",
-  "checked_at_utc": "2026-11-07T16:08:19.235063+00:00"
+  "checked_at_utc": "2026-11-07T16:08:21.322112+00:00",
+  "uploaded_apk_sha256": "65fca032aa11e02193b1d2c61900a4a773737cd1f0d078f186f5323c71c0c3a1"
 }
