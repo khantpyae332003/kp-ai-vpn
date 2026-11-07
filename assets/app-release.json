@@ -1,5 +1,10 @@
 {
   "version": "0.2.0",
   "version_code": 2,
-  "status": "building"
+  "apk_url": "https://github.com/khantpyae332003/kp-ai-vpn/releases/download/v0.2.0/KP-VPN-0.2.0.apk",
+  "sha256": "103e1d60e96ff05d285f2f0d1f41e7308fafaef3477402e0fb62262dc26f9483",
+  "size_bytes": 15952638,
+  "published_at": "2026-11-07T17:42:41.085012+00:00",
+  "signing_mode": "debug_preview",
+  "min_android": 8
 }
