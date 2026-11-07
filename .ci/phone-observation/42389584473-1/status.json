@@ -14,7 +14,7 @@
   "session_creation_attempted": true,
   "cleanup_confirmed": false,
   "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-07T16:14:09.682922+00:00",
+  "checked_at_utc": "2026-11-07T16:15:13.067099+00:00",
   "uploaded_apk_sha256": "65fca032aa11e02193b1d2c61900a4a773737cd1f0d078f186f5323c71c0c3a1",
   "reported_platform": "Android",
   "device_info": {
@@ -29,6 +29,6 @@
   "visible_packages": [
     "com.kp.kali"
   ],
-  "last_app_phase": "Kali: Creating private Kali filesystem",
-  "last_screenshot_sha256": "41c4e836780cd3e3203b1174fdd570d03a71c3de7c8edf43d369134700675352"
+  "last_app_phase": "Kali: Extracting verified Kali layer 1 of 6",
+  "last_screenshot_sha256": "c65eab9a204bb829e7264d202f87a16a149f9063f53cc524ce46354638a31047"
 }
