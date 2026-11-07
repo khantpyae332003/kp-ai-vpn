@@ -19,3 +19,5 @@
 .results-toolbar{flex-wrap:wrap}.results-toolbar input{flex:1 1 180px;min-width:0}.file-actions{gap:12px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+#kp-check-file{display:block;width:100%;min-width:0;font-size:16px;padding:12px 0;overflow:hidden}#kp-check-file::file-selector-button{font:inherit;padding:12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--text);margin-right:8px}.checker-result{overflow-wrap:anywhere}.checker-result:empty{display:none}.checker-result p{color:var(--text)}

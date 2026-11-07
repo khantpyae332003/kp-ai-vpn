@@ -58,8 +58,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Config-builder cryptographic tests
-        run: node --test tests/builder.test.cjs
+      - name: Config builder and checker tests
+        run: node --test tests/*.test.cjs
       - name: Browser UI checks
         run: |
           npm install --no-save playwright@1.56.1
