@@ -65,6 +65,7 @@ jobs:
             candidate-sha256.txt
           retention-days: 7
 
+  # Revalidate on a real phone after the progress-publication failure repair.
   physical-observation:
     if: startsWith(github.event.head_commit.message, 'Start BrowserStack physical validation') || (github.event_name == 'workflow_dispatch' && inputs.run_device_test)
     needs: build
