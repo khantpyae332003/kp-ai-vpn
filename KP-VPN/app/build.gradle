@@ -1,0 +1,16 @@
+plugins { id 'com.android.application' }
+android {
+ namespace 'com.khant.kpvpn'
+ compileSdk 36
+ defaultConfig { applicationId 'com.khant.kpvpn'; minSdk 26; targetSdk 36; versionCode 1; versionName '0.1.0' }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17; coreLibraryDesugaringEnabled true }
+ buildTypes { release { minifyEnabled false } }
+ packaging { resources.excludes += ['META-INF/DEPENDENCIES'] }
+}
+dependencies {
+ implementation 'com.wireguard.android:tunnel:1.0.20260102'
+ implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+ implementation 'androidx.webkit:webkit:1.12.1'
+ coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+ testImplementation 'junit:junit:4.13.2'
+}

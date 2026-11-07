@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.CAMERA"/>
+ <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+ <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+ <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+ <uses-feature android:name="android.hardware.camera" android:required="false"/>
+ <application android:name=".KpApp" android:label="KP VPN" android:icon="@drawable/ic_shield" android:theme="@style/AppTheme" android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true">
+  <activity android:name=".MainActivity" android:exported="true" android:windowSoftInputMode="adjustResize">
+   <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+  </activity>
+  <activity android:name="com.journeyapps.barcodescanner.CaptureActivity" android:screenOrientation="fullSensor" tools:replace="android:screenOrientation"/>
+  <service android:name=".TunnelService" android:exported="false" android:foregroundServiceType="specialUse">
+   <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User initiated WireGuard VPN connection and disconnect notification"/>
+  </service>
+  <service android:name="com.wireguard.android.backend.GoBackend$VpnService" android:permission="android.permission.BIND_VPN_SERVICE" android:exported="false">
+   <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" android:value="false"/>
+  </service>
+ </application>
+</manifest>

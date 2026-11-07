@@ -1,0 +1,24 @@
+const {chromium}=require('playwright');
+const path=require('node:path');
+(async()=>{
+ require('node:fs').mkdirSync('build/ui',{recursive:true});
+ const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('file://'+path.resolve('app/src/main/assets/index.html'));
+ await page.screenshot({path:'build/ui/home.png',fullPage:true});
+ await page.getByRole('button',{name:'＋ ထည့်မယ်'}).click();
+ if(!await page.locator('#importDialog').isVisible())throw new Error('Dialog failed');
+ await page.screenshot({path:'build/ui/import.png',fullPage:true});
+ await page.locator('#closeDialog').click();
+ await page.evaluate(()=>window.receive({state:'DOWN',ready:true,activeId:'',rx:0,tx:0,profiles:[{id:'x',name:'<script>window.bad=true</script>',carrier:'TH',operator:'AIS',favorite:false},{id:'y',name:'မြန်မာ Config',carrier:'MM',operator:'MPT',favorite:true}]}));
+ if(await page.evaluate(()=>window.bad))throw new Error('HTML injected');
+ await page.locator('[data-country="MM"]').click();
+ if(await page.locator('.profile').count()!==1)throw new Error('Country filter failed');
+ await page.locator('#search').fill('မတွေ့');
+ if(await page.locator('.profile').count()!==0)throw new Error('Search failed');
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw new Error('Horizontal overflow');
+ if(errors.length)throw new Error(errors.join('\n'));
+ console.log('PASS: 390px viewport, import dialog, SIM filter, search, injection safety, no page errors or horizontal overflow');
+ await browser.close();
+})();
