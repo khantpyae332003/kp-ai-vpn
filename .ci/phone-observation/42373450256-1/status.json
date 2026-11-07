@@ -14,7 +14,7 @@
   "session_creation_attempted": true,
   "cleanup_confirmed": false,
   "cleanup_state": "active_known_session",
-  "checked_at_utc": "2026-11-07T12:54:21.714564+00:00",
+  "checked_at_utc": "2026-11-07T12:55:25.318224+00:00",
   "uploaded_apk_sha256": "c271025f576c3c98115ff0e82704df7209dfb7b67c3e6e23950f4d42c86a6bb4",
   "reported_platform": "Android",
   "device_info": {
@@ -30,5 +30,5 @@
     "com.kp.kali"
   ],
   "last_app_phase": "Kali: Extracting verified Kali layer 1 of 6",
-  "last_screenshot_sha256": "1033b3ae3f8b021b07626576f639f54964f985582b701ec67c2200dfb1c51d86"
+  "last_screenshot_sha256": "c27c2fef82714ac718ef5b17b005ef46c40d3154d80fd87c01723eb088f17965"
 }
