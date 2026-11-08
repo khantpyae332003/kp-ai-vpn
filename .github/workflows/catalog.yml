@@ -4,6 +4,11 @@ on:
     # All 24 hours, every 30 minutes (UTC); scheduled jobs can be delayed.
     - cron: '*/30 * * * *'
   workflow_dispatch:
+    inputs:
+      ai_refresh:
+        description: 'Request a fresh bounded AI review (uses API quota)'
+        type: boolean
+        default: false
   push:
     branches: [main, kp-vpn-catalog]
     paths: ['agents/**', 'data/**', 'assets/**', 'index.html', 'tests/**', '.github/workflows/catalog.yml']
@@ -55,6 +60,13 @@ jobs:
         run: sudo "$(command -v python)" -m agents.verifier
       - name: Roles 3-8 — classify, publish, daily learning and bounded monitors
         run: python -m agents.pipeline --out catalog
+      - name: Daily AI review of eight roles (metadata only)
+        if: github.ref == 'refs/heads/main'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
+          FORCE_AI_REVIEW: ${{ github.event_name == 'workflow_dispatch' && inputs.ai_refresh && '1' || '0' }}
+        run: python -m agents.ai_review
       - name: Run policy tests again
         run: python -m unittest discover -s tests -v
       - uses: actions/setup-node@v7
