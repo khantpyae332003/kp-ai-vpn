@@ -9,6 +9,16 @@
       "source_url": "https://protonvpn.com/support/what-is-a-vpn/",
       "mode": "curated",
       "content_id": "lesson-01"
+    },
+    {
+      "date": "2026-11-09",
+      "title": "ဆာဗာစမ်းသပ်ရလဒ်ကို နားလည်ခြင်း",
+      "body": [
+        "ဆာဗာ handshake နှင့် HTTPS စစ်ဆေးမှုအောင်မြင်ရင် စမ်းသပ်ထားတဲ့ပတ်ဝန်းကျင်ကနေ VPN ချိတ်ဆက်အသုံးပြုနိုင်ခဲ့တယ်လို့ သိနိုင်ပါတယ်။ သင့် SIM၊ လိုင်းအားနဲ့ မိုဘိုင်းပက်ကေ့ချ်ကိုတော့ သီးခြားစမ်းသပ်ဖို့ လိုပါသေးတယ်။"
+      ],
+      "source_url": "https://www.wireguard.com/quickstart/",
+      "mode": "curated",
+      "content_id": "lesson-02"
     }
   ]
 }
