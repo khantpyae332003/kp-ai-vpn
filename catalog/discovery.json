@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T20:29:53+00:00",
+  "updated_at": "2026-11-10T02:51:37+00:00",
   "sources": [
     {
       "name": "Jetspeedvpn/DTAC-Nopro",
@@ -24,6 +24,14 @@
       "status": "source_not_approved",
       "query": "ais nopro",
       "updated_at": "2025-12-19T20:08:32Z"
+    },
+    {
+      "name": "DekLab443/DNS-NS-DekLab",
+      "url": "https://github.com/DekLab443/DNS-NS-DekLab",
+      "description": "DekLab's DNS project in Thailand is only usable within Thailand and uses the Wireguard UDP protocol with a D-O-T DNS configuration. ",
+      "status": "source_not_approved",
+      "query": "wireguard thailand",
+      "updated_at": "2026-11-10T00:26:07Z"
     },
     {
       "name": "houstoncmd/hermes-phone-control-skills",
