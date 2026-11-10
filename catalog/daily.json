@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-10",
-  "title": "Private key ကို လုံခြုံစွာသိမ်းပါ",
+  "date": "2026-11-11",
+  "title": "Public key ၏ အခန်းကဏ္ဍ",
   "body": [
-    "WireGuard private key ဟာ ချိတ်ဆက်ခွင့်ရဖို့ အသုံးပြုတဲ့ လျှို့ဝှက်အချက်အလက်ဖြစ်ပါတယ်။ Config ဖိုင်ကို သီးသန့်သိမ်းထားပြီး အကူအညီတောင်းတဲ့အခါ ဖိုင်အတွင်းစာသားတွေကို လူအများမြင်နိုင်တဲ့နေရာမှာ မတင်ပါနဲ့။"
+    "WireGuard ချိတ်ဆက်ဖက်တွေက public key ကို အပြန်အလှန်ဖလှယ်ကြပါတယ်။ Public key နဲ့ private key တို့ရဲ့ အခန်းကဏ္ဍမတူတာကြောင့် တစ်ခုအစားတစ်ခု မထည့်ပါနဲ့။"
   ],
-  "source_url": "https://www.wireguard.com/quickstart/",
+  "source_url": "https://www.wireguard.com/",
   "mode": "curated",
-  "content_id": "lesson-03"
+  "content_id": "lesson-04"
 }

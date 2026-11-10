@@ -29,6 +29,16 @@
       "source_url": "https://www.wireguard.com/quickstart/",
       "mode": "curated",
       "content_id": "lesson-03"
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Public key ၏ အခန်းကဏ္ဍ",
+      "body": [
+        "WireGuard ချိတ်ဆက်ဖက်တွေက public key ကို အပြန်အလှန်ဖလှယ်ကြပါတယ်။ Public key နဲ့ private key တို့ရဲ့ အခန်းကဏ္ဍမတူတာကြောင့် တစ်ခုအစားတစ်ခု မထည့်ပါနဲ့။"
+      ],
+      "source_url": "https://www.wireguard.com/",
+      "mode": "curated",
+      "content_id": "lesson-04"
     }
   ]
 }
