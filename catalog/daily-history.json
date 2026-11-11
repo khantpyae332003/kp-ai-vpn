@@ -39,6 +39,16 @@
       "source_url": "https://www.wireguard.com/",
       "mode": "curated",
       "content_id": "lesson-04"
+    },
+    {
+      "date": "2026-11-12",
+      "title": "Endpoint လိပ်စာဆိုတာ",
+      "body": [
+        "Endpoint က WireGuard ချိတ်ဆက်ဖက်ကို ဘယ်လိပ်စာမှာ ဆက်သွယ်ရမလဲဆိုတာ သတ်မှတ်ပေးပါတယ်။ အဲဒီဆာဗာတည်နေရာကိုကြည့်ပြီး ဘယ်မိုဘိုင်းအော်ပရေတာနဲ့ config အလုပ်လုပ်မယ်ဆိုတာ မဆုံးဖြတ်နိုင်ပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/quickstart/",
+      "mode": "curated",
+      "content_id": "lesson-05"
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-11",
-  "title": "Public key ၏ အခန်းကဏ္ဍ",
+  "date": "2026-11-12",
+  "title": "Endpoint လိပ်စာဆိုတာ",
   "body": [
-    "WireGuard ချိတ်ဆက်ဖက်တွေက public key ကို အပြန်အလှန်ဖလှယ်ကြပါတယ်။ Public key နဲ့ private key တို့ရဲ့ အခန်းကဏ္ဍမတူတာကြောင့် တစ်ခုအစားတစ်ခု မထည့်ပါနဲ့။"
+    "Endpoint က WireGuard ချိတ်ဆက်ဖက်ကို ဘယ်လိပ်စာမှာ ဆက်သွယ်ရမလဲဆိုတာ သတ်မှတ်ပေးပါတယ်။ အဲဒီဆာဗာတည်နေရာကိုကြည့်ပြီး ဘယ်မိုဘိုင်းအော်ပရေတာနဲ့ config အလုပ်လုပ်မယ်ဆိုတာ မဆုံးဖြတ်နိုင်ပါ။"
   ],
-  "source_url": "https://www.wireguard.com/",
+  "source_url": "https://www.wireguard.com/quickstart/",
   "mode": "curated",
-  "content_id": "lesson-04"
+  "content_id": "lesson-05"
 }
