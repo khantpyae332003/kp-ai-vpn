@@ -15,17 +15,17 @@
     "archive_member": "NL/wg-NL-FREE-162.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-11T03:48:31+00:00",
-    "expires_at": "2026-11-12T03:48:31+00:00",
+    "checked_at": "2026-11-11T11:35:46+00:00",
+    "expires_at": "2026-11-12T11:35:46+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
     }
   },
   {
-    "id": "a704767a03704252a1896d20f9fee188113b9d65c64e2b6702cd4abd7c5a207a",
-    "name": "wg-US-FREE-101.conf",
-    "source_name": "wg-US-FREE-101.conf",
+    "id": "f1b6867e8f9c2afb6db223d0859d9163901a090f4cf69316fd00b731392c1189",
+    "name": "wg-CH-FREE-8.conf",
+    "source_name": "wg-CH-FREE-8.conf",
     "carrier": "other",
     "country": "GLOBAL",
     "plan": "standard",
@@ -35,20 +35,20 @@
     "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
     "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
     "download_kind": "source_archive",
-    "archive_member": "US/wg-US-FREE-101.conf",
+    "archive_member": "CH/wg-CH-FREE-8.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-11T03:48:31+00:00",
-    "expires_at": "2026-11-12T03:48:31+00:00",
+    "checked_at": "2026-11-11T11:35:46+00:00",
+    "expires_at": "2026-11-12T11:35:46+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
     }
   },
   {
-    "id": "a8a0375f5c55519e872bbc9446d2ee1a53c8479bec1ca6416a6fa0d46aad4538",
-    "name": "wg-NL-FREE-136.conf",
-    "source_name": "wg-NL-FREE-136.conf",
+    "id": "f1ae0d057c8d721ab497c82a3d53e05f012e9283bac66b2a31cf8826e9fb4a3a",
+    "name": "wg-MX-FREE-12.conf",
+    "source_name": "wg-MX-FREE-12.conf",
     "carrier": "other",
     "country": "GLOBAL",
     "plan": "standard",
@@ -58,34 +58,11 @@
     "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
     "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
     "download_kind": "source_archive",
-    "archive_member": "NL/wg-NL-FREE-136.conf",
+    "archive_member": "MX/wg-MX-FREE-12.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-11T03:48:31+00:00",
-    "expires_at": "2026-11-12T03:48:31+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
-    "id": "3518205106f585e0461fe7ef25d3c6228d66fab0ab9f898795364ace50619004",
-    "name": "wg-NL-FREE-148.conf",
-    "source_name": "wg-NL-FREE-148.conf",
-    "carrier": "other",
-    "country": "GLOBAL",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "NL/wg-NL-FREE-148.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-11T03:48:31+00:00",
-    "expires_at": "2026-11-12T03:48:31+00:00",
+    "checked_at": "2026-11-11T11:35:46+00:00",
+    "expires_at": "2026-11-12T11:35:46+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
