@@ -49,6 +49,16 @@
       "source_url": "https://www.wireguard.com/quickstart/",
       "mode": "curated",
       "content_id": "lesson-05"
+    },
+    {
+      "date": "2026-11-13",
+      "title": "Handshake ပြုလုပ်ချိန်",
+      "body": [
+        "WireGuard ဟာ ဒေတာပို့ဖို့လိုတဲ့အချိန်မှာ ကုဒ်ဝှက်ထားတဲ့ ချိတ်ဆက်မှုကို တည်ဆောက်ပါတယ်။ ဒေတာမပို့ဘဲ ငြိမ်နေတဲ့ချိတ်ဆက်မှုနဲ့ ပျက်နေတဲ့ချိတ်ဆက်မှုကို ခွဲသိဖို့ အမှန်တကယ်ဒေတာပို့ပြီး စမ်းသပ်ပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/quickstart/",
+      "mode": "curated",
+      "content_id": "lesson-06"
     }
   ]
 }
