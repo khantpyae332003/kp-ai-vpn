@@ -59,6 +59,16 @@
       "source_url": "https://www.wireguard.com/quickstart/",
       "mode": "curated",
       "content_id": "lesson-06"
+    },
+    {
+      "date": "2026-11-14",
+      "title": "Keepalive ကို ဘာအတွက်သုံးသလဲ",
+      "body": [
+        "Persistent keepalive က NAT နောက်ကွယ်မှာရှိတဲ့ ချိတ်ဆက်ဖက်ကို ဆက်သွယ်နိုင်အောင် ကူညီပေးနိုင်ပါတယ်။ မိုဘိုင်းပက်ကေ့ချ်ကို ဖွင့်ပေးခြင်း၊ အော်ပရေတာရဲ့ ငွေကောက်ခံပုံကို ပြောင်းလဲပေးခြင်း မဟုတ်ပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/quickstart/",
+      "mode": "curated",
+      "content_id": "lesson-07"
     }
   ]
 }
