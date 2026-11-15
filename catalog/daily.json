@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-15",
-  "title": "AllowedIPs နှင့် ဒေတာလမ်းကြောင်း",
+  "date": "2026-11-16",
+  "title": "တရားဝင် WireGuard ကို ထည့်သွင်းပါ",
   "body": [
-    "AllowedIPs က ဘယ်ဒေတာကို WireGuard ချိတ်ဆက်ဖက်ဆီ ပို့မလဲဆိုတာ သတ်မှတ်ရာမှာ ပါဝင်ပါတယ်။ မရင်းနှီးတဲ့ config ကို မထည့်သွင်းခင် ဒေတာလမ်းကြောင်းသတ်မှတ်ချက်တွေကို စစ်ဆေးပါ။"
+    "သင့်စက်စနစ်အတွက် ပံ့ပိုးထားတဲ့ ထည့်သွင်းနည်းတွေကို WireGuard ရဲ့ တရားဝင် installation လမ်းညွှန်မှာ ကြည့်နိုင်ပါတယ်။"
   ],
-  "source_url": "https://www.wireguard.com/quickstart/",
+  "source_url": "https://www.wireguard.com/install/",
   "mode": "curated",
-  "content_id": "lesson-08"
+  "content_id": "lesson-09"
 }

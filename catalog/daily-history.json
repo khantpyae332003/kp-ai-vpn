@@ -79,6 +79,16 @@
       "source_url": "https://www.wireguard.com/quickstart/",
       "mode": "curated",
       "content_id": "lesson-08"
+    },
+    {
+      "date": "2026-11-16",
+      "title": "တရားဝင် WireGuard ကို ထည့်သွင်းပါ",
+      "body": [
+        "သင့်စက်စနစ်အတွက် ပံ့ပိုးထားတဲ့ ထည့်သွင်းနည်းတွေကို WireGuard ရဲ့ တရားဝင် installation လမ်းညွှန်မှာ ကြည့်နိုင်ပါတယ်။"
+      ],
+      "source_url": "https://www.wireguard.com/install/",
+      "mode": "curated",
+      "content_id": "lesson-09"
     }
   ]
 }
