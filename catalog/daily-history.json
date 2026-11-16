@@ -89,6 +89,16 @@
       "source_url": "https://www.wireguard.com/install/",
       "mode": "curated",
       "content_id": "lesson-09"
+    },
+    {
+      "date": "2026-11-17",
+      "title": "Android တွင် WireGuard ထည့်သွင်းခြင်း",
+      "body": [
+        "WireGuard မှာ Android အတွက် ထည့်သွင်းနည်းတွေ ရှိပါတယ်။ VPN အက်ပ်တစ်ခုကို မထည့်သွင်းခင် ဒေါင်းလုဒ်ရင်းမြစ်နဲ့ ထုတ်ဝေသူကို စစ်ဆေးပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/install/",
+      "mode": "curated",
+      "content_id": "lesson-10"
     }
   ]
 }
