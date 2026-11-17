@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at": "2026-11-17T02:14:17+00:00",
+  "updated_at": "2026-11-17T10:55:16+00:00",
   "files": [
     {
       "id": "75faa0f428d0106bfaa5ef1c279d738d047e328f031ac45632370289ced896fe",
@@ -18,8 +18,8 @@
       "archive_member": "NL/wg-NL-FREE-144.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-17T02:14:17+00:00",
-      "expires_at": "2026-11-18T02:14:17+00:00",
+      "checked_at": "2026-11-17T10:55:16+00:00",
+      "expires_at": "2026-11-18T10:55:16+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
@@ -41,31 +41,8 @@
       "archive_member": "NL/wg-NL-FREE-162.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-17T02:14:17+00:00",
-      "expires_at": "2026-11-18T02:14:17+00:00",
-      "server_status": "handshake_https_pass",
-      "sim": {
-        "status": "not_tested"
-      }
-    },
-    {
-      "id": "4937a681a47bd61ff54040337ded675dd4b8b8dbd63aab0f3f28b4b91e3c1c85",
-      "name": "wg-US-FREE-36.conf",
-      "source_name": "wg-US-FREE-36.conf",
-      "carrier": "other",
-      "country": "GLOBAL",
-      "plan": "standard",
-      "protocol": "wireguard",
-      "format": ".conf",
-      "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-      "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-      "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-      "download_kind": "source_archive",
-      "archive_member": "US/wg-US-FREE-36.conf",
-      "source_id": "deltakronecker-public-wireguard",
-      "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-17T02:14:17+00:00",
-      "expires_at": "2026-11-18T02:14:17+00:00",
+      "checked_at": "2026-11-17T10:55:16+00:00",
+      "expires_at": "2026-11-18T10:55:16+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
@@ -87,31 +64,8 @@
       "archive_member": "CH/wg-CH-FREE-11.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-17T02:14:17+00:00",
-      "expires_at": "2026-11-18T02:14:17+00:00",
-      "server_status": "handshake_https_pass",
-      "sim": {
-        "status": "not_tested"
-      }
-    },
-    {
-      "id": "f1b6867e8f9c2afb6db223d0859d9163901a090f4cf69316fd00b731392c1189",
-      "name": "wg-CH-FREE-8.conf",
-      "source_name": "wg-CH-FREE-8.conf",
-      "carrier": "other",
-      "country": "GLOBAL",
-      "plan": "standard",
-      "protocol": "wireguard",
-      "format": ".conf",
-      "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-      "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-      "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-      "download_kind": "source_archive",
-      "archive_member": "CH/wg-CH-FREE-8.conf",
-      "source_id": "deltakronecker-public-wireguard",
-      "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-17T02:14:17+00:00",
-      "expires_at": "2026-11-18T02:14:17+00:00",
+      "checked_at": "2026-11-17T10:55:16+00:00",
+      "expires_at": "2026-11-18T10:55:16+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
@@ -121,7 +75,7 @@
   "stats": {
     "candidates": 20,
     "approved": 20,
-    "rejected": 15,
+    "rejected": 17,
     "duplicate": 0,
     "source_errors": 0
   },
