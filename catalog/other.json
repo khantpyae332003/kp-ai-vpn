@@ -15,31 +15,8 @@
     "archive_member": "NL/wg-NL-FREE-144.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
-    "id": "dbaee13b2bf6f54bd71627f4b7f3b4cde71c04f1c9eecc0ec11a00534077b117",
-    "name": "wg-CA-FREE-33.conf",
-    "source_name": "wg-CA-FREE-33.conf",
-    "carrier": "other",
-    "country": "GLOBAL",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "CA/wg-CA-FREE-33.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
+    "checked_at": "2026-11-17T02:14:17+00:00",
+    "expires_at": "2026-11-18T02:14:17+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
@@ -61,31 +38,8 @@
     "archive_member": "NL/wg-NL-FREE-162.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
-    "server_status": "handshake_https_pass",
-    "sim": {
-      "status": "not_tested"
-    }
-  },
-  {
-    "id": "d05ad961b0b12b8c643f7b69769ce65a7a771f015ae78096d8a5982dcf35793a",
-    "name": "wg-US-FREE-2.conf",
-    "source_name": "wg-US-FREE-2.conf",
-    "carrier": "other",
-    "country": "GLOBAL",
-    "plan": "standard",
-    "protocol": "wireguard",
-    "format": ".conf",
-    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
-    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
-    "download_kind": "source_archive",
-    "archive_member": "US/wg-US-FREE-2.conf",
-    "source_id": "deltakronecker-public-wireguard",
-    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
+    "checked_at": "2026-11-17T02:14:17+00:00",
+    "expires_at": "2026-11-18T02:14:17+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
@@ -107,17 +61,17 @@
     "archive_member": "US/wg-US-FREE-36.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
+    "checked_at": "2026-11-17T02:14:17+00:00",
+    "expires_at": "2026-11-18T02:14:17+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
     }
   },
   {
-    "id": "76187449842e07e5aee9614981d651d656e976bd1ec6195391e3408522f96455",
-    "name": "wg-US-FREE-81.conf",
-    "source_name": "wg-US-FREE-81.conf",
+    "id": "8a9cd22797a9c40353e6190c14326fc828d20c2db2dde313e76e28eb6bfd56a7",
+    "name": "wg-CH-FREE-11.conf",
+    "source_name": "wg-CH-FREE-11.conf",
     "carrier": "other",
     "country": "GLOBAL",
     "plan": "standard",
@@ -127,11 +81,34 @@
     "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
     "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
     "download_kind": "source_archive",
-    "archive_member": "US/wg-US-FREE-81.conf",
+    "archive_member": "CH/wg-CH-FREE-11.conf",
     "source_id": "deltakronecker-public-wireguard",
     "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-    "checked_at": "2026-11-16T18:44:38+00:00",
-    "expires_at": "2026-11-17T18:44:38+00:00",
+    "checked_at": "2026-11-17T02:14:17+00:00",
+    "expires_at": "2026-11-18T02:14:17+00:00",
+    "server_status": "handshake_https_pass",
+    "sim": {
+      "status": "not_tested"
+    }
+  },
+  {
+    "id": "f1b6867e8f9c2afb6db223d0859d9163901a090f4cf69316fd00b731392c1189",
+    "name": "wg-CH-FREE-8.conf",
+    "source_name": "wg-CH-FREE-8.conf",
+    "carrier": "other",
+    "country": "GLOBAL",
+    "plan": "standard",
+    "protocol": "wireguard",
+    "format": ".conf",
+    "source_url": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
+    "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
+    "download_kind": "source_archive",
+    "archive_member": "CH/wg-CH-FREE-8.conf",
+    "source_id": "deltakronecker-public-wireguard",
+    "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
+    "checked_at": "2026-11-17T02:14:17+00:00",
+    "expires_at": "2026-11-18T02:14:17+00:00",
     "server_status": "handshake_https_pass",
     "sim": {
       "status": "not_tested"
