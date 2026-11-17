@@ -99,6 +99,16 @@
       "source_url": "https://www.wireguard.com/install/",
       "mode": "curated",
       "content_id": "lesson-10"
+    },
+    {
+      "date": "2026-11-18",
+      "title": "Windows တွင် WireGuard ထည့်သွင်းခြင်း",
+      "body": [
+        "တရားဝင် installation စာမျက်နှာမှာ Windows client လင့်ခ်ကို ဖော်ပြထားပါတယ်။ ဆော့ဖ်ဝဲကို တရားဝင်စီမံကိန်းရဲ့ လင့်ခ်ကနေ ဒေါင်းလုဒ်လုပ်ပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/install/",
+      "mode": "curated",
+      "content_id": "lesson-11"
     }
   ]
 }
