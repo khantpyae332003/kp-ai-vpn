@@ -109,6 +109,16 @@
       "source_url": "https://www.wireguard.com/install/",
       "mode": "curated",
       "content_id": "lesson-11"
+    },
+    {
+      "date": "2026-11-19",
+      "title": "Linux တွင် WireGuard ထည့်သွင်းခြင်း",
+      "body": [
+        "WireGuard ထည့်သွင်းပုံဟာ Linux ဖြန့်ချိမှုတစ်ခုနဲ့တစ်ခု ကွဲပြားနိုင်ပါတယ်။ သင်အသုံးပြုနေတဲ့ Linux ဖြန့်ချိမှုအတွက် လမ်းညွှန်ကို လိုက်နာပါ။"
+      ],
+      "source_url": "https://www.wireguard.com/install/",
+      "mode": "curated",
+      "content_id": "lesson-12"
     }
   ]
 }

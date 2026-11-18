@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-18",
-  "title": "Windows တွင် WireGuard ထည့်သွင်းခြင်း",
+  "date": "2026-11-19",
+  "title": "Linux တွင် WireGuard ထည့်သွင်းခြင်း",
   "body": [
-    "တရားဝင် installation စာမျက်နှာမှာ Windows client လင့်ခ်ကို ဖော်ပြထားပါတယ်။ ဆော့ဖ်ဝဲကို တရားဝင်စီမံကိန်းရဲ့ လင့်ခ်ကနေ ဒေါင်းလုဒ်လုပ်ပါ။"
+    "WireGuard ထည့်သွင်းပုံဟာ Linux ဖြန့်ချိမှုတစ်ခုနဲ့တစ်ခု ကွဲပြားနိုင်ပါတယ်။ သင်အသုံးပြုနေတဲ့ Linux ဖြန့်ချိမှုအတွက် လမ်းညွှန်ကို လိုက်နာပါ။"
   ],
   "source_url": "https://www.wireguard.com/install/",
   "mode": "curated",
-  "content_id": "lesson-11"
+  "content_id": "lesson-12"
 }
