@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated_at": "2026-11-19T00:37:45+00:00",
+  "updated_at": "2026-11-19T08:13:34+00:00",
   "files": [
     {
       "id": "4d4d9ef4610191b66d84d52ff92f233b81e1fd6d44baac0f834423d08e7040a2",
@@ -18,8 +18,8 @@
       "archive_member": "US/wg-US-FREE-82.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-19T00:37:45+00:00",
-      "expires_at": "2026-11-20T00:37:45+00:00",
+      "checked_at": "2026-11-19T08:13:34+00:00",
+      "expires_at": "2026-11-20T08:13:34+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
@@ -41,17 +41,17 @@
       "archive_member": "CA/wg-CA-FREE-33.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-19T00:37:45+00:00",
-      "expires_at": "2026-11-20T00:37:45+00:00",
+      "checked_at": "2026-11-19T08:13:34+00:00",
+      "expires_at": "2026-11-20T08:13:34+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
       }
     },
     {
-      "id": "9b99185132ec7b666b0081e04b1ccf3afb0e20ce462883793348d672570447f2",
-      "name": "wg-JP-FREE-19.conf",
-      "source_name": "wg-JP-FREE-19.conf",
+      "id": "aa58cebd0a11a9952687f29be5361beb87aafb5c9987a3dbb1c40d6ae0b810c5",
+      "name": "wg-US-FREE-102.conf",
+      "source_name": "wg-US-FREE-102.conf",
       "carrier": "other",
       "country": "GLOBAL",
       "plan": "standard",
@@ -61,11 +61,11 @@
       "permission_url": "https://github.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/blob/main/README.md",
       "download": "https://raw.githubusercontent.com/Delta-Kronecker/ProtonVPN-WireGuard-configuration/67f28f215aebfb56562a72a1df86ce3974799f28/ProtonVPN_WireGuard_Configs.zip",
       "download_kind": "source_archive",
-      "archive_member": "JP/wg-JP-FREE-19.conf",
+      "archive_member": "US/wg-US-FREE-102.conf",
       "source_id": "deltakronecker-public-wireguard",
       "source_commit": "67f28f215aebfb56562a72a1df86ce3974799f28",
-      "checked_at": "2026-11-19T00:37:45+00:00",
-      "expires_at": "2026-11-20T00:37:45+00:00",
+      "checked_at": "2026-11-19T08:13:34+00:00",
+      "expires_at": "2026-11-20T08:13:34+00:00",
       "server_status": "handshake_https_pass",
       "sim": {
         "status": "not_tested"
