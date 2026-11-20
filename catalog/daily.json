@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-20",
-  "title": "macOS တွင် WireGuard ထည့်သွင်းခြင်း",
+  "date": "2026-11-21",
+  "title": "VPN ၏ လုပ်ဆောင်နိုင်သည့်အတိုင်းအတာ",
   "body": [
-    "တရားဝင် installation စာမျက်နှာမှာ macOS အတွက် ရွေးချယ်စရာတွေ ရှိပါတယ်။ Config တစ်ခု အလုပ်လုပ်ဖို့ မှန်ကန်တဲ့ ချိတ်ဆက်ခွင့်အချက်အလက်နဲ့ ဆက်သွယ်နိုင်တဲ့ဆာဗာ လိုအပ်နေဆဲဖြစ်ပါတယ်။"
+    "VPN ဟာ ဒေတာကို လုံခြုံတဲ့ tunnel ကနေ အခြားကွန်ရက်တစ်ခုဆီ ပို့ပေးပါတယ်။ အဲဒီ tunnel ကို ရောက်ဖို့ အသုံးပြုနေတဲ့ အင်တာနက်ချိတ်ဆက်မှုကိုတော့ အစားမထိုးပေးပါ။"
   ],
-  "source_url": "https://www.wireguard.com/install/",
+  "source_url": "https://protonvpn.com/support/what-is-a-vpn/",
   "mode": "curated",
-  "content_id": "lesson-13"
+  "content_id": "lesson-14"
 }
